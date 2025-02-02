@@ -1,0 +1,34 @@
+.about-us {
+    height: 100vh;
+    padding: 2rem;
+    background: #f9f9f9;
+
+    &__content {
+      max-width: 800px;
+      margin: 0 auto;
+      animation: slide-in 1s ease-in-out;
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        color: $primary-color;
+      }
+
+      p {
+        font-size: 1.2rem;
+        line-height: 1.8;
+        color: $text-color;
+      }
+    }
+  }
+
+  @keyframes slide-in {
+    from {
+      transform: translateY(50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }

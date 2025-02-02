@@ -1,0 +1,81 @@
+@import '../styles/base/variables';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
+
+
+.about-us {
+  display: flex;
+  justify-content: space-between; // Separa la imagen y el texto a los extremos
+  align-items: center; // Alinea verticalmente
+  gap: 2rem; // Espacio entre los elementos
+  padding: 2rem;
+
+  .about-text {
+    flex: 1; // Permite que el texto ocupe el espacio disponible
+    text-align: left;
+  }
+
+  .about-image {
+    flex: 1; // Permite que la imagen ocupe el espacio disponible
+    display: flex;
+    justify-content: center; // Centra la imagen en su contenedor
+  }
+
+  img {
+    max-width: 100%; // Evita que la imagen sobrepase su contenedor
+    height: auto;
+    width: 2400px;
+    height: 617px;
+    border-radius: 2rem;
+  }
+
+  .text-Container{
+    p{
+        font-size: 30px;
+        font-family: Poppins;
+        font-weight: 400;
+        text-align: justify;
+        color: $otros-color;
+        line-height: 1.8;
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+    .firstP{
+        margin-bottom: 2rem;
+
+    }
+  }
+
+}
+
+    .title{
+        display: flex;
+        align-items: center; // Alinea verticalmente
+        font-family: Poppins;
+        gap: 3rem; // Espacio entre los elementos
+        font-weight: 800 !important;
+        .about1{
+            h1{
+                font-size: 64px;
+                color: $title-color;
+                position: relative;
+                left: 2rem;
+            }
+        }
+
+
+      .about2{
+        h1{
+            font-size: 64px;
+            color: $morado-color;
+        }
+      }
+
+    }
+
+// Responsivo para móviles
+@media (max-width: 768px) {
+  .about-us {
+    flex-direction: column; // Apila elementos en pantallas pequeñas
+    text-align: center;
+  }
+}

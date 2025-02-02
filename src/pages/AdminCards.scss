@@ -1,0 +1,143 @@
+.admin-cards {
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .add-card {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 2rem;
+
+      input {
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      button {
+        padding: 10px;
+        background: #ef0381;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: background 0.3s ease;
+
+        &:hover {
+          background: #c0026d;
+        }
+      }
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 10px;
+
+        img {
+          width: 100px;
+          height: 100px;
+          object-fit: cover;
+          border-radius: 5px;
+        }
+
+        button {
+          margin: 5px;
+          padding: 5px 10px;
+          background: #811988;
+          color: white;
+          border: none;
+          cursor: pointer;
+          transition: background 0.3s ease;
+
+          &:hover {
+            background: #5d1164;
+          }
+        }
+      }
+    }
+
+    /* 🔥 Modal */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .modal-content {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        height: 800px;
+        width: 800px;
+
+        img {
+          width: 100px;
+          height: 100px;
+          margin-bottom: 10px;
+        }
+
+        .titulo input{
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .descrip textarea {
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+
+        .img input {
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 40%;
+            margin-bottom: 10px;
+        }
+
+        .img img{
+            width: 500px;
+            height: auto;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+
+        button {
+          margin-top: 10px;
+          padding: 10px;
+          cursor: pointer;
+        }
+      }
+    }
+  }

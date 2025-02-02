@@ -1,0 +1,25 @@
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background-color: #0E0007;
+    color: white;
+    border: none;
+    border-radius: 2rem;
+    padding: 1rem;
+    font-size: 64px;
+    width: 116px;
+    height: 93px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    h2{
+        position: relative;
+        top: -8px;
+    }
+  }

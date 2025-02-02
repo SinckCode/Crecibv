@@ -1,0 +1,62 @@
+@import '../styles/base/variables';
+
+.carousel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    margin: auto;
+  }
+
+  .arrow {
+    background: none;
+    border: none;
+    font-size: 10rem;
+    cursor: pointer;
+    color: $primary-color;
+    margin-left: 2rem;
+  }
+
+  .card {
+    width: 684px;
+    height: 700px;
+    text-align: center;
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin-left: 2rem;
+    border: 0.5px solid black;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .card h3 {
+    font-size: 50px;
+    color: $otros-color;
+    margin-bottom: 10px;
+    font-weight: 800;
+  }
+
+  .card img {
+    width: 80%;
+    height: 50%;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .card p {
+    font-size: 18px;
+    font-weight: 400;
+    color: #666;
+    text-align: justify;
+    margin: 50px;
+  }
+
+  .delete {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+  }

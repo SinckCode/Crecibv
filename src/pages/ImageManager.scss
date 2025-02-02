@@ -1,0 +1,75 @@
+.image-manager {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 1rem;
+    }
+
+    .upload-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 2rem;
+
+      input {
+        margin-bottom: 1rem;
+      }
+
+      .preview {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 1rem;
+      }
+
+      button {
+        background: #ef0381;
+        color: white;
+        padding: 0.5rem 1rem;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+
+        &:hover {
+          background: #c0026d;
+        }
+      }
+    }
+
+    .image-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+
+      .image-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        img {
+          width: 100px;
+          height: 100px;
+          object-fit: cover;
+          border-radius: 8px;
+        }
+
+        button {
+          background: red;
+          color: white;
+          border: none;
+          padding: 0.3rem 0.5rem;
+          margin-top: 0.5rem;
+          cursor: pointer;
+          transition: 0.3s;
+
+          &:hover {
+            background: darkred;
+          }
+        }
+      }
+    }
+  }

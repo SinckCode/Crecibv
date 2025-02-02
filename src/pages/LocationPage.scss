@@ -1,0 +1,48 @@
+@import '../styles/base/variables';
+
+.location-page {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+
+    &.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h1 {
+      margin-bottom: 2rem;
+      color: $primary-color;
+    }
+
+    &__map {
+      margin-bottom: 2rem;
+
+      iframe {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    &__info {
+      text-align: left;
+      max-width: 600px;
+      margin: 0 auto;
+
+      h2 {
+        margin-bottom: 1rem;
+        color: $primary-color;
+      }
+
+      p {
+        margin-bottom: 0.5rem;
+        font-size: 1.2rem;
+        color: $text-color;
+
+        strong {
+          color: $secondary-color;
+        }
+      }
+    }
+  }

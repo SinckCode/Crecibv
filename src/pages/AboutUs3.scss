@@ -1,0 +1,72 @@
+@import '../styles/base/variables';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
+
+
+.about-us3 {
+  display: flex;
+  justify-content: space-between; // Separa la imagen y el texto a los extremos
+  align-items: center; // Alinea verticalmente
+  gap: 2rem; // Espacio entre los elementos
+  padding: 2rem;
+
+  .about-text {
+    flex: 1; // Permite que el texto ocupe el espacio disponible
+    text-align: left;
+  }
+
+  h2{
+    font-family: Poppins;
+    font-weight: 700;
+    font-size: 48px;
+    color: $otros-color;
+  }
+
+
+  .text-Container{
+    margin: 10rem 8rem;
+    p{
+        font-size: 30px;
+        font-family: Poppins;
+        font-weight: 400;
+        text-align: center;
+        color: $otros-color;
+        line-height: 1.8;
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+  }
+
+}
+
+    .title{
+        display: flex;
+        align-items: center; // Alinea verticalmente
+        font-family: Poppins;
+        gap: 3rem; // Espacio entre los elementos
+        font-weight: 800 !important;
+        .about1{
+            h1{
+                font-size: 64px;
+                color: $title-color;
+                position: relative;
+                left: 2rem;
+            }
+        }
+
+
+      .about2{
+        h1{
+            font-size: 64px;
+            color: $morado-color;
+        }
+      }
+
+    }
+
+// Responsivo para móviles
+@media (max-width: 768px) {
+  .about-us {
+    flex-direction: column; // Apila elementos en pantallas pequeñas
+    text-align: center;
+  }
+}

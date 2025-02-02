@@ -1,0 +1,150 @@
+@import '../styles/base/variables';
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: all 0.3s ease;
+
+  &.initial {
+    background-color: rgba(0, 0, 0, 0.4); /* Fondo translúcido */
+    color: #fff;
+    backdrop-filter: blur(5px); /* Opcional: añade un desenfoque */
+    -webkit-backdrop-filter: blur(5px); /* Soporte para Safari */
+  }
+
+  &.banner {
+    background-color: #811988; /* Fondo sólido */
+    color: #fff;
+  }
+
+  .navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Logo a la izquierda y nav a la derecha */
+    width: 100%;
+    padding: 1rem 2rem;
+
+    .logo {
+      display: flex;
+      align-items: center;
+
+      img {
+        height: 120px;
+        margin-right: 1rem;
+        background-color: #fff;
+        border-radius: 7rem;
+      }
+
+      h1 {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #fff;
+      }
+    }
+
+    nav {
+      display: flex;
+      gap: 3rem; /* Espaciado entre los enlaces */
+      margin-left: 2rem; /* Separación entre el logo y el menú */
+      flex-wrap: nowrap; /* Evita que los enlaces salten a una nueva línea */
+
+      a {
+        font-family: 'Poppins', sans-serif;
+        font-weight: bold;
+        font-style: italic;
+        font-size: 40px;
+        color: #fff;
+        text-decoration: none;
+        text-transform: uppercase;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: #ef0381;
+        }
+      }
+    }
+  }
+
+  .donation-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    text-align: center;
+
+
+    .donation-content {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      img {
+        height: 120px;
+        margin-right: 1rem;
+        background-color: #fff;
+        border-radius: 7rem;
+      }
+
+      p {
+        flex: 1;
+        font-family: 'Poppins', sans-serif;
+        font-size: 37px;
+        font-weight: 600;
+        color: #fff;
+      }
+
+      .cta-button {
+        width: 280px;
+        height: 70px;
+        background-color: #ef0381;
+        color: black;
+        font-family: 'Poppins', sans-serif;
+        font-weight: bold;
+        font-size: 30px; /* Ajusta según necesidad */
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-left: 2rem;
+
+        &:hover {
+          background-color: #c0026d;
+        }
+      }
+    }
+  }
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 1024px) {
+    .navbar {
+      flex-direction: column; /* Apila el logo y navegación */
+      align-items: center;
+
+      nav {
+        margin-left: 0; /* Remueve el margen en pantallas pequeñas */
+        justify-content: center; /* Centra los enlaces */
+        gap: 2rem;
+
+        a {
+          font-size: 30px; /* Reduce el tamaño del texto */
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    nav {
+      flex-direction: column; /* Apila los enlaces en pantallas pequeñas */
+      align-items: center;
+      gap: 1rem;
+
+      a {
+        font-size: 25px; /* Ajusta aún más el tamaño */
+      }
+    }
+  }
