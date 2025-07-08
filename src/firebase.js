@@ -6,13 +6,13 @@ import { getStorage } from "firebase/storage"; // Importa Storage
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyDRX_8Y6Uf-BAS3U9hShUeYhvw0LbQMlrc",
-    authDomain: "crecibv.firebaseapp.com",
-    projectId: "crecibv",
-    storageBucket: "crecibv.firebasestorage.app",
-    messagingSenderId: "214146216728",
-    appId: "1:214146216728:web:c29644cc6205493ecaa46d",
-    measurementId: "G-QYCQW5379V"
+    apiKey: "",
+    authDomain: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: "",
+    measurementId: ""
 };
 
 
