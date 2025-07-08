@@ -20,6 +20,16 @@
 
     h2{
         position: relative;
-        top: -8px;
+        color: #ffffff;
+        font-size: 5rem;
+        top: -1px;
     }
   }
+
+
+  @media screen and (max-width: 600px) {
+    .back-to-top{
+        right: 40rem;
+    }
+
+}

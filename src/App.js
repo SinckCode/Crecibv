@@ -1,38 +1,46 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from './firebase';
+import { useAuth, AuthProvider } from './context/AuthProvider';
 import Login from './pages/Login';
 import AdminPanel from './pages/AdminPanel';
-import AdminCards from './pages/AdminCards';  // 📌 Nueva página
+import AdminCards from './pages/AdminCards';
+import Users from './pages/Users';
 import HomePage from './pages/HomePage';
 import Header from './layouts/Header';
 import Footer from './layouts/Footer';
 import BackToTop from './components/BackToTop';
 import Home from './pages/Home';
+import Donaciones from './components/Donaciones';
 
-const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setIsAuthenticated(!!user); // true si hay usuario, false si no
-    });
-    return () => unsubscribe(); // Limpia el listener
-  }, []);
+const ProtectedRoute = ({ children }) => {
+  const { currentUser } = useAuth();
+  return currentUser ? children : <Navigate to="/login" />;
+};
 
+const AppContent = () => {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<><Header /><main><Home /><HomePage /></main><BackToTop /><Footer /></>} />
         <Route path="/login" element={<Login />} />
+        <Route path="/donaciones" element={<><main><Donaciones /></main><BackToTop /></>} />
 
         {/* 🔥 Rutas protegidas de admin */}
-        <Route path="/admin/*" element={isAuthenticated ? <AdminPanel /> : <Navigate to="/login" />} >
+        <Route path="/admin/*" element={<ProtectedRoute><AdminPanel /></ProtectedRoute>}>
           <Route path="cards" element={<AdminCards />} />
+          <Route path="userss" element={<Users />} /> {/* ✅ Nueva ruta protegida */}
         </Route>
       </Routes>
     </Router>
+  );
+};
+
+const App = () => {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
   );
 };
 

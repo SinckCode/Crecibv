@@ -76,3 +76,16 @@
       }
     }
   }
+
+
+  @media screen and (max-width: 600px) {
+
+    .home .overlay-content h1 {
+      font-size: 40px;
+    }
+    .home .overlay-content .cta-button{
+        width: 200px; /* Ajusta según necesidad */
+        height: 50px; /* Ajusta según necesidad */
+        font-size: 20px; /* Ajusta según necesidad */
+    }
+  }

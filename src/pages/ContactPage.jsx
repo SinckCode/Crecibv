@@ -54,7 +54,7 @@ const ContactPage = () => {
         <div className="info-box">
           <span className="icon">✉️</span>
           <h4>Email</h4>
-          <p>contacto@receibv.com</p>
+          <p>contacto@crecibv.com</p>
         </div>
         <div className="info-box">
           <span className="icon">📞</span>

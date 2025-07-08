@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import './AboutUs.scss';
-import img1 from '../assets/imagenesHome/BRAILLE4.jpg';
 
 const AboutUs = () => {
   const { ref, inView } = useInView({
@@ -9,37 +8,56 @@ const AboutUs = () => {
     threshold: 0.1,
   });
 
+  const [aboutData, setAboutData] = useState({
+    imageURL: "",
+    section1: { paragraph1: "", paragraph2: "" },
+  });
+
+  useEffect(() => {
+    const fetchAboutData = async () => {
+      try {
+        const response = await fetch("https://us-central1-crecibv.cloudfunctions.net/getAboutUs");
+        const data = await response.json();
+
+        if (data.success) {
+          setAboutData(data.data);
+        } else {
+          console.error("Error al cargar la información.");
+        }
+      } catch (error) {
+        console.error("Error de conexión:", error);
+      }
+    };
+
+    fetchAboutData();
+  }, []);
+
   return (
     <section ref={ref} className={`page ${inView ? 'visible' : ''}`}>
-
-        <div className="title">
+      <div className="title">
         <div className="about1">
-      <h1>ACERCA DE</h1>
-      </div>
-      <div className="about2">
-        <h1>NOSOTROS</h1>
-      </div>
+          <h1>ACERCA DE</h1>
         </div>
+        <div className="about2">
+          <h1>NOSOTROS</h1>
+        </div>
+      </div>
 
-        <div className="about-us">
+      <div className="about-us">
         <div className="image-Container">
-        <img src={img1} alt="Imagen de la institución" />
-      </div>
-      <div className="text-Container">
-
-        <div className="firstP">
-        <p>
-        Nacemos como una opción en atención educativa a personas con discapacidad visual en el estado de Guanajuato en el municipio de León de los Aldama.
-        </p>
+          <img
+            src={aboutData.imageURL || "https://via.placeholder.com/400"}
+            alt="Imagen de la institución"
+            className="about-image"
+          />
         </div>
-
-        <p>
-        Queremos contribuir por medio de la enseñanza curricular y áreas complementarias, para que personas ciegas o baja visión, tengan mejor calidad de vida y así reducir la brecha de desventajas y de reduzca la desigualdad social. Además de contribuir a una vida plena llena de oportunidades. Contamos con profesionistas capacitados para cada una de las áreas de atención.
-        </p>
-      </div>
+        <div className="text-Container">
+          <div className="firstP">
+            <p>{aboutData.section1.paragraph1 || "Cargando información..."}</p>
+          </div>
+          <p>{aboutData.section1.paragraph2 || "Cargando información..."}</p>
         </div>
-
-
+      </div>
     </section>
   );
 };

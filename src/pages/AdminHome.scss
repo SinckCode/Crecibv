@@ -1,51 +1,75 @@
-.admin-home {
+.admin-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2rem;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #ef0381, #ff7eb3);
+    color: #fff;
+}
 
-    .welcome {
-      text-align: center;
+.admin-card {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 30px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
 
-      .profile-pic {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-bottom: 1rem;
-        border: 4px solid #ef0381;
-      }
+.admin-card:hover {
+    transform: translateY(-5px);
+}
 
-      h1 {
-        font-size: 2rem;
-        color: #333;
-        margin-bottom: 1rem;
-      }
-    }
+.profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #fff;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
+}
 
-    .stats {
-      background: #f9f9f9;
-      padding: 1.5rem;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      max-width: 500px;
-      width: 100%;
-      margin-top: 2rem;
+.admin-welcome {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
 
-      h2 {
-        font-size: 1.8rem;
-        color: #333;
-        margin-bottom: 1rem;
-      }
+.admin-email {
+    font-size: 16px;
+    color: #f0f0f0;
+    opacity: 0.9;
+}
 
-      p {
-        font-size: 1.2rem;
-        color: #555;
+.admin-logout {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #fff;
+    color: #ef0381;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
 
-        strong {
-          color: #ef0381;
-        }
-      }
-    }
-  }
+.admin-logout:hover {
+    background: #ff7eb3;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* Estilos para mensajes de carga y error */
+.loading-text, .error-text {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}

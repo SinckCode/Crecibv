@@ -9,21 +9,22 @@
   transition: all 0.3s ease;
 
   &.initial {
-    background-color: rgba(0, 0, 0, 0.4); /* Fondo translúcido */
+    background-color: rgba(0, 0, 0, 0.4);
     color: #fff;
-    backdrop-filter: blur(5px); /* Opcional: añade un desenfoque */
-    -webkit-backdrop-filter: blur(5px); /* Soporte para Safari */
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    height: 8rem;
   }
 
   &.banner {
-    background-color: #811988; /* Fondo sólido */
+    background-color: #811988;
     color: #fff;
   }
 
   .navbar {
     display: flex;
     align-items: center;
-    justify-content: space-between; /* Logo a la izquierda y nav a la derecha */
+    justify-content: space-between;
     width: 100%;
     padding: 1rem 2rem;
 
@@ -32,7 +33,7 @@
       align-items: center;
 
       img {
-        height: 120px;
+        height: 100px;
         margin-right: 1rem;
         background-color: #fff;
         border-radius: 7rem;
@@ -48,15 +49,15 @@
 
     nav {
       display: flex;
-      gap: 3rem; /* Espaciado entre los enlaces */
-      margin-left: 2rem; /* Separación entre el logo y el menú */
-      flex-wrap: nowrap; /* Evita que los enlaces salten a una nueva línea */
+      gap: 3rem;
+      margin-left: 2rem;
+      flex-wrap: nowrap;
 
       a {
         font-family: 'Poppins', sans-serif;
         font-weight: bold;
         font-style: italic;
-        font-size: 40px;
+        font-size: 30px;
         color: #fff;
         text-decoration: none;
         text-transform: uppercase;
@@ -72,19 +73,20 @@
   .donation-banner {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     padding: 1rem 2rem;
     text-align: center;
-
+    height: 7rem;
 
     .donation-content {
       display: flex;
       align-items: center;
       gap: 1rem;
+      justify-content: flex-end;
 
       img {
-        height: 120px;
-        margin-right: 1rem;
+        height: 100px;
+        margin-right: 20rem;
         background-color: #fff;
         border-radius: 7rem;
       }
@@ -92,19 +94,19 @@
       p {
         flex: 1;
         font-family: 'Poppins', sans-serif;
-        font-size: 37px;
+        font-size: 30px;
         font-weight: 600;
         color: #fff;
       }
 
       .cta-button {
-        width: 280px;
-        height: 70px;
+        width: 250px;
+        height: 60px;
         background-color: #ef0381;
         color: black;
         font-family: 'Poppins', sans-serif;
         font-weight: bold;
-        font-size: 30px; /* Ajusta según necesidad */
+        font-size: 30px;
         border: none;
         border-radius: 30px;
         cursor: pointer;
@@ -119,32 +121,175 @@
   }
 }
 
-/* Media Queries para Responsividad */
-@media (max-width: 1024px) {
-    .navbar {
-      flex-direction: column; /* Apila el logo y navegación */
-      align-items: center;
-
-      nav {
-        margin-left: 0; /* Remueve el margen en pantallas pequeñas */
-        justify-content: center; /* Centra los enlaces */
-        gap: 2rem;
-
-        a {
-          font-size: 30px; /* Reduce el tamaño del texto */
-        }
-      }
+/* 📱 Ajustes para tablets y pantallas medianas */
+@media (max-width: 1280px){
+  .header {
+    &.initial {
+      height: 7rem !important;
     }
   }
 
-  @media (max-width: 768px) {
+  .navbar {
+    padding: 0.5rem 1rem;
+
+    .logo {
+      img {
+        height: 80px !important;
+      }
+
+      h1 {
+        font-size: 1rem !important;
+      }
+    }
+
     nav {
-      flex-direction: column; /* Apila los enlaces en pantallas pequeñas */
-      align-items: center;
-      gap: 1rem;
+      gap: 2rem;
 
       a {
-        font-size: 25px; /* Ajusta aún más el tamaño */
+        font-size: 25px !important;
       }
     }
   }
+
+  .donation-banner {
+    padding: 0.5rem;
+    height: 4.5rem;
+
+    .donation-content {
+      img {
+        height: 80px !important;
+        margin-right: 1rem !important;
+      }
+
+      p {
+        font-size: 23px !important;
+      }
+
+      .cta-button {
+        width: 180px !important;
+        height: 50px !important;
+        font-size: 20px !important;
+      }
+    }
+  }
+}
+
+/* 📱 Estilo del menú móvil flotante */
+.menu-toggle {
+  position: fixed;
+  bottom: 55rem;
+  right: 50%;
+  background-color: #ef0381;
+  color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  z-index: 2100;
+  font-size: 1.5rem;
+  display: none;
+  cursor: pointer;
+
+  @media screen and (max-width: 600px) {
+    display: block;
+  }
+}
+
+/* 📱 Menú móvil centrado */
+.mobile-menu {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.95);
+  padding: 2rem;
+  border-radius: 20px;
+  z-index: 2000;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  transition: opacity 0.3s ease;
+  text-align: center;
+
+  a {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+
+    &:hover {
+      color: #ef0381;
+    }
+  }
+
+  &.open {
+    display: flex;
+  }
+
+  &.closed {
+    display: none;
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 80%;
+  }
+}
+
+/* 📱 Ocultar header en móvil */
+@media screen and (max-width: 600px) {
+  .header.initial,
+  .donation-banner {
+    display: none;
+  }
+  .menu-toggle{
+    bottom: 5rem;
+    right: 10%;
+  }
+
+  .donation-banner {
+
+    @media screen and (max-width: 600px) {
+        .donation-content {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          position: relative;
+          left: -3rem;
+          top: 0rem;
+
+
+          img {
+            display: none;
+          }
+
+          p {
+            font-size: 16px !important;
+            line-height: 1.3;
+            margin: 0;
+            flex: 1 1 auto;
+            word-break: break-word;
+            width: 25rem;
+            text-align: justify;
+          }
+
+          .cta-button {
+            flex-shrink: 0;
+            width: auto !important;
+            padding: 0.5rem 1rem;
+            font-size: 16px !important;
+            position: relative;
+            left: -1.5rem;
+          }
+        }
+      }
+
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+    .donation-banner {
+        height: 5rem;
+    }
+}

@@ -48,8 +48,7 @@
             h1{
                 font-size: 64px;
                 color: $title-color;
-                position: relative;
-                left: 2rem;
+
             }
         }
 
@@ -63,10 +62,34 @@
 
     }
 
-// Responsivo para móviles
-@media (max-width: 768px) {
-  .about-us {
-    flex-direction: column; // Apila elementos en pantallas pequeñas
-    text-align: center;
-  }
-}
+
+    @media screen and (max-width: 600px) {
+        .title {
+          flex-direction: column; /* Coloca los elementos uno debajo del otro */
+          align-items: center; /* Alinea el texto a la izquierda */
+          gap: 0.5rem; /* Espacio entre líneas */
+        }
+
+        .title .about1 h1,
+        .title .about2 h1 {
+          font-size: 45px !important;
+          line-height: 1.2;
+        }
+
+        .title .about1 h1{
+            position: relative;
+            left: 0rem;
+        }
+        .about-us3{
+            flex-direction: column; // Cambia la dirección del flex a columna
+            .text-Container{
+                margin: 0;
+                padding: 0;
+            }
+            h2{
+                font-size: 30px;
+                text-align: center;
+            }
+        }
+
+      }

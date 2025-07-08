@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ref, listAll, getDownloadURL } from 'firebase/storage';
 import { storage } from '../firebase';
 import './Home.scss';
@@ -6,6 +7,7 @@ import './Home.scss';
 const Home = () => {
   const [images, setImages] = useState([]);
   const [gridImages, setGridImages] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -73,7 +75,9 @@ const Home = () => {
       <div className="overlay-content">
         <div className="background-overlay"></div>
         <h1>BIENVENIDO A CRECIBV</h1>
-        <button className="cta-button">APOYAR</button>
+        <button className="cta-button" onClick={() => navigate('/donaciones')}>
+        APOYAR
+        </button>
       </div>
     </div>
   );

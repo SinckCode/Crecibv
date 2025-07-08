@@ -101,10 +101,26 @@
 
     }
 
-// Responsivo para móviles
-@media (max-width: 768px) {
-  .about-us {
-    flex-direction: column; // Apila elementos en pantallas pequeñas
-    text-align: center;
-  }
-}
+
+    @media screen and (max-width: 600px) {
+        .about-us2{
+            flex-direction: column; // Cambia la dirección a columna
+            align-items: center; // Centra los elementos
+            gap: 2rem; // Espacio entre los elementos
+            padding: 2rem;
+        }
+
+        .about-us2 .text-Container p{
+            font-size: 20px; // Cambia el tamaño de la fuente para pantallas pequeñas
+            line-height: normal;
+            margin: 0;
+        }
+
+        .about-us2 .text-Container{
+            margin: 0;
+        }
+
+        .about-us2 .obje{
+            margin-bottom: 1rem;
+        }
+    }

@@ -72,10 +72,24 @@
 
     }
 
-// Responsivo para móviles
-@media (max-width: 768px) {
-  .about-us {
-    flex-direction: column; // Apila elementos en pantallas pequeñas
-    text-align: center;
-  }
-}
+    @media screen and (max-width: 600px) {
+        .about-us {
+            flex-direction: column; // Cambia la dirección del flex a columna
+            align-items: center; // Centra los elementos horizontalmente
+            padding: 1rem; // Reduce el padding para pantallas pequeñas
+        }
+        .about-us .text-Container p{
+            font-size: 20px; // Cambia el tamaño de la fuente para pantallas pequeñas
+            line-height: normal;
+            margin: 0;
+
+        }
+
+        .about-image {
+          }
+
+          img {
+
+          }
+
+    }

@@ -1,48 +1,53 @@
-import React, { useEffect, useState } from 'react';
-import { auth } from '../firebase';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../firebase';
-import defaultProfileImage from '../assets/umagenLogin.png'; // Imagen local predeterminada
-import './AdminHome.scss';
+import { useEffect, useState } from "react";
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { auth, db } from "../firebase";
+import "./AdminHome.scss"; // Importa los estilos mejorados
 
 const AdminHome = () => {
-  const [user, setUser] = useState(null);
-  const [messageCount, setMessageCount] = useState(0);
+  const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Obtener el usuario actual
-    const currentUser = auth.currentUser;
-    if (currentUser) {
-      setUser(currentUser);
-    }
+    const fetchUserData = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        if (auth.currentUser) {
+          const userRef = collection(db, "users");
+          const q = query(userRef, where("uid", "==", auth.currentUser.uid));
+          const querySnapshot = await getDocs(q);
 
-    // Obtener el número de mensajes
-    const fetchMessages = async () => {
-      const messagesSnapshot = await getDocs(collection(db, 'messages'));
-      setMessageCount(messagesSnapshot.size);
+          if (!querySnapshot.empty) {
+            const user = querySnapshot.docs[0].data();
+            setUserData(user);
+          } else {
+            throw new Error("Usuario no encontrado en Firestore. Verifica el UID en la base de datos.");
+          }
+        } else {
+          throw new Error("No hay usuario autenticado.");
+        }
+      } catch (err) {
+        console.error(err.message);
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
     };
 
-    fetchMessages();
+    fetchUserData();
   }, []);
 
-  return (
-    <div className="admin-home">
-      <div className="welcome">
-        {user && (
-          <>
-            <img
-              src={user.photoURL || defaultProfileImage}
-              alt="Foto de perfil"
-              className="profile-pic"
-            />
-            <h1>¡Bienvenido, {user.displayName || user.email}!</h1>
-          </>
-        )}
-      </div>
+  if (loading) return <h2 className="loading-text">Cargando usuario...</h2>;
+  if (error) return <h2 className="error-text">Error: {error}</h2>;
 
-      <div className="stats">
-        <h2>Resumen del Panel</h2>
-        <p><strong>Mensajes Recibidos:</strong> {messageCount}</p>
+  return (
+    <div className="admin-container">
+      <div className="admin-card">
+        <img src={userData?.photoURL} alt="Foto de perfil" className="profile-image" />
+        <h1 className="admin-welcome">¡Bienvenido, {userData?.name}!</h1>
+        <p className="admin-email">Correo: {userData?.email}</p>
+        <button className="admin-logout">Cerrar Sesión</button>
       </div>
     </div>
   );

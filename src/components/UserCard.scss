@@ -1,0 +1,56 @@
+/* src/components/UserCard.scss */
+.user-card-game-style {
+    background: linear-gradient(135deg, #2a2a72, #009ffd);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out;
+    max-width: 300px;
+    margin: auto;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+
+    .avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px solid white;
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      margin: 5px 0;
+      font-size: 18px;
+    }
+
+    p {
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .actions {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+
+      button {
+        background: #ff416c;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        transition: background 0.2s;
+
+        &:hover {
+          background: #ff4b2b;
+        }
+      }
+    }
+  }

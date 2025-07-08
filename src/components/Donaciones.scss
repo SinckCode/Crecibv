@@ -1,0 +1,196 @@
+.donaciones {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+
+    .image-grid {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      z-index: 0;
+
+      .grid-item {
+        background-size: cover;
+        background-position: center;
+        filter: brightness(0.6);
+      }
+    }
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+
+    .form-wrapper {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .form-card {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 1.5rem;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      max-width: 480px;
+      width: 100%;
+
+      h1 {
+        font-size: 1.75rem;
+        font-weight: 700;
+        color: #ef0381;
+        margin-bottom: 0.5rem;
+      }
+
+      p {
+        color: #555;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+        text-align: center;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+
+        label {
+          font-weight: 600;
+          margin-bottom: 0.25rem;
+          color: #333;
+        }
+
+        input {
+          padding: 0.75rem 1rem;
+          border: 1px solid #ccc;
+          border-radius: 0.75rem;
+          margin-bottom: 1rem;
+          font-size: 1rem;
+          transition: border 0.2s;
+
+          &:focus {
+            border-color: #ef0381;
+            outline: none;
+          }
+        }
+
+        #paypal-button-container {
+          margin-top: 1rem;
+        }
+      }
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.75);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+
+      &.show {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .modal-content {
+        background: white;
+        padding: 2rem;
+        border-radius: 1.25rem;
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+
+        h2 {
+          color: #ef0381;
+          margin-bottom: 1rem;
+        }
+
+        p {
+          color: #444;
+          margin-bottom: 1.5rem;
+        }
+
+        button {
+          background-color: #ef0381;
+          color: white;
+          padding: 0.7rem 1.5rem;
+          border: none;
+          border-radius: 0.75rem;
+          cursor: pointer;
+          font-weight: bold;
+
+          &:hover {
+            background-color: #c2026b;
+          }
+        }
+      }
+    }
+  }
+
+
+  @media (max-width: 768px) {
+    .donaciones {
+      .image-grid {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+      }
+
+      .form-wrapper {
+        padding: 1rem;
+      }
+
+      .form-card {
+        padding: 1.5rem;
+
+        h1 {
+          font-size: 1.5rem;
+        }
+
+        p {
+          font-size: 0.95rem;
+        }
+
+        input {
+          font-size: 1rem;
+        }
+
+        .modal-content {
+          padding: 1.5rem;
+        }
+      }
+
+      .modal .modal-content {
+        h2 {
+          font-size: 1.3rem;
+        }
+
+        p {
+          font-size: 0.95rem;
+        }
+
+        button {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .error-msg {
+    color: #e53935;
+    font-size: 0.9rem;
+    margin-top: -0.5rem;
+    margin-bottom: 0.75rem;
+  }
