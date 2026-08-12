@@ -82,10 +82,20 @@ const Carousel = () => {
             <>
               <Card card={cards[currentIndex]} />
               <div className="arrow-wrapper">
-                <button className="arrow left" onClick={handlePrev} disabled={cards.length <= 1}>
+                <button
+                  className="arrow left"
+                  onClick={handlePrev}
+                  disabled={cards.length <= 1}
+                  aria-label="Servicio anterior"
+                >
                   ◀
                 </button>
-                <button className="arrow right" onClick={handleNext} disabled={cards.length <= 1}>
+                <button
+                  className="arrow right"
+                  onClick={handleNext}
+                  disabled={cards.length <= 1}
+                  aria-label="Siguiente servicio"
+                >
                   ▶
                 </button>
               </div>

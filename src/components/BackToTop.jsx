@@ -19,8 +19,8 @@ const BackToTop = () => {
 
   return (
     isVisible && (
-      <button className="back-to-top" onClick={scrollToTop}>
-        <h2>^</h2>
+      <button className="back-to-top" onClick={scrollToTop} aria-label="Volver al inicio">
+        <span aria-hidden="true">^</span>
       </button>
     )
   );

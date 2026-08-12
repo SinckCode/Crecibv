@@ -1,35 +1,37 @@
 .back-to-top {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    background-color: #0E0007;
-    color: white;
-    border: none;
-    border-radius: 2rem;
-    padding: 1rem;
-    font-size: 64px;
-    width: 116px;
-    height: 93px;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: #0e0007;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
 
-    &:hover {
-      transform: scale(1.1);
-    }
-
-    h2{
-        position: relative;
-        color: #ffffff;
-        font-size: 5rem;
-        top: -1px;
-    }
+  &:hover {
+    transform: scale(1.1);
   }
 
+  span {
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+}
 
-  @media screen and (max-width: 600px) {
-    .back-to-top{
-        right: 40rem;
-    }
-
+@media screen and (max-width: 600px) {
+  .back-to-top {
+    width: 48px;
+    height: 48px;
+    bottom: 1rem;
+    right: 1rem;
+  }
 }

@@ -96,23 +96,37 @@ const ContactPage = () => {
         </div>
         <div className="contact-form">
           <form onSubmit={handleSubmit}>
+            <label htmlFor="contact-name" className="sr-only">
+              Nombre completo
+            </label>
             <input
+              id="contact-name"
               type="text"
               name="name"
               placeholder="Tu Nombre Completo"
               value={formData.name}
               onChange={handleChange}
+              autoComplete="name"
             />
             {errors.name && <p className="field-error">{errors.name}</p>}
+            <label htmlFor="contact-email" className="sr-only">
+              Correo electronico
+            </label>
             <input
+              id="contact-email"
               type="email"
               name="email"
               placeholder="Tu Email"
               value={formData.email}
               onChange={handleChange}
+              autoComplete="email"
             />
             {errors.email && <p className="field-error">{errors.email}</p>}
+            <label htmlFor="contact-message" className="sr-only">
+              Mensaje
+            </label>
             <textarea
+              id="contact-message"
               name="message"
               placeholder="Mensaje"
               value={formData.message}
