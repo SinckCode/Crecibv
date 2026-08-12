@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { storage } from "../firebase";
-import { ref, listAll, getDownloadURL, deleteObject, uploadBytes } from "firebase/storage";
-import "./ImageManager.scss"; // Estilos
+import React, { useState, useEffect } from 'react';
+import { storage } from '../firebase';
+import { ref, listAll, getDownloadURL, deleteObject, uploadBytes } from 'firebase/storage';
+import './ImageManager.scss'; // Estilos
 
 const ImageManager = () => {
   const [images, setImages] = useState([]); // Lista de imágenes
@@ -15,7 +15,7 @@ const ImageManager = () => {
   }, []);
 
   const fetchImages = async () => {
-    const imagesRef = ref(storage, "Home/");
+    const imagesRef = ref(storage, 'Home/');
     const imageList = await listAll(imagesRef);
     const urls = await Promise.all(imageList.items.map((item) => getDownloadURL(item)));
     setImages(urls);
@@ -40,7 +40,7 @@ const ImageManager = () => {
       setPreview(null);
       setSelectedFile(null);
     } catch (error) {
-      console.error("Error al subir imagen:", error);
+      console.error('Error al subir imagen:', error);
     }
     setUploading(false);
   };
@@ -52,7 +52,7 @@ const ImageManager = () => {
       await deleteObject(imageRef);
       fetchImages(); // Recargar imágenes
     } catch (error) {
-      console.error("Error al eliminar imagen:", error);
+      console.error('Error al eliminar imagen:', error);
     }
   };
 
@@ -63,9 +63,9 @@ const ImageManager = () => {
       {/* 📌 Subir Imagen */}
       <div className="upload-section">
         <input className="eleArch" type="file" onChange={handleFileChange} />
-        {preview && <img src={preview} alt="Vista previa" className="preview" />}
+        {preview && <img src={preview} alt="Vista previa" className="preview" loading="lazy" />}
         <button onClick={handleUpload} disabled={!selectedFile || uploading}>
-          {uploading ? "Subiendo..." : "Subir Imagen"}
+          {uploading ? 'Subiendo...' : 'Subir Imagen'}
         </button>
       </div>
 
@@ -73,7 +73,7 @@ const ImageManager = () => {
       <div className="image-list">
         {images.map((img, index) => (
           <div key={index} className="image-item">
-            <img src={img} alt="Subida" />
+            <img src={img} alt="Subida" loading="lazy" />
             <button onClick={() => handleDelete(img)}>Eliminar</button>
           </div>
         ))}

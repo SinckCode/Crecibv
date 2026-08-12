@@ -1,37 +1,37 @@
-import React, { useState, useEffect } from "react";
-import { doc, getDoc, updateDoc } from "firebase/firestore";
-import { db, storage } from "../firebase";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import "./EditAboutUs.scss";
+import React, { useState, useEffect } from 'react';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { db, storage } from '../firebase';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import './EditAboutUs.scss';
 
 const EditAboutUs = () => {
   const [aboutData, setAboutData] = useState({
-    section1: { paragraph1: "", paragraph2: "" },
-    section2: { mission: "", vision: "" },
-    section3: { info: "" },
-    imageURL: "",
+    section1: { paragraph1: '', paragraph2: '' },
+    section2: { mission: '', vision: '' },
+    section3: { info: '' },
+    imageURL: '',
   });
 
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-  const [previewImage, setPreviewImage] = useState("");
+  const [previewImage, setPreviewImage] = useState('');
 
   // 🔹 Cargar datos de Firestore
   useEffect(() => {
     const fetchAboutData = async () => {
       try {
-        const docRef = doc(db, "content", "aboutUs");
+        const docRef = doc(db, 'content', 'aboutUs');
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
           setAboutData(docSnap.data());
-          setPreviewImage(docSnap.data().imageURL || "");
+          setPreviewImage(docSnap.data().imageURL || '');
         } else {
-          console.error("No se encontró la información de About Us.");
+          console.error('No se encontró la información de About Us.');
         }
       } catch (error) {
-        console.error("Error al cargar datos de About Us:", error);
+        console.error('Error al cargar datos de About Us:', error);
       } finally {
         setLoading(false);
       }
@@ -70,8 +70,8 @@ const EditAboutUs = () => {
       const downloadURL = await getDownloadURL(storageRef);
       return downloadURL;
     } catch (error) {
-      console.error("Error al subir la imagen:", error);
-      alert("❌ Error al subir la imagen.");
+      console.error('Error al subir la imagen:', error);
+      alert('❌ Error al subir la imagen.');
       return aboutData.imageURL;
     }
   };
@@ -81,13 +81,13 @@ const EditAboutUs = () => {
     setSaving(true);
     try {
       const imageURL = await uploadImage();
-      const docRef = doc(db, "content", "aboutUs");
+      const docRef = doc(db, 'content', 'aboutUs');
 
       await updateDoc(docRef, { ...aboutData, imageURL });
-      alert("✅ Información actualizada correctamente.");
+      alert('✅ Información actualizada correctamente.');
     } catch (error) {
-      console.error("Error al actualizar la información:", error);
-      alert("❌ Error al guardar los cambios.");
+      console.error('Error al actualizar la información:', error);
+      alert('❌ Error al guardar los cambios.');
     } finally {
       setSaving(false);
     }
@@ -104,7 +104,9 @@ const EditAboutUs = () => {
           {/* 📌 Imagen */}
           <div className="section">
             <h3>Imagen de la Sección</h3>
-            {previewImage && <img src={previewImage} alt="Vista previa" className="preview-img" />}
+            {previewImage && (
+              <img src={previewImage} alt="Vista previa" className="preview-img" loading="lazy" />
+            )}
             <input type="file" accept="image/*" onChange={handleImageChange} />
           </div>
 
@@ -113,12 +115,12 @@ const EditAboutUs = () => {
             <h3>Sección 1</h3>
             <textarea
               value={aboutData.section1.paragraph1}
-              onChange={(e) => handleChange("section1", "paragraph1", e.target.value)}
+              onChange={(e) => handleChange('section1', 'paragraph1', e.target.value)}
               placeholder="Primer párrafo..."
             />
             <textarea
               value={aboutData.section1.paragraph2}
-              onChange={(e) => handleChange("section1", "paragraph2", e.target.value)}
+              onChange={(e) => handleChange('section1', 'paragraph2', e.target.value)}
               placeholder="Segundo párrafo..."
             />
           </div>
@@ -128,12 +130,12 @@ const EditAboutUs = () => {
             <h3>Sección 2</h3>
             <textarea
               value={aboutData.section2.mission}
-              onChange={(e) => handleChange("section2", "mission", e.target.value)}
+              onChange={(e) => handleChange('section2', 'mission', e.target.value)}
               placeholder="Misión..."
             />
             <textarea
               value={aboutData.section2.vision}
-              onChange={(e) => handleChange("section2", "vision", e.target.value)}
+              onChange={(e) => handleChange('section2', 'vision', e.target.value)}
               placeholder="Visión..."
             />
           </div>
@@ -143,7 +145,7 @@ const EditAboutUs = () => {
             <h3>Sección 3</h3>
             <textarea
               value={aboutData.section3.info}
-              onChange={(e) => handleChange("section3", "info", e.target.value)}
+              onChange={(e) => handleChange('section3', 'info', e.target.value)}
               placeholder="Información adicional..."
             />
           </div>
@@ -151,7 +153,7 @@ const EditAboutUs = () => {
           {/* 📌 Botones */}
           <div className="button-group">
             <button className="save-btn" onClick={handleSave} disabled={saving}>
-              {saving ? "Guardando..." : "Guardar Cambios"}
+              {saving ? 'Guardando...' : 'Guardar Cambios'}
             </button>
             <button className="cancel-btn" onClick={() => window.location.reload()}>
               Cancelar

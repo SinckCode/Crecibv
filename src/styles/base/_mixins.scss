@@ -1,9 +1,35 @@
-@mixin flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+@import 'variables';
 
-  @mixin box-shadow($color) {
-    box-shadow: 0px 4px 6px $color;
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin box-shadow($color) {
+  box-shadow: 0px 4px 6px $color;
+}
+
+@mixin mobile {
+  @media screen and (max-width: $breakpoint-mobile) {
+    @content;
   }
+}
+
+@mixin tablet {
+  @media screen and (max-width: $breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media screen and (max-width: $breakpoint-laptop) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (max-width: $breakpoint-desktop) {
+    @content;
+  }
+}

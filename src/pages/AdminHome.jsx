@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { collection, query, where, getDocs } from "firebase/firestore";
-import { auth, db } from "../firebase";
-import "./AdminHome.scss"; // Importa los estilos mejorados
+import { useEffect, useState } from 'react';
+import { collection, query, where, getDocs } from 'firebase/firestore';
+import { auth, db } from '../firebase';
+import './AdminHome.scss'; // Importa los estilos mejorados
 
 const AdminHome = () => {
   const [userData, setUserData] = useState(null);
@@ -14,18 +14,20 @@ const AdminHome = () => {
       setError(null);
       try {
         if (auth.currentUser) {
-          const userRef = collection(db, "users");
-          const q = query(userRef, where("uid", "==", auth.currentUser.uid));
+          const userRef = collection(db, 'users');
+          const q = query(userRef, where('uid', '==', auth.currentUser.uid));
           const querySnapshot = await getDocs(q);
 
           if (!querySnapshot.empty) {
             const user = querySnapshot.docs[0].data();
             setUserData(user);
           } else {
-            throw new Error("Usuario no encontrado en Firestore. Verifica el UID en la base de datos.");
+            throw new Error(
+              'Usuario no encontrado en Firestore. Verifica el UID en la base de datos.',
+            );
           }
         } else {
-          throw new Error("No hay usuario autenticado.");
+          throw new Error('No hay usuario autenticado.');
         }
       } catch (err) {
         console.error(err.message);
@@ -44,7 +46,12 @@ const AdminHome = () => {
   return (
     <div className="admin-container">
       <div className="admin-card">
-        <img src={userData?.photoURL} alt="Foto de perfil" className="profile-image" />
+        <img
+          src={userData?.photoURL}
+          alt="Foto de perfil"
+          className="profile-image"
+          loading="lazy"
+        />
         <h1 className="admin-welcome">¡Bienvenido, {userData?.name}!</h1>
         <p className="admin-email">Correo: {userData?.email}</p>
         <button className="admin-logout">Cerrar Sesión</button>

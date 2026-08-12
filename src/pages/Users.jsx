@@ -173,7 +173,12 @@ const Users = () => {
             <label>Foto de Perfil</label>
             <input type="file" accept="image/*" onChange={handleFileChange} />
 
-            <img src={formData.photoURL} alt="Vista previa" className="preview-image" />
+            <img
+              src={formData.photoURL}
+              alt="Vista previa"
+              className="preview-image"
+              loading="lazy"
+            />
 
             <button onClick={handleSaveEdit}>Guardar</button>
             <button onClick={() => setModalOpen(false)}>Cancelar</button>

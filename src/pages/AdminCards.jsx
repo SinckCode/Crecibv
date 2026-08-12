@@ -14,7 +14,7 @@ const AdminCards = () => {
   useEffect(() => {
     const fetchCards = async () => {
       const querySnapshot = await getDocs(collection(db, 'cards'));
-      const cardsData = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      const cardsData = querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
       setCards(cardsData);
     };
 
@@ -45,7 +45,7 @@ const AdminCards = () => {
   // 🔥 Eliminar una tarjeta
   const handleDelete = async (id) => {
     await deleteDoc(doc(db, 'cards', id));
-    setCards(cards.filter(card => card.id !== id));
+    setCards(cards.filter((card) => card.id !== id));
   };
 
   // 🔥 Editar tarjeta - Mostrar modal
@@ -63,7 +63,11 @@ const AdminCards = () => {
 
     await updateDoc(doc(db, 'cards', editCard.id), { ...editCard, image: updatedImageUrl });
 
-    setCards(cards.map(card => (card.id === editCard.id ? { ...editCard, image: updatedImageUrl } : card)));
+    setCards(
+      cards.map((card) =>
+        card.id === editCard.id ? { ...editCard, image: updatedImageUrl } : card,
+      ),
+    );
     setEditCard(null);
     setImageFile(null);
   };
@@ -74,8 +78,20 @@ const AdminCards = () => {
 
       {/* 🔥 Formulario para agregar tarjeta */}
       <div className="add-card">
-        <input type="text" name="title" placeholder="Título" value={newCard.title} onChange={(e) => setNewCard({ ...newCard, title: e.target.value })} />
-        <input type="text" name="description" placeholder="Descripción" value={newCard.description} onChange={(e) => setNewCard({ ...newCard, description: e.target.value })} />
+        <input
+          type="text"
+          name="title"
+          placeholder="Título"
+          value={newCard.title}
+          onChange={(e) => setNewCard({ ...newCard, title: e.target.value })}
+        />
+        <input
+          type="text"
+          name="description"
+          placeholder="Descripción"
+          value={newCard.description}
+          onChange={(e) => setNewCard({ ...newCard, description: e.target.value })}
+        />
         <input type="file" onChange={(e) => setImageFile(e.target.files[0])} />
         <button onClick={handleAddCard}>Agregar</button>
       </div>
@@ -85,7 +101,7 @@ const AdminCards = () => {
         {cards.map((card) => (
           <li key={card.id}>
             <h3>{card.title}</h3>
-            <img src={card.image} alt={card.title} />
+            <img src={card.image} alt={card.title} loading="lazy" />
             <p>{card.description}</p>
             <button onClick={() => openEditModal(card)}>Editar</button>
             <button onClick={() => handleDelete(card.id)}>Eliminar</button>
@@ -99,27 +115,33 @@ const AdminCards = () => {
           <div className="modal-content">
             <h3>Editar Tarjeta</h3>
             <div className="titulo">
-            <h4>Título</h4>
-            <input type="text" value={editCard.title} onChange={(e) => setEditCard({ ...editCard, title: e.target.value })} />
+              <h4>Título</h4>
+              <input
+                type="text"
+                value={editCard.title}
+                onChange={(e) => setEditCard({ ...editCard, title: e.target.value })}
+              />
             </div>
 
             <div className="descrip">
-            <h4>Descripción</h4>
-            <textarea type="text" value={editCard.description} onChange={(e) => setEditCard({ ...editCard, description: e.target.value })} />
+              <h4>Descripción</h4>
+              <textarea
+                type="text"
+                value={editCard.description}
+                onChange={(e) => setEditCard({ ...editCard, description: e.target.value })}
+              />
             </div>
 
             <div className="img">
-            <h4>Imágen</h4>
-            <input type="file" onChange={(e) => setImageFile(e.target.files[0])} />
-            <img src={editCard.image} alt={editCard.title} />
+              <h4>Imágen</h4>
+              <input type="file" onChange={(e) => setImageFile(e.target.files[0])} />
+              <img src={editCard.image} alt={editCard.title} loading="lazy" />
             </div>
 
             <div className="buttons">
-            <button onClick={handleUpdateCard}>Guardar</button>
-            <button onClick={() => setEditCard(null)}>Cancelar</button>
+              <button onClick={handleUpdateCard}>Guardar</button>
+              <button onClick={() => setEditCard(null)}>Cancelar</button>
             </div>
-
-
           </div>
         </div>
       )}

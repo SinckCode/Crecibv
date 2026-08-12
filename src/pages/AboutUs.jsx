@@ -9,23 +9,23 @@ const AboutUs = () => {
   });
 
   const [aboutData, setAboutData] = useState({
-    imageURL: "",
-    section1: { paragraph1: "", paragraph2: "" },
+    imageURL: '',
+    section1: { paragraph1: '', paragraph2: '' },
   });
 
   useEffect(() => {
     const fetchAboutData = async () => {
       try {
-        const response = await fetch("https://us-central1-crecibv.cloudfunctions.net/getAboutUs");
+        const response = await fetch('https://us-central1-crecibv.cloudfunctions.net/getAboutUs');
         const data = await response.json();
 
         if (data.success) {
           setAboutData(data.data);
         } else {
-          console.error("Error al cargar la información.");
+          console.error('Error al cargar la información.');
         }
       } catch (error) {
-        console.error("Error de conexión:", error);
+        console.error('Error de conexión:', error);
       }
     };
 
@@ -46,16 +46,17 @@ const AboutUs = () => {
       <div className="about-us">
         <div className="image-Container">
           <img
-            src={aboutData.imageURL || "https://via.placeholder.com/400"}
+            src={aboutData.imageURL || 'https://via.placeholder.com/400'}
             alt="Imagen de la institución"
             className="about-image"
+            loading="lazy"
           />
         </div>
         <div className="text-Container">
           <div className="firstP">
-            <p>{aboutData.section1.paragraph1 || "Cargando información..."}</p>
+            <p>{aboutData.section1.paragraph1 || 'Cargando información...'}</p>
           </div>
-          <p>{aboutData.section1.paragraph2 || "Cargando información..."}</p>
+          <p>{aboutData.section1.paragraph2 || 'Cargando información...'}</p>
         </div>
       </div>
     </section>

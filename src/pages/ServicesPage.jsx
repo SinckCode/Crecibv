@@ -3,9 +3,24 @@ import { useInView } from 'react-intersection-observer';
 import './ServicesPage.scss';
 
 const services = [
-  { id: 1, title: 'Terapia Visual', description: 'Mejoramos la percepción visual con ejercicios especializados.', image: '/assets/therapy.jpg' },
-  { id: 2, title: 'Apoyo Escolar', description: 'Clases y recursos educativos adaptados.', image: '/assets/school.jpg' },
-  { id: 3, title: 'Orientación y Movilidad', description: 'Entrenamiento para desplazamiento seguro.', image: '/assets/mobility.jpg' },
+  {
+    id: 1,
+    title: 'Terapia Visual',
+    description: 'Mejoramos la percepción visual con ejercicios especializados.',
+    image: '/assets/therapy.jpg',
+  },
+  {
+    id: 2,
+    title: 'Apoyo Escolar',
+    description: 'Clases y recursos educativos adaptados.',
+    image: '/assets/school.jpg',
+  },
+  {
+    id: 3,
+    title: 'Orientación y Movilidad',
+    description: 'Entrenamiento para desplazamiento seguro.',
+    image: '/assets/mobility.jpg',
+  },
 ];
 
 const ServicesPage = () => {
@@ -20,7 +35,7 @@ const ServicesPage = () => {
       <div className="services-list">
         {services.map((service) => (
           <div key={service.id} className="service-card">
-            <img src={service.image} alt={service.title} />
+            <img src={service.image} alt={service.title} loading="lazy" />
             <h2>{service.title}</h2>
             <p>{service.description}</p>
           </div>

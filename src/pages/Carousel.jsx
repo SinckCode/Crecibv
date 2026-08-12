@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
-import { db } from "../firebase";
-import "./Carousel.scss";
-import Card from "./Card";
+import React, { useState, useEffect, useCallback } from 'react';
+import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
+import { db } from '../firebase';
+import './Carousel.scss';
+import Card from './Card';
 
 const Carousel = () => {
   const [cards, setCards] = useState([]);
@@ -14,7 +14,7 @@ const Carousel = () => {
 
     const fetchCards = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, "cards"));
+        const querySnapshot = await getDocs(collection(db, 'cards'));
         if (!isMounted) return;
         const cardsData = querySnapshot.docs.map((doc) => ({
           id: doc.id,
@@ -22,7 +22,7 @@ const Carousel = () => {
         }));
         setCards(cardsData);
       } catch (error) {
-        console.error("Error fetching cards:", error);
+        console.error('Error fetching cards:', error);
       }
     };
 
@@ -38,29 +38,29 @@ const Carousel = () => {
       setIsMobile(window.innerWidth <= 600);
     };
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     if (cards.length > 1) {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % cards.length);
     }
-  };
+  }, [cards.length]);
 
-  const handlePrev = () => {
+  const handlePrev = useCallback(() => {
     if (cards.length > 1) {
       setCurrentIndex((prevIndex) => (prevIndex - 1 + cards.length) % cards.length);
     }
-  };
+  }, [cards.length]);
 
   const handleDelete = async (id) => {
     if (!id) return;
     try {
-      await deleteDoc(doc(db, "cards", id));
+      await deleteDoc(doc(db, 'cards', id));
       setCards((prevCards) => prevCards.filter((card) => card.id !== id));
     } catch (error) {
-      console.error("Error deleting card:", error);
+      console.error('Error deleting card:', error);
     }
   };
 
@@ -76,38 +76,37 @@ const Carousel = () => {
       </div>
 
       <div className="carousel-container">
-  {cards.length > 0 ? (
-    isMobile ? (
-      // 🌐 Versión MÓVIL
-      <>
-        <Card card={cards[currentIndex]} />
-        <div className="arrow-wrapper">
-          <button className="arrow left" onClick={handlePrev} disabled={cards.length <= 1}>
-            ◀
-          </button>
-          <button className="arrow right" onClick={handleNext} disabled={cards.length <= 1}>
-            ▶
-          </button>
-        </div>
-      </>
-    ) : (
-      // 💻 Versión LAPTOP
-      <>
-        <button className="arrow left" onClick={handlePrev} disabled={cards.length <= 1}>
-          ◀
-        </button>
-        <Card card={cards[currentIndex]} />
-        {cards.length > 1 && <Card card={cards[(currentIndex + 1) % cards.length]} />}
-        <button className="arrow right" onClick={handleNext} disabled={cards.length <= 1}>
-          ▶
-        </button>
-      </>
-    )
-  ) : (
-    <p className="no-cards">No hay tarjetas disponibles</p>
-  )}
-</div>
-
+        {cards.length > 0 ? (
+          isMobile ? (
+            // 🌐 Versión MÓVIL
+            <>
+              <Card card={cards[currentIndex]} />
+              <div className="arrow-wrapper">
+                <button className="arrow left" onClick={handlePrev} disabled={cards.length <= 1}>
+                  ◀
+                </button>
+                <button className="arrow right" onClick={handleNext} disabled={cards.length <= 1}>
+                  ▶
+                </button>
+              </div>
+            </>
+          ) : (
+            // 💻 Versión LAPTOP
+            <>
+              <button className="arrow left" onClick={handlePrev} disabled={cards.length <= 1}>
+                ◀
+              </button>
+              <Card card={cards[currentIndex]} />
+              {cards.length > 1 && <Card card={cards[(currentIndex + 1) % cards.length]} />}
+              <button className="arrow right" onClick={handleNext} disabled={cards.length <= 1}>
+                ▶
+              </button>
+            </>
+          )
+        ) : (
+          <p className="no-cards">No hay tarjetas disponibles</p>
+        )}
+      </div>
     </div>
   );
 };
