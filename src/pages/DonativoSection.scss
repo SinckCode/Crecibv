@@ -1,0 +1,218 @@
+@import '../styles/base/variables';
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap');
+
+html {
+    scroll-behavior: smooth;
+}
+
+#donativos {
+    scroll-margin-top: 2rem;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    gap: 1.5rem;
+    font-weight: 800 !important;
+    margin-bottom: 1rem;
+
+    .title1 h1 {
+        font-size: 64px;
+        color: #1a1a1a;
+        color: $title-color;
+        position: relative;
+        left: 2rem;
+        margin: 0;
+    }
+
+    .title2 h1 {
+        font-size: 64px;
+        color: #6b21a8;
+        margin: 0;
+    }
+}
+
+.donations-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem;
+
+    .image-Container {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+
+        .donations-image {
+            max-width: 100%;
+            height: auto;
+            max-height: 500px;
+            border-radius: 2rem;
+
+            &.animated-pulse {
+                animation: pulseScale 3s infinite ease-in-out;
+            }
+        }
+    }
+
+    .text-Container {
+        flex: 1;
+
+        p {
+            font-size: 26px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 400;
+            text-align: justify;
+            color: #333333;
+            color: $otros-color;
+            line-height: 1.8;
+            margin-left: 2rem;
+            margin-right: 2rem;
+        }
+
+        .firstP {
+            margin-bottom: 1.5rem;
+
+            p {
+                font-weight: 600;
+                color: #1a1a1a;
+                color: $title-color;
+            }
+        }
+
+        .secondP {
+            margin-bottom: 2rem;
+
+            p {
+                font-size: 22px;
+            }
+        }
+
+        .bank-details {
+            margin-left: 2rem;
+            margin-right: 2rem;
+            padding: 1.5rem;
+            background-color: #f4f4f9;
+            border-radius: 1rem;
+            border-left: 6px solid #6b21a8;
+            border-left: 6px solid $morado-color;
+
+            .bank-label,
+            .clabe-label {
+                display: block;
+                font-family: 'Poppins', sans-serif;
+                font-weight: 700;
+                font-size: 18px;
+                color: #1a1a1a;
+                color: $title-color;
+                margin-bottom: 0.5rem;
+            }
+
+            .clabe-wrapper {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1.5rem;
+                margin-top: 0.5rem;
+
+                .clabe-box {
+                    background-color: #ffffff;
+                    padding: 0.8rem 1rem;
+                    border-radius: 0.5rem;
+                    border: 2px dashed #6b21a8;
+                    border: 2px dashed $morado-color;
+                    flex-grow: 1;
+
+                    code {
+                        font-family: monospace;
+                        font-size: 24px;
+                        font-weight: 800;
+                        color: #6b21a8;
+                        color: $morado-color;
+                        letter-spacing: 2px;
+                    }
+                }
+
+                .banbajio-logo-inline {
+                    height: 55px;
+                    width: auto;
+                    min-width: 120px;
+                    object-fit: contain;
+                }
+            }
+        }
+    }
+}
+
+@keyframes pulseScale {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.04);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .donations-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem;
+
+        .text-Container {
+            p {
+                font-size: 18px;
+                line-height: normal;
+                margin: 0 0 1rem 0;
+            }
+
+            .secondP p {
+                font-size: 16px;
+            }
+
+            .bank-details {
+                margin: 0;
+
+                .clabe-wrapper {
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 1rem;
+
+                    .clabe-box {
+                        width: 100%;
+
+                        code {
+                            font-size: 18px;
+                        }
+                    }
+
+                    .banbajio-logo-inline {
+                        height: 40px;
+                        align-self: flex-end;
+                    }
+                }
+            }
+        }
+    }
+
+    .title {
+        flex-direction: column;
+        gap: 0;
+
+        .title1 h1 {
+            left: 0;
+            font-size: 42px;
+        }
+
+        .title2 h1 {
+            font-size: 42px;
+        }
+    }
+}
