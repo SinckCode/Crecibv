@@ -14,40 +14,71 @@ const HomePage = () => {
   const { ref: aboutRef, inView: aboutInView } = useInView({ triggerOnce: true, threshold: 0.1 });
   const { ref: aboutRef2, inView: aboutInView2 } = useInView({ triggerOnce: true, threshold: 0.1 });
   const { ref: aboutRef3, inView: aboutInView3 } = useInView({ triggerOnce: true, threshold: 0.1 });
-  const { ref: carouselRef, inView: carouselInView } = useInView({ triggerOnce: true, threshold: 0.1 });
-  const { ref: donativosRef, inView: donativosInView } = useInView({ triggerOnce: true, threshold: 0.1 });
+  const { ref: carouselRef, inView: carouselInView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
+  const { ref: donativosRef, inView: donativosInView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
   const { ref: contactRef, inView: contactInView } = useInView({ triggerOnce: true, threshold: 0 });
-  const { ref: locationRef, inView: locationInView } = useInView({ triggerOnce: true, threshold: 0.1 });
+  const { ref: locationRef, inView: locationInView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
 
   return (
     <div className="home-page">
-
       <section id="about-us" ref={aboutRef} className={`section ${aboutInView ? 'visible' : ''}`}>
         <AboutUs />
       </section>
 
-      <section id="about-us2" ref={aboutRef2} className={`section ${aboutInView2 ? 'visible' : ''}`}>
+      <section
+        id="about-us2"
+        ref={aboutRef2}
+        className={`section ${aboutInView2 ? 'visible' : ''}`}
+      >
         <AboutUs2 />
       </section>
 
-      <section id="about-us3" ref={aboutRef3} className={`section ${aboutInView3 ? 'visible' : ''}`}>
+      <section
+        id="about-us3"
+        ref={aboutRef3}
+        className={`section ${aboutInView3 ? 'visible' : ''}`}
+      >
         <AboutUs3 />
       </section>
 
-      <section id="services" ref={carouselRef} className={`section ${carouselInView ? 'visible' : ''}`}>
+      <section
+        id="services"
+        ref={carouselRef}
+        className={`section ${carouselInView ? 'visible' : ''}`}
+      >
         <Carousel />
       </section>
 
-      <section id="donativos" ref={donativosRef} className={`section ${donativosInView ? 'visible' : ''}`}>
+      <section
+        id="donativos"
+        ref={donativosRef}
+        className={`section ${donativosInView ? 'visible' : ''}`}
+      >
         <DonativoSection />
       </section>
 
-      <section id="contact" ref={contactRef} className={`section ${contactInView ? 'visible' : ''}`}>
-        {console.log('ContactPage in view:', contactInView)}
+      <section
+        id="contact"
+        ref={contactRef}
+        className={`section ${contactInView ? 'visible' : ''}`}
+      >
         <ContactPage />
       </section>
 
-      <section id="location" ref={locationRef} className={`section ${locationInView ? 'visible' : ''}`}>
+      <section
+        id="location"
+        ref={locationRef}
+        className={`section ${locationInView ? 'visible' : ''}`}
+      >
         <LocationPage />
       </section>
     </div>

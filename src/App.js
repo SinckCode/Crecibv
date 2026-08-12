@@ -11,7 +11,7 @@ import Footer from './layouts/Footer';
 import BackToTop from './components/BackToTop';
 import Home from './pages/Home';
 import DonacionesPage from './pages/DonacionesPage';
-
+import ErrorBoundary from './components/ErrorBoundary';
 
 const ProtectedRoute = ({ children }) => {
   const { currentUser, isAdmin, loading } = useAuth();
@@ -24,12 +24,32 @@ const AppContent = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<><Header /><main><Home /><HomePage /></main><BackToTop /><Footer /></>} />
+        <Route
+          path="/"
+          element={
+            <>
+              <Header />
+              <main>
+                <Home />
+                <HomePage />
+              </main>
+              <BackToTop />
+              <Footer />
+            </>
+          }
+        />
         <Route path="/login" element={<Login />} />
         <Route path="/donaciones" element={<DonacionesPage />} />
 
         {/* 🔥 Rutas protegidas de admin */}
-        <Route path="/admin/*" element={<ProtectedRoute><AdminPanel /></ProtectedRoute>}>
+        <Route
+          path="/admin/*"
+          element={
+            <ProtectedRoute>
+              <AdminPanel />
+            </ProtectedRoute>
+          }
+        >
           <Route path="cards" element={<AdminCards />} />
           <Route path="users" element={<Users />} /> {/* ✅ Nueva ruta protegida */}
         </Route>
@@ -40,9 +60,11 @@ const AppContent = () => {
 
 const App = () => {
   return (
-    <AuthProvider>
-      <AppContent />
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <AppContent />
+      </AuthProvider>
+    </ErrorBoundary>
   );
 };
 
