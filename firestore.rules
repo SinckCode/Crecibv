@@ -1,0 +1,42 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Users collection: read for authenticated, write own doc or admin
+    match /users/{userId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null && request.auth.token.admin == true;
+      allow update: if request.auth != null &&
+        (request.auth.uid == userId || request.auth.token.admin == true);
+      allow delete: if request.auth != null && request.auth.token.admin == true;
+    }
+
+    // Cards collection: public read, admin write
+    match /cards/{cardId} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.token.admin == true;
+    }
+
+    // Messages collection: public create, admin read/delete
+    match /messages/{messageId} {
+      allow create: if true
+        && request.resource.data.name is string
+        && request.resource.data.email is string
+        && request.resource.data.message is string
+        && request.resource.data.name.size() >= 2
+        && request.resource.data.name.size() <= 100
+        && request.resource.data.email.size() >= 5
+        && request.resource.data.email.size() <= 100
+        && request.resource.data.message.size() >= 10
+        && request.resource.data.message.size() <= 2000;
+      allow read, delete: if request.auth != null && request.auth.token.admin == true;
+    }
+
+    // Content collection: public read, admin write
+    match /content/{docId} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.token.admin == true;
+    }
+  }
+}

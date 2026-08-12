@@ -1,12 +1,11 @@
 import React from 'react';
+import { DEFAULT_PROFILE_IMAGE } from '../lib/constants';
 import './UserCard.scss';
-
-const defaultProfileImage = "https://firebasestorage.googleapis.com/v0/b/crecibv.firebasestorage.app/o/profile-images%2F1735878729739-png-transparent-male-avatar-user-profile-profile-heroes-necktie-recruiter-thumbnail-(1).png?alt=media&token=351456e8-b08d-49f5-9e33-8f906409b931";
 
 const UserCard = ({ user, onDelete, onEdit }) => {
   const imageURL = user.photoURL && user.photoURL.startsWith("http")
     ? user.photoURL
-    : defaultProfileImage;
+    : DEFAULT_PROFILE_IMAGE;
 
   const handleDeleteClick = () => {
     if (!user.uid) {

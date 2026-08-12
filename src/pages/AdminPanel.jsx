@@ -27,7 +27,7 @@ const AdminPanel = ({ onLogout }) => {
               <ul>
                 <li><Link to="/admin/">Inicio</Link></li>
                 <li><Link to="/admin/register">Registrar Usuarios</Link></li>
-                <li><Link to="/admin/userss">Administrar Usuarios</Link></li>
+                <li><Link to="/admin/users">Administrar Usuarios</Link></li>
                 <li><Link to="/admin/messages">Ver Mensajes</Link></li>
                 <li><Link to="/admin/images">Administrar Imágenes</Link></li>
                 <li><Link to="/admin/cards">Administrar Tarjetas</Link></li>
@@ -44,7 +44,7 @@ const AdminPanel = ({ onLogout }) => {
           <Route path="messages" element={<Messages />} />
           <Route path="images" element={<ImageManager />} />
           <Route path="cards" element={<AdminCards />} />
-          <Route path="userss" element={<Users />} />
+          <Route path="users" element={<Users />} />
           <Route path="edit-about" element={<EditAboutUs />} /> {/* 🆕 Nueva ruta */}
         </Routes>
       </main>

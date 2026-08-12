@@ -14,8 +14,10 @@ import DonacionesPage from './pages/DonacionesPage';
 
 
 const ProtectedRoute = ({ children }) => {
-  const { currentUser } = useAuth();
-  return currentUser ? children : <Navigate to="/login" />;
+  const { currentUser, isAdmin, loading } = useAuth();
+  if (loading) return null;
+  if (!currentUser || !isAdmin) return <Navigate to="/login" />;
+  return children;
 };
 
 const AppContent = () => {
@@ -29,7 +31,7 @@ const AppContent = () => {
         {/* 🔥 Rutas protegidas de admin */}
         <Route path="/admin/*" element={<ProtectedRoute><AdminPanel /></ProtectedRoute>}>
           <Route path="cards" element={<AdminCards />} />
-          <Route path="userss" element={<Users />} /> {/* ✅ Nueva ruta protegida */}
+          <Route path="users" element={<Users />} /> {/* ✅ Nueva ruta protegida */}
         </Route>
       </Routes>
     </Router>

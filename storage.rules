@@ -1,0 +1,38 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // Home images: public read, admin write
+    match /Home/{fileName} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.token.admin == true
+        && request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+    }
+
+    // Cards images: public read, admin write
+    match /cards/{fileName} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.token.admin == true
+        && request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+    }
+
+    // Profile images: authenticated read, authenticated write (own images)
+    match /profile-images/{fileName} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null
+        && request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+    }
+
+    // About Us images: public read, admin write
+    match /aboutUs/{fileName} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.token.admin == true
+        && request.resource.size < 5 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+    }
+  }
+}

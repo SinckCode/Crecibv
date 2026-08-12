@@ -64,8 +64,7 @@ const Register = () => {
       let finalPhotoURL = photoURL; // Usa la imagen subida si existe
 
       if (!profileImage) {
-        // 🔥 Si el usuario no subió imagen, usar la imagen por defecto
-        finalPhotoURL = "https://firebasestorage.googleapis.com/v0/b/crecibv.firebasestorage.app/o/profile-images%2F1735878729739-png-transparent-male-avatar-user-profile-profile-heroes-necktie-recruiter-thumbnail-(1).png?alt=media&token=351456e8-b08d-49f5-9e33-8f906409b931";
+        finalPhotoURL = defaultProfileImage;
       }
 
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
