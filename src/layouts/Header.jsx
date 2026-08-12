@@ -25,7 +25,7 @@ const Header = () => {
               <h1>CRECIBV, A.C.</h1>
             </div>
             <nav aria-label="Navegacion principal">
-              <a href="#">Inicio</a>
+              <a href="/">Inicio</a>
               <a href="#about-us">Nosotros</a>
               <a href="#services">Servicios</a>
               <a href="#contact">Contacto</a>
@@ -55,7 +55,7 @@ const Header = () => {
       </button>
 
       <nav className={`mobile-menu ${menuOpen ? 'open' : 'closed'}`} aria-label="Navegacion movil">
-        <a href="#" onClick={() => setMenuOpen(false)}>
+        <a href="/" onClick={() => setMenuOpen(false)}>
           Inicio
         </a>
         <a href="#about-us" onClick={() => setMenuOpen(false)}>

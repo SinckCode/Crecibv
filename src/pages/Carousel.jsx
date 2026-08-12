@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
+import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
 import './Carousel.scss';
 import Card from './Card';
@@ -53,16 +53,6 @@ const Carousel = () => {
       setCurrentIndex((prevIndex) => (prevIndex - 1 + cards.length) % cards.length);
     }
   }, [cards.length]);
-
-  const handleDelete = async (id) => {
-    if (!id) return;
-    try {
-      await deleteDoc(doc(db, 'cards', id));
-      setCards((prevCards) => prevCards.filter((card) => card.id !== id));
-    } catch (error) {
-      console.error('Error deleting card:', error);
-    }
-  };
 
   return (
     <div className="carousel">

@@ -1,7 +1,7 @@
 import React from 'react';
 import './Carousel.scss';
 
-const Card = ({ card, onDelete }) => {
+const Card = ({ card }) => {
   return (
     <div className="card">
       <h3>{card.title}</h3>
