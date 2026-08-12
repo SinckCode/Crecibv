@@ -75,7 +75,7 @@ const Home = () => {
       <div className="overlay-content">
         <div className="background-overlay"></div>
         <h1>BIENVENIDO A CRECIBV</h1>
-        <button className="cta-button" onClick={() => navigate('#donativos')}>
+        <button className="cta-button" onClick={() => navigate('/donaciones')}>
         APOYAR
         </button>
       </div>

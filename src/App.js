@@ -10,7 +10,7 @@ import Header from './layouts/Header';
 import Footer from './layouts/Footer';
 import BackToTop from './components/BackToTop';
 import Home from './pages/Home';
-import Donaciones from './components/Donaciones';
+import DonacionesPage from './pages/DonacionesPage';
 
 
 const ProtectedRoute = ({ children }) => {
@@ -24,7 +24,7 @@ const AppContent = () => {
       <Routes>
         <Route path="/" element={<><Header /><main><Home /><HomePage /></main><BackToTop /><Footer /></>} />
         <Route path="/login" element={<Login />} />
-        <Route path="/donaciones" element={<><main><Donaciones /></main><BackToTop /></>} />
+        <Route path="/donaciones" element={<DonacionesPage />} />
 
         {/* 🔥 Rutas protegidas de admin */}
         <Route path="/admin/*" element={<ProtectedRoute><AdminPanel /></ProtectedRoute>}>

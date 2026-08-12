@@ -40,7 +40,7 @@ const Header = () => {
               <p>
                 ¡Dona Hoy! Apoya a mejorar la calidad de vida de muchas personas.
               </p>
-              <button className="cta-button" onClick={() => navigate('#donativos')}>
+              <button className="cta-button" onClick={() => navigate('/donaciones')}>
                 APOYAR
               </button>
             </div>
