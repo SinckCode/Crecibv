@@ -13,16 +13,6 @@ jest.mock('react-router-dom', () => ({
 jest.mock('../assets/banbajio_logo.png', () => 'banbajio_logo.png');
 jest.mock('../assets/donativo_image.jpg', () => 'donativo_image.jpg');
 
-beforeEach(() => {
-  jest.spyOn(global, 'fetch').mockRejectedValue(new Error('Network error'));
-  jest.spyOn(console, 'error').mockImplementation(() => {});
-});
-
-afterEach(() => {
-  global.fetch.mockRestore();
-  console.error.mockRestore();
-});
-
 describe('DonativoSection', () => {
   it('renders the headings correctly', () => {
     render(<DonativoSection />);
@@ -34,7 +24,7 @@ describe('DonativoSection', () => {
   it('shows default bank info', () => {
     render(<DonativoSection />);
 
-    expect(screen.getByText(/BanBajío/)).toBeInTheDocument();
+    expect(screen.getByText(/BanBajio/)).toBeInTheDocument();
     expect(screen.getByText('030225900028096394')).toBeInTheDocument();
   });
 });

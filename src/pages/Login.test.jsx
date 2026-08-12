@@ -34,7 +34,7 @@ describe('Login', () => {
 
     expect(screen.getByRole('heading', { name: /iniciar sesión/i })).toBeInTheDocument();
     expect(screen.getByLabelText(/correo/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/contraseña/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/contrasena/i)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /iniciar sesión/i })).toBeInTheDocument();
   });
 
@@ -45,7 +45,7 @@ describe('Login', () => {
     renderLogin();
 
     await user.type(screen.getByLabelText(/correo/i), 'bad@example.com');
-    await user.type(screen.getByLabelText(/contraseña/i), 'wrongpass');
+    await user.type(screen.getByLabelText(/contrasena/i), 'wrongpass');
     await user.click(screen.getByRole('button', { name: /iniciar sesión/i }));
 
     await waitFor(() => {

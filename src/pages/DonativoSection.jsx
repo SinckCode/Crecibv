@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useLocation } from 'react-router-dom';
 import banbajioLogoLocal from '../assets/banbajio_logo.png';
@@ -14,18 +14,18 @@ const DonativoSection = () => {
     threshold: 0.1,
   });
 
-  const [donationData, setDonationData] = useState({
+  const donationData = {
     logoURL: banbajioLogoLocal,
     animatedImageURL: donativoImageLocal,
     awarenessMessage:
-      'Ver con el corazón trasciende la vista. Tu apoyo abre caminos, elimina barreras e impulsa la autonomía e inclusión de personas con discapacidad visual.',
+      'Ver con el corazon trasciende la vista. Tu apoyo abre caminos, elimina barreras e impulsa la autonomia e inclusion de personas con discapacidad visual.',
     callToAction:
-      '¡Tu aportación transforma vidas! Cada donativo nos permite continuar brindando herramientas de movilidad y programas de integración.',
+      '¡Tu aportacion transforma vidas! Cada donativo nos permite continuar brindando herramientas de movilidad y programas de integracion.',
     bankInfo: {
-      bankName: 'BanBajío',
+      bankName: 'BanBajio',
       clabe: '030225900028096394',
     },
-  });
+  };
 
   useEffect(() => {
     if (location.hash === '#donativos') {
@@ -35,27 +35,6 @@ const DonativoSection = () => {
       }
     }
   }, [location]);
-
-  useEffect(() => {
-    const fetchDonationData = async () => {
-      try {
-        const response = await fetch('https://us-central1-crecibv.cloudfunctions.net/getDonations');
-        const data = await response.json();
-
-        if (data.success && data.data) {
-          setDonationData({
-            ...data.data,
-            logoURL: data.data.logoURL || banbajioLogoLocal,
-            animatedImageURL: data.data.animatedImageURL || donativoImageLocal,
-          });
-        }
-      } catch (error) {
-        console.error('Error de conexión:', error);
-      }
-    };
-
-    fetchDonationData();
-  }, []);
 
   return (
     <section id="donativos" ref={ref} className={`page ${inView ? 'visible' : ''}`}>
