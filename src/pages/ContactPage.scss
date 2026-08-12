@@ -60,6 +60,12 @@ $text-color: #333 !default;
       }
     }
 
+    .field-error {
+      color: #e53935;
+      font-size: 0.85rem;
+      margin: -1rem 0 0 0;
+    }
+
     .send-button {
       background: $primary-color;
       color: white;
@@ -88,23 +94,21 @@ $text-color: #333 !default;
   }
 }
 
-
 @media screen and (max-width: 600px) {
+  .contact-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
 
-    .contact-container {
-        flex-direction: column;
-        align-items: center;
-        padding: 1rem;
-
-        .contact-info,
-        .contact-form,
-        .contact-map {
-        width: 100%;
-        margin-bottom: 1rem;
-        }
-
-        .contact-map{
-            display: none;
-        }
+    .contact-info,
+    .contact-form,
+    .contact-map {
+      width: 100%;
+      margin-bottom: 1rem;
     }
+
+    .contact-map {
+      display: none;
     }
+  }
+}

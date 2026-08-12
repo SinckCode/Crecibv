@@ -1,18 +1,9 @@
 // src/pages/Users.jsx
 import React, { useEffect, useState } from 'react';
-import {
-  collection,
-  onSnapshot,
-  query,
-  where,
-  getDocs,
-  deleteDoc,
-  doc,
-  updateDoc,
-} from 'firebase/firestore';
+import { collection, onSnapshot, doc, updateDoc } from 'firebase/firestore';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { db, storage, auth } from '../firebase';
-import { updateProfile, updateEmail, updatePassword } from 'firebase/auth';
+import { updateProfile, updatePassword } from 'firebase/auth';
 import { getFunctions, httpsCallable } from 'firebase/functions'; // Importamos Firebase Functions
 import UserCard from '../components/UserCard';
 import { reauthenticateWithCredential, EmailAuthProvider } from 'firebase/auth';
@@ -123,40 +114,10 @@ const Users = () => {
     }
 
     try {
-      const token = await auth.currentUser.getIdToken();
-
-      // 📌 Llamar a la Cloud Function para eliminar de Firebase Auth
-      const response = await fetch('https://us-central1-crecibv.cloudfunctions.net/deleteUser', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`, // 🔥 Enviar el token correctamente
-        },
-        body: JSON.stringify({ uid: id }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok && data.success) {
-        // 🔍 Buscar y eliminar el usuario en Firestore usando `uid`
-
-        const userQuery = query(collection(db, 'users'), where('uid', '==', id));
-        const userDocs = await getDocs(userQuery);
-
-        if (!userDocs.empty) {
-          userDocs.forEach(async (docSnapshot) => {
-            await deleteDoc(doc(db, 'users', docSnapshot.id));
-          });
-
-          // 🔄 Actualizar el estado para reflejar el cambio en el frontend
-          setUsers((prevUsers) => prevUsers.filter((user) => user.uid !== id));
-        } else {
-        }
-      } else {
-        console.error('❌ Error en Cloud Function:', data.message);
-      }
+      await deleteUserFunction({ uid: id });
+      setUsers((prevUsers) => prevUsers.filter((user) => user.uid !== id));
     } catch (error) {
-      console.error('❌ Error al eliminar usuario:', error);
+      console.error('Error al eliminar usuario:', error);
     }
   };
 
