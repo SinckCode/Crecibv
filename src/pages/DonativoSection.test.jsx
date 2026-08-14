@@ -9,6 +9,14 @@ jest.mock('react-router-dom', () => ({
   useLocation: () => ({ hash: '' }),
 }));
 
+// Mock useSiteSettings to avoid Firebase initialization in CI
+jest.mock('../hooks/useSiteSettings', () => ({
+  useSiteSettings: () => ({
+    settings: require('../lib/defaultSiteSettings').DEFAULT_SITE_SETTINGS,
+    loading: false,
+  }),
+}));
+
 // Mock image imports so they resolve to simple strings
 jest.mock('../assets/banbajio_logo.png', () => 'banbajio_logo.png');
 jest.mock('../assets/donativo_image.jpg', () => 'donativo_image.jpg');
