@@ -97,15 +97,24 @@ const Register = () => {
       window.dispatchEvent(new Event('userUpdated'));
     } catch (err) {
       console.error('Error al registrar usuario:', err);
+      const msg = err.message || '';
+      const code = err.code || '';
       if (
-        err.message?.includes('email-already-exists') ||
-        err.message?.includes('already-in-use')
+        msg.includes('already-exists') ||
+        msg.includes('already-in-use') ||
+        code.includes('already-exists')
       ) {
         setError('Este correo ya esta en uso.');
-      } else if (err.message?.includes('weak-password')) {
+      } else if (msg.includes('weak-password')) {
         setError('La contrasena es demasiado debil.');
+      } else if (msg.includes('permission-denied') || code.includes('permission-denied')) {
+        setError('No tienes permisos para registrar usuarios.');
+      } else if (msg.includes('not-found') || code.includes('not-found')) {
+        setError(
+          'La funcion createUser no esta desplegada. Ejecuta: firebase deploy --only functions',
+        );
       } else {
-        setError('Error al registrar el usuario. Intenta nuevamente.');
+        setError(`Error al registrar: ${msg || 'Intenta nuevamente.'}`);
       }
     } finally {
       setSaving(false);

@@ -43,26 +43,42 @@ exports.createUser = onCall(async (request) => {
     throw new HttpsError("invalid-argument", "Faltan datos requeridos");
   }
   if (password.length < 6) {
-    throw new HttpsError("invalid-argument", "La contrasena debe tener al menos 6 caracteres");
+    throw new HttpsError(
+      "invalid-argument",
+      "La contrasena debe tener al menos 6 caracteres",
+    );
   }
 
-  const createData = { email, password, displayName };
-  if (photoURL && photoURL.startsWith("http")) {
-    createData.photoURL = photoURL;
+  try {
+    const createData = { email, password, displayName };
+    if (photoURL && photoURL.startsWith("http")) {
+      createData.photoURL = photoURL;
+    }
+
+    const userRecord = await admin.auth().createUser(createData);
+    await admin.auth().setCustomUserClaims(userRecord.uid, { admin: true });
+
+    await admin.firestore().collection("users").add({
+      name: displayName,
+      username: username || "",
+      email,
+      photoURL: photoURL && photoURL.startsWith("http") ? photoURL : "",
+      uid: userRecord.uid,
+    });
+
+    return { success: true, uid: userRecord.uid };
+  } catch (error) {
+    if (error.code === "auth/email-already-exists") {
+      throw new HttpsError("already-exists", "Este correo ya esta en uso");
+    }
+    if (error.code === "auth/invalid-email") {
+      throw new HttpsError("invalid-argument", "El correo no es valido");
+    }
+    if (error.code === "auth/weak-password") {
+      throw new HttpsError("invalid-argument", "La contrasena es demasiado debil");
+    }
+    throw new HttpsError("internal", error.message || "Error al crear usuario");
   }
-
-  const userRecord = await admin.auth().createUser(createData);
-  await admin.auth().setCustomUserClaims(userRecord.uid, { admin: true });
-
-  await admin.firestore().collection("users").add({
-    name: displayName,
-    username: username || "",
-    email,
-    photoURL: photoURL && photoURL.startsWith("http") ? photoURL : "",
-    uid: userRecord.uid,
-  });
-
-  return { success: true, uid: userRecord.uid };
 });
 
 // Delete a user from Auth and Firestore (admin only)
@@ -76,7 +92,15 @@ exports.deleteUser = onCall(async (request) => {
     throw new HttpsError("invalid-argument", "UID invalido");
   }
 
-  await admin.auth().deleteUser(uid);
+  try {
+    await admin.auth().deleteUser(uid);
+  } catch (error) {
+    if (error.code === "auth/user-not-found") {
+      // User already deleted from Auth, continue to clean Firestore
+    } else {
+      throw new HttpsError("internal", error.message || "Error al eliminar usuario");
+    }
+  }
 
   // Query by uid field since documents use auto-generated IDs
   const usersRef = admin.firestore().collection("users");
