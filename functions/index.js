@@ -92,6 +92,28 @@ exports.deleteUser = onCall(async (request) => {
     throw new HttpsError("invalid-argument", "UID invalido");
   }
 
+  // Get user's photoURL from Firestore before deleting
+  const usersRef = admin.firestore().collection("users");
+  const snapshot = await usersRef.where("uid", "==", uid).get();
+
+  // Delete profile image from Storage if it exists
+  const bucket = admin.storage().bucket();
+  for (const userDoc of snapshot.docs) {
+    const photoURL = userDoc.data().photoURL;
+    if (photoURL && photoURL.includes("firebasestorage.googleapis.com")) {
+      try {
+        // Extract file path from download URL
+        const urlPath = decodeURIComponent(
+          photoURL.split("/o/")[1].split("?")[0],
+        );
+        await bucket.file(urlPath).delete();
+      } catch (err) {
+        // Image may already be deleted, continue
+      }
+    }
+  }
+
+  // Delete from Firebase Auth
   try {
     await admin.auth().deleteUser(uid);
   } catch (error) {
@@ -102,9 +124,7 @@ exports.deleteUser = onCall(async (request) => {
     }
   }
 
-  // Query by uid field since documents use auto-generated IDs
-  const usersRef = admin.firestore().collection("users");
-  const snapshot = await usersRef.where("uid", "==", uid).get();
+  // Delete from Firestore
   const batch = admin.firestore().batch();
   snapshot.forEach((doc) => batch.delete(doc.ref));
   await batch.commit();

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { collection, onSnapshot, doc, updateDoc } from 'firebase/firestore';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 import { db, storage, auth } from '../firebase';
 import { updateProfile, updatePassword } from 'firebase/auth';
 import { getFunctions, httpsCallable } from 'firebase/functions';
@@ -38,6 +38,17 @@ const Users = () => {
     if (!file) return;
 
     try {
+      // Borrar foto anterior de Storage si existe
+      const oldURL = formData.photoURL;
+      if (oldURL && oldURL.includes('firebasestorage.googleapis.com')) {
+        try {
+          const oldRef = ref(storage, oldURL);
+          await deleteObject(oldRef);
+        } catch {
+          // Imagen anterior ya no existe, continuar
+        }
+      }
+
       const fileExtension = file.name.split('.').pop();
       const fileName = `profile-${Date.now()}.${fileExtension}`;
       const storageRef = ref(storage, `profile-images/${fileName}`);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { collection, addDoc, getDocs, updateDoc, deleteDoc, doc } from 'firebase/firestore';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
 import { db, storage } from '../firebase';
 import './AdminCards.scss';
 
@@ -42,10 +42,25 @@ const AdminCards = () => {
     setImageFile(null);
   };
 
+  // 🔥 Eliminar imagen de Storage si existe
+  const deleteImageFromStorage = async (imageUrl) => {
+    if (!imageUrl || !imageUrl.includes('firebasestorage.googleapis.com')) return;
+    try {
+      const imageRef = ref(storage, imageUrl);
+      await deleteObject(imageRef);
+    } catch (error) {
+      console.error('Error al eliminar imagen de Storage:', error);
+    }
+  };
+
   // 🔥 Eliminar una tarjeta
   const handleDelete = async (id) => {
+    const card = cards.find((c) => c.id === id);
+    if (card?.image) {
+      await deleteImageFromStorage(card.image);
+    }
     await deleteDoc(doc(db, 'cards', id));
-    setCards(cards.filter((card) => card.id !== id));
+    setCards(cards.filter((c) => c.id !== id));
   };
 
   // 🔥 Editar tarjeta - Mostrar modal
@@ -58,6 +73,10 @@ const AdminCards = () => {
     let updatedImageUrl = editCard.image;
 
     if (imageFile) {
+      // Borrar imagen anterior si existe
+      if (editCard.image) {
+        await deleteImageFromStorage(editCard.image);
+      }
       updatedImageUrl = await uploadImage(imageFile);
     }
 
