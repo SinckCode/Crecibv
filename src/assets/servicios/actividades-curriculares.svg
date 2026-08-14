@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <rect width="400" height="300" rx="20" fill="#fef0f5"/>
+  <rect x="40" y="40" width="320" height="220" rx="16" fill="#ffffff" stroke="#ef0381" stroke-width="2"/>
+  <!-- Book open -->
+  <path d="M130 180 L130 100 Q170 90 200 100 Q230 90 270 100 L270 180" stroke="#7b1fa2" stroke-width="3" fill="none" stroke-linejoin="round"/>
+  <line x1="200" y1="100" x2="200" y2="180" stroke="#7b1fa2" stroke-width="2"/>
+  <!-- Book lines left -->
+  <line x1="145" y1="120" x2="185" y2="116" stroke="#7b1fa2" stroke-width="1.5" opacity="0.4"/>
+  <line x1="145" y1="135" x2="185" y2="131" stroke="#7b1fa2" stroke-width="1.5" opacity="0.4"/>
+  <line x1="145" y1="150" x2="185" y2="146" stroke="#7b1fa2" stroke-width="1.5" opacity="0.4"/>
+  <!-- Book lines right -->
+  <line x1="215" y1="116" x2="255" y2="120" stroke="#7b1fa2" stroke-width="1.5" opacity="0.4"/>
+  <line x1="215" y1="131" x2="255" y2="135" stroke="#7b1fa2" stroke-width="1.5" opacity="0.4"/>
+  <line x1="215" y1="146" x2="255" y2="150" stroke="#7b1fa2" stroke-width="1.5" opacity="0.4"/>
+  <!-- Graduation cap -->
+  <polygon points="200,65 240,80 200,95 160,80" fill="#ef0381"/>
+  <line x1="200" y1="95" x2="200" y2="75" stroke="#ef0381" stroke-width="2"/>
+  <line x1="240" y1="80" x2="240" y2="100" stroke="#ef0381" stroke-width="2"/>
+  <circle cx="240" cy="103" r="3" fill="#ef0381"/>
+  <!-- ABC -->
+  <text x="100" y="215" font-family="Poppins, sans-serif" font-size="22" fill="#ef0381" font-weight="700" opacity="0.3">A B C</text>
+  <!-- 123 -->
+  <text x="245" y="215" font-family="Poppins, sans-serif" font-size="22" fill="#7b1fa2" font-weight="700" opacity="0.3">1 2 3</text>
+  <text x="200" y="270" text-anchor="middle" font-family="Poppins, sans-serif" font-size="13" fill="#ef0381" font-weight="600">Actividades Curriculares</text>
+</svg>

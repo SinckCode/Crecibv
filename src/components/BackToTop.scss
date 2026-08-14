@@ -1,37 +1,43 @@
+@import '../styles/base/variables';
+
 .back-to-top {
   position: fixed;
   bottom: 2rem;
-  right: 2rem;
-  background-color: #0e0007;
-  color: white;
+  right: 1.5rem;
+  background: $text-dark;
+  color: $bg-white;
   border: none;
   border-radius: 50%;
-  width: 56px;
-  height: 56px;
-  font-size: 1.5rem;
+  width: 48px;
+  height: 48px;
+  font-size: 1.25rem;
   cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
+  box-shadow: $shadow-md;
+  transition: all $transition-base;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 100;
 
   &:hover {
-    transform: scale(1.1);
+    background: $primary-color;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba($primary-color, 0.3);
   }
 
   span {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     line-height: 1;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: $breakpoint-mobile) {
   .back-to-top {
-    width: 48px;
-    height: 48px;
-    bottom: 1rem;
-    right: 1rem;
+    width: 42px;
+    height: 42px;
+    // Stack above the menu-toggle button (52px + 2rem bottom + 0.75rem gap)
+    bottom: calc(2rem + 52px + 0.75rem);
+    right: 1.5rem;
+    font-size: 1rem;
   }
 }

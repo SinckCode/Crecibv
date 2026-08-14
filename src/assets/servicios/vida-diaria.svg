@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <rect width="400" height="300" rx="20" fill="#f3e5f5"/>
+  <rect x="40" y="40" width="320" height="220" rx="16" fill="#ffffff" stroke="#7b1fa2" stroke-width="2"/>
+  <!-- House outline -->
+  <path d="M140 160 L200 100 L260 160" stroke="#7b1fa2" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <rect x="155" y="160" width="90" height="65" rx="4" stroke="#7b1fa2" stroke-width="3" fill="none"/>
+  <!-- Door -->
+  <rect x="185" y="190" width="30" height="35" rx="3" fill="#ef0381" opacity="0.3"/>
+  <circle cx="210" cy="208" r="3" fill="#ef0381"/>
+  <!-- Kitchen items -->
+  <rect x="85" y="130" width="35" height="45" rx="6" stroke="#ef0381" stroke-width="2.5" fill="none"/>
+  <line x1="95" y1="140" x2="95" y2="125" stroke="#ef0381" stroke-width="2" stroke-linecap="round"/>
+  <!-- Utensils -->
+  <line x1="290" y1="120" x2="290" y2="170" stroke="#7b1fa2" stroke-width="3" stroke-linecap="round"/>
+  <ellipse cx="290" cy="118" rx="10" ry="6" stroke="#7b1fa2" stroke-width="2.5" fill="none"/>
+  <line x1="310" y1="120" x2="310" y2="170" stroke="#7b1fa2" stroke-width="3" stroke-linecap="round"/>
+  <path d="M304 120 L310 140 L316 120" stroke="#7b1fa2" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- Heart -->
+  <path d="M195 80 C195 75 185 70 185 78 C185 85 195 92 195 92 C195 92 205 85 205 78 C205 70 195 75 195 80Z" fill="#ef0381" opacity="0.6"/>
+  <text x="200" y="270" text-anchor="middle" font-family="Poppins, sans-serif" font-size="14" fill="#7b1fa2" font-weight="600">Vida Diaria</text>
+</svg>

@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../firebase';
+import { useSiteSettings } from '../hooks/useSiteSettings';
 import './ContactPage.scss';
 
 const ContactPage = () => {
+  const { settings } = useSiteSettings();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -69,10 +71,10 @@ const ContactPage = () => {
     <section className="contact-pages">
       <div className="title">
         <div className="about1">
-          <h1>PONTE EN</h1>
+          <h1>{settings.sectionTitles.contact.line1}</h1>
         </div>
         <div className="about2">
-          <h1>CONTACTO</h1>
+          <h1>{settings.sectionTitles.contact.line2}</h1>
         </div>
       </div>
 
@@ -80,18 +82,18 @@ const ContactPage = () => {
         <div className="contact-info">
           <div className="info-box">
             <span className="icon">📍</span>
-            <h4>Dirección</h4>
-            <p>Calle Alférez 611 Colonia Real Providencia León Guanajuato México</p>
+            <h4>Direccion</h4>
+            <p>{settings.orgInfo.address.full}</p>
           </div>
           <div className="info-box">
             <span className="icon">✉️</span>
             <h4>Email</h4>
-            <p>contacto@crecibv.com</p>
+            <p>{settings.orgInfo.email}</p>
           </div>
           <div className="info-box">
             <span className="icon">📞</span>
-            <h4>Teléfono</h4>
-            <p>+1 52 477 2017851</p>
+            <h4>Telefono</h4>
+            <p>{settings.orgInfo.phone}</p>
           </div>
         </div>
         <div className="contact-form">
@@ -141,7 +143,7 @@ const ContactPage = () => {
         <div className="contact-map">
           <iframe
             title="Ubicacion de CRECIBV en Google Maps"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.315021407141!2d-101.67137812473648!3d21.136858284272185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842bcad65409d9a7%3A0x1a8d7d8a6f136eb0!2sAlf%C3%A9rez%20611%2C%20Real%20Providencia%2C%2037234%20Le%C3%B3n%2C%20Gto.%2C%20M%C3%A9xico!5e0!3m2!1sen!2sus!4v1704974979174!5m2!1sen!2sus"
+            src={settings.maps.embedURL}
             width="100%"
             height="100%"
             style={{ border: 0 }}

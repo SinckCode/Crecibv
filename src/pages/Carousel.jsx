@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
+import { useSiteSettings } from '../hooks/useSiteSettings';
 import './Carousel.scss';
 import Card from './Card';
 
 const Carousel = () => {
   const [cards, setCards] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600); // Nuevo estado
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
+  const { settings } = useSiteSettings();
 
   useEffect(() => {
     let isMounted = true;
@@ -58,10 +60,10 @@ const Carousel = () => {
     <div className="carousel">
       <div className="title">
         <div className="about1">
-          <h1>NUESTROS</h1>
+          <h1>{settings.sectionTitles.services.line1}</h1>
         </div>
         <div className="about2">
-          <h1>SERVICIOS</h1>
+          <h1>{settings.sectionTitles.services.line2}</h1>
         </div>
       </div>
 

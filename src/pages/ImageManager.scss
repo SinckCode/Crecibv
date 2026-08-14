@@ -1,11 +1,15 @@
+@import '../styles/base/variables';
+@import '../styles/base/mixins';
+
 .image-manager {
   max-width: 800px;
   margin: auto;
   text-align: center;
 
   h2 {
-    font-size: 24px;
-    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    margin-bottom: $spacing-unit;
+    color: $text-dark;
   }
 
   .upload-section {
@@ -15,27 +19,29 @@
     margin-bottom: 2rem;
 
     input {
-      margin-bottom: 1rem;
+      margin-bottom: $spacing-unit;
     }
 
     .preview {
       width: 150px;
       height: 150px;
       object-fit: cover;
-      border-radius: 10px;
-      margin-bottom: 1rem;
+      border-radius: $radius-md;
+      margin-bottom: $spacing-unit;
     }
 
     button {
-      background: #ef0381;
-      color: white;
+      background: $primary-color;
+      color: $bg-white;
       padding: 0.5rem 1rem;
       border: none;
+      border-radius: $radius-sm;
       cursor: pointer;
-      transition: 0.3s;
+      font-family: $font-family;
+      transition: background $transition-base;
 
       &:hover {
-        background: #c0026d;
+        background: $primary-dark;
       }
     }
   }
@@ -43,7 +49,7 @@
   .image-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+    gap: $spacing-unit;
 
     .image-item {
       display: flex;
@@ -54,35 +60,37 @@
         width: 100px;
         height: 100px;
         object-fit: cover;
-        border-radius: 8px;
+        border-radius: $radius-sm;
       }
 
       button {
-        background: red;
-        color: white;
+        background: $danger-color;
+        color: $bg-white;
         border: none;
+        border-radius: $radius-sm;
         padding: 0.3rem 0.5rem;
         margin-top: 0.5rem;
         cursor: pointer;
-        transition: 0.3s;
+        font-family: $font-family;
+        transition: background $transition-base;
 
         &:hover {
-          background: darkred;
+          background: $danger-dark;
         }
       }
     }
   }
 
-  @media screen and (max-width: 768px) {
+  @include tablet {
     max-width: 100%;
-    padding: 0 1rem;
+    padding: 0 $spacing-unit;
 
     .image-list {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
-  @media screen and (max-width: 480px) {
+  @include mobile {
     .image-list {
       grid-template-columns: 1fr;
     }

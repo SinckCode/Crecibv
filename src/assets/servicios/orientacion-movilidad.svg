@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <rect width="400" height="300" rx="20" fill="#fef0f5"/>
+  <rect x="40" y="40" width="320" height="220" rx="16" fill="#ffffff" stroke="#ef0381" stroke-width="2"/>
+  <!-- Person walking with cane -->
+  <circle cx="180" cy="90" r="18" fill="#7b1fa2"/>
+  <!-- Body -->
+  <line x1="180" y1="108" x2="180" y2="170" stroke="#7b1fa2" stroke-width="6" stroke-linecap="round"/>
+  <!-- Arms -->
+  <line x1="180" y1="130" x2="155" y2="150" stroke="#7b1fa2" stroke-width="5" stroke-linecap="round"/>
+  <line x1="180" y1="130" x2="210" y2="155" stroke="#7b1fa2" stroke-width="5" stroke-linecap="round"/>
+  <!-- Legs walking -->
+  <line x1="180" y1="170" x2="160" y2="210" stroke="#7b1fa2" stroke-width="5" stroke-linecap="round"/>
+  <line x1="180" y1="170" x2="200" y2="210" stroke="#7b1fa2" stroke-width="5" stroke-linecap="round"/>
+  <!-- White cane -->
+  <line x1="210" y1="155" x2="240" y2="220" stroke="#ef0381" stroke-width="4" stroke-linecap="round"/>
+  <!-- Path/road -->
+  <path d="M80 230 Q200 220 320 230" stroke="#ef0381" stroke-width="3" stroke-dasharray="8 4" opacity="0.5"/>
+  <!-- Arrow showing direction -->
+  <path d="M270 100 L300 100 L290 90 M300 100 L290 110" stroke="#ef0381" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="200" y="270" text-anchor="middle" font-family="Poppins, sans-serif" font-size="13" fill="#ef0381" font-weight="600">Orientacion y Movilidad</text>
+</svg>

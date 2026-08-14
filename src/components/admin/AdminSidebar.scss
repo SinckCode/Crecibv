@@ -1,0 +1,153 @@
+@import '../../styles/base/variables';
+@import '../../styles/base/mixins';
+
+.admin-sidebar {
+  background: linear-gradient(180deg, $primary-color, darken($primary-color, 12%));
+  color: $bg-white;
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  min-height: 100vh;
+  transition: width $transition-base;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  &--collapsed {
+    width: 56px;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  &__toggle {
+    background: none;
+    border: none;
+    color: $bg-white;
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &__brand {
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: 1px;
+  }
+
+  &__nav {
+    flex: 1;
+    padding: 0.5rem 0;
+  }
+
+  &__group {
+    padding: 0.25rem 0;
+
+    &-title {
+      display: block;
+      padding: 0.5rem 1.25rem;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: rgba(255, 255, 255, 0.5);
+      font-weight: 600;
+    }
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 1.25rem;
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition:
+      background $transition-fast,
+      color $transition-fast;
+    border-left: 3px solid transparent;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: $bg-white;
+    }
+
+    &--active {
+      background: rgba(255, 255, 255, 0.15);
+      color: $bg-white;
+      border-left-color: $bg-white;
+      font-weight: 600;
+    }
+
+    &-icon {
+      font-size: 1rem;
+      width: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+  }
+
+  &__logout {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1.25rem;
+    margin: 0.5rem 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: $radius-sm;
+    color: $bg-white;
+    font-size: 0.875rem;
+    font-family: $font-family;
+    cursor: pointer;
+    transition: background $transition-fast;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+  }
+
+  @include tablet {
+    width: 100%;
+    min-height: auto;
+    flex-direction: column;
+
+    &--collapsed {
+      width: 100%;
+
+      .admin-sidebar__header {
+        justify-content: center;
+      }
+    }
+
+    &__nav {
+      padding: 0.25rem 0;
+    }
+
+    &__group-title {
+      padding: 0.25rem 1rem;
+    }
+
+    &__link {
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+    }
+
+    &__logout {
+      margin: 0.25rem 0.5rem 0.5rem;
+      padding: 0.6rem 1rem;
+    }
+  }
+}

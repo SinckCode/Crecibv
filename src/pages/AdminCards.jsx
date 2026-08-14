@@ -101,10 +101,14 @@ const AdminCards = () => {
         {cards.map((card) => (
           <li key={card.id}>
             <h3>{card.title}</h3>
-            <img src={card.image} alt={card.title} loading="lazy" />
+            {card.image && <img src={card.image} alt={card.title} loading="lazy" />}
             <p>{card.description}</p>
-            <button onClick={() => openEditModal(card)}>Editar</button>
-            <button onClick={() => handleDelete(card.id)}>Eliminar</button>
+            <div className="card-actions">
+              <button onClick={() => openEditModal(card)}>Editar</button>
+              <button className="btn-delete" onClick={() => handleDelete(card.id)}>
+                Eliminar
+              </button>
+            </div>
           </li>
         ))}
       </ul>

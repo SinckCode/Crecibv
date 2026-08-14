@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <rect width="400" height="300" rx="20" fill="#fef0f5"/>
+  <rect x="40" y="40" width="320" height="220" rx="16" fill="#ffffff" stroke="#ef0381" stroke-width="2"/>
+  <!-- Laptop -->
+  <rect x="130" y="100" width="140" height="90" rx="8" stroke="#7b1fa2" stroke-width="3" fill="none"/>
+  <!-- Screen content - accessibility icon -->
+  <circle cx="200" cy="135" r="8" fill="#ef0381" opacity="0.6"/>
+  <line x1="200" y1="143" x2="200" y2="165" stroke="#ef0381" stroke-width="2" opacity="0.6"/>
+  <line x1="190" y1="152" x2="210" y2="152" stroke="#ef0381" stroke-width="2" opacity="0.6"/>
+  <!-- Laptop base -->
+  <path d="M110 190 L130 190 L130 195 L270 195 L270 190 L290 190 L280 205 L120 205 Z" fill="#7b1fa2" opacity="0.2" stroke="#7b1fa2" stroke-width="2"/>
+  <!-- Sound waves (screen reader) -->
+  <path d="M280 130 Q290 130 290 140" stroke="#ef0381" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+  <path d="M285 120 Q300 120 300 145" stroke="#ef0381" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.4"/>
+  <path d="M290 110 Q310 110 310 150" stroke="#ef0381" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.25"/>
+  <!-- Braille keyboard dots -->
+  <circle cx="155" cy="225" r="4" fill="#7b1fa2" opacity="0.3"/>
+  <circle cx="175" cy="225" r="4" fill="#7b1fa2" opacity="0.3"/>
+  <circle cx="195" cy="225" r="4" fill="#7b1fa2" opacity="0.3"/>
+  <circle cx="215" cy="225" r="4" fill="#7b1fa2" opacity="0.3"/>
+  <circle cx="235" cy="225" r="4" fill="#7b1fa2" opacity="0.3"/>
+  <!-- Headphones -->
+  <path d="M90 150 Q90 120 110 120" stroke="#7b1fa2" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <rect x="82" y="148" width="16" height="22" rx="4" fill="#7b1fa2" opacity="0.4"/>
+  <text x="200" y="270" text-anchor="middle" font-family="Poppins, sans-serif" font-size="14" fill="#ef0381" font-weight="600">Tiflotecnologia</text>
+</svg>

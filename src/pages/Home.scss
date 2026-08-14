@@ -1,91 +1,86 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap');
+@import '../styles/base/variables';
+@import '../styles/base/mixins';
 
 .home {
-    position: relative;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+
+  .image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    width: 100%;
+    height: 100%;
+    gap: 0;
+  }
+
+  .grid-item {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: background-image $transition-slow;
+  }
+
+  .overlay-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    height: 100vh;
+    align-items: center;
+    text-align: center;
+    z-index: 2;
 
-    .image-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-template-rows: repeat(3, 1fr);
-      width: 100%;
-      height: 100%;
-      gap: 0;
-    }
-
-    .grid-item {
-      width: 100%;
-      height: 100%;
-      background-size: cover;
-      background-position: center;
-      transition: background-image 0.5s ease;
-    }
-
-    .overlay-content {
+    .background-overlay {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      z-index: 2;
+      background: rgba($bg-dark, 0.6);
+      z-index: -1;
+    }
 
-      .background-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.6); /* Fondo semi-transparente */
-        z-index: -1;
-      }
+    h1 {
+      color: $bg-white;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      margin-bottom: $spacing-unit;
+      font-family: $font-family;
+      font-style: italic;
+      font-weight: 700;
+    }
 
-      h1 {
-        color: white;
-        font-size: 70px;
-        margin-bottom: 1rem;
-        font-family: 'Poppins', sans-serif; /* Fuente aplicada */
-        font-style: italic; /* En itálica */
-        font-weight: 700; /* Negrita */
-      }
+    .cta-button {
+      width: 300px;
+      height: 70px;
+      background-color: $primary-color;
+      color: $text-dark;
+      font-family: $font-family;
+      font-weight: bold;
+      font-size: clamp(1.2rem, 2.5vw, 1.875rem);
+      border: none;
+      border-radius: $radius-full;
+      cursor: pointer;
+      transition: background-color $transition-base;
 
-      .cta-button {
-        width: 300px;
-        height: 70px;
-        background-color: #ef0381;
-        color: black;
-        font-family: 'Poppins', sans-serif;
-        font-weight: bold;
-        font-size: 30px; /* Ajusta según necesidad */
-        border: none;
-        border-radius: 30px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-
-        &:hover {
-          background-color: #c0026d;
-        }
+      &:hover {
+        background-color: $primary-dark;
       }
     }
   }
+}
 
-
-  @media screen and (max-width: 600px) {
-
-    .home .overlay-content h1 {
-      font-size: 40px;
-    }
-    .home .overlay-content .cta-button{
-        width: 200px; /* Ajusta según necesidad */
-        height: 50px; /* Ajusta según necesidad */
-        font-size: 20px; /* Ajusta según necesidad */
-    }
+@media screen and (max-width: $breakpoint-mobile) {
+  .home .overlay-content .cta-button {
+    width: 200px;
+    height: 50px;
   }
+}

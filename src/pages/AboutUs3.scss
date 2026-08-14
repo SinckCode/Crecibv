@@ -1,95 +1,51 @@
 @import '../styles/base/variables';
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
-
 
 .about-us3 {
-  display: flex;
-  justify-content: space-between; // Separa la imagen y el texto a los extremos
-  align-items: center; // Alinea verticalmente
-  gap: 2rem; // Espacio entre los elementos
-  padding: 2rem;
+  padding: $section-padding;
+  max-width: 900px;
+  margin: 0 auto;
 
-  .about-text {
-    flex: 1; // Permite que el texto ocupe el espacio disponible
-    text-align: left;
-  }
+  .text-Container {
+    text-align: center;
+    padding: 3rem;
 
-  h2{
-    font-family: Poppins;
-    font-weight: 700;
-    font-size: 48px;
-    color: $otros-color;
-  }
+    h2 {
+      font-weight: 700;
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      color: $text-dark;
+      line-height: 1.4;
+      position: relative;
 
-
-  .text-Container{
-    margin: 10rem 8rem;
-    p{
-        font-size: 30px;
-        font-family: Poppins;
-        font-weight: 400;
-        text-align: center;
-        color: $otros-color;
-        line-height: 1.8;
-        margin-left: 2rem;
-        margin-right: 2rem;
+      &::before {
+        content: '\201C';
+        font-size: 4rem;
+        color: $primary-color;
+        opacity: 0.3;
+        position: absolute;
+        top: -1.5rem;
+        left: -1rem;
+        line-height: 1;
+      }
     }
   }
-
 }
 
-    .title{
-        display: flex;
-        align-items: center; // Alinea verticalmente
-        font-family: Poppins;
-        gap: 3rem; // Espacio entre los elementos
-        font-weight: 800 !important;
-        .about1{
-            h1{
-                font-size: 64px;
-                color: $title-color;
+@media screen and (max-width: $breakpoint-tablet) {
+  .about-us3 {
+    padding: 3rem 1.5rem;
 
-            }
-        }
+    .text-Container {
+      padding: 1.5rem;
 
+      h2 {
+        font-size: 1.35rem;
 
-      .about2{
-        h1{
-            font-size: 64px;
-            color: $morado-color;
+        &::before {
+          font-size: 3rem;
+          top: -1rem;
+          left: -0.5rem;
         }
       }
-
     }
-
-
-    @media screen and (max-width: 600px) {
-        .title {
-          flex-direction: column; /* Coloca los elementos uno debajo del otro */
-          align-items: center; /* Alinea el texto a la izquierda */
-          gap: 0.5rem; /* Espacio entre líneas */
-        }
-
-        .title .about1 h1,
-        .title .about2 h1 {
-          font-size: 45px !important;
-          line-height: 1.2;
-        }
-
-        .title .about1 h1{
-            position: relative;
-            left: 0rem;
-        }
-        .about-us3{
-            flex-direction: column; // Cambia la dirección del flex a columna
-            .text-Container{
-                margin: 0;
-                padding: 0;
-            }
-            h2{
-                font-size: 30px;
-                text-align: center;
-            }
-        }
-
-      }
+  }
+}

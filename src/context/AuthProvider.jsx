@@ -1,6 +1,6 @@
-import { useEffect, useState, createContext, useContext } from "react";
-import { auth } from "../firebase";
-import { onAuthStateChanged } from "firebase/auth";
+import { useEffect, useState, createContext, useContext } from 'react';
+import { auth } from '../firebase';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
 
 const AuthContext = createContext();
 
@@ -16,7 +16,8 @@ export const AuthProvider = ({ children }) => {
       setCurrentUser(user);
       if (user) {
         const tokenResult = await user.getIdTokenResult();
-        setIsAdmin(!!tokenResult.claims.admin);
+        // Accept both { admin: true } and { role: "admin" }
+        setIsAdmin(!!tokenResult.claims.admin || tokenResult.claims.role === 'admin');
       } else {
         setIsAdmin(false);
       }
@@ -26,8 +27,10 @@ export const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
+  const logout = () => signOut(auth);
+
   return (
-    <AuthContext.Provider value={{ currentUser, isAdmin, loading }}>
+    <AuthContext.Provider value={{ currentUser, isAdmin, loading, logout }}>
       {children}
     </AuthContext.Provider>
   );

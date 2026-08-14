@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" fill="none">
+  <rect width="400" height="300" rx="20" fill="#f3e5f5"/>
+  <rect x="40" y="40" width="320" height="220" rx="16" fill="#ffffff" stroke="#7b1fa2" stroke-width="2"/>
+  <!-- Braille dots pattern -->
+  <circle cx="120" cy="100" r="12" fill="#7b1fa2"/>
+  <circle cx="120" cy="140" r="12" fill="#7b1fa2"/>
+  <circle cx="120" cy="180" r="12" fill="#7b1fa2" opacity="0.3"/>
+  <circle cx="160" cy="100" r="12" fill="#7b1fa2" opacity="0.3"/>
+  <circle cx="160" cy="140" r="12" fill="#7b1fa2"/>
+  <circle cx="160" cy="180" r="12" fill="#7b1fa2" opacity="0.3"/>
+  <!-- Second letter -->
+  <circle cx="220" cy="100" r="12" fill="#ef0381"/>
+  <circle cx="220" cy="140" r="12" fill="#ef0381" opacity="0.3"/>
+  <circle cx="220" cy="180" r="12" fill="#ef0381"/>
+  <circle cx="260" cy="100" r="12" fill="#ef0381"/>
+  <circle cx="260" cy="140" r="12" fill="#ef0381" opacity="0.3"/>
+  <circle cx="260" cy="180" r="12" fill="#ef0381" opacity="0.3"/>
+  <!-- Hand touching -->
+  <path d="M280 200 Q300 180 310 200 Q320 220 300 230 Q280 240 270 220 Z" fill="#7b1fa2" opacity="0.2"/>
+  <text x="200" y="270" text-anchor="middle" font-family="Poppins, sans-serif" font-size="14" fill="#7b1fa2" font-weight="600">Sistema Braille</text>
+</svg>

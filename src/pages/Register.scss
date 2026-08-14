@@ -1,16 +1,19 @@
+@import '../styles/base/variables';
+@import '../styles/base/mixins';
+
 .register {
   max-width: 500px;
   margin: 2rem auto;
   padding: 2rem;
-  background: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: $bg-light;
+  border-radius: $radius-sm;
+  box-shadow: $shadow-sm;
 
   h1 {
     font-size: 2rem;
-    margin-bottom: 1rem;
+    margin-bottom: $spacing-unit;
     text-align: center;
-    color: #333;
+    color: $text-dark;
   }
 
   form {
@@ -22,52 +25,57 @@
       display: flex;
       flex-direction: column;
       font-size: 1.1rem;
-      color: #555;
+      color: $text-secondary;
 
       input {
         padding: 0.75rem;
         margin-top: 0.5rem;
-        border: 1px solid #ddd;
-        border-radius: 4px;
+        border: 1px solid $border-color;
+        border-radius: $radius-sm;
         font-size: 1rem;
+        font-family: $font-family;
+        transition:
+          border-color $transition-base,
+          box-shadow $transition-base;
 
         &:focus {
-          border-color: #ef0381;
+          border-color: $primary-color;
           outline: none;
-          box-shadow: 0 0 4px rgba(239, 3, 129, 0.3);
+          box-shadow: 0 0 0 3px rgba($primary-color, 0.12);
         }
       }
     }
 
     button {
       padding: 0.75rem;
-      background: #ef0381;
-      color: white;
+      background: $primary-color;
+      color: $bg-white;
       border: none;
-      border-radius: 4px;
+      border-radius: $radius-sm;
       font-size: 1.1rem;
+      font-family: $font-family;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: background-color $transition-base;
 
       &:hover {
-        background-color: #d00270;
+        background-color: $primary-dark;
       }
     }
 
     .error {
-      color: red;
+      color: $error-color;
       font-size: 0.9rem;
     }
 
     .success {
-      color: green;
+      color: $success-color;
       font-size: 0.9rem;
     }
   }
 
-  @media screen and (max-width: 768px) {
+  @include tablet {
     max-width: 100%;
-    margin: 1rem;
-    padding: 1rem;
+    margin: $spacing-unit;
+    padding: $spacing-unit;
   }
 }

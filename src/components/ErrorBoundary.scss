@@ -1,0 +1,40 @@
+@import '../styles/base/variables';
+
+.error-boundary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: $font-family;
+  text-align: center;
+  padding: 2rem;
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: $spacing-unit;
+    color: $text-dark;
+  }
+
+  p {
+    font-size: 1.1rem;
+    color: $text-secondary;
+    margin-bottom: 2rem;
+  }
+
+  button {
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    font-family: $font-family;
+    background-color: $primary-color;
+    color: $bg-white;
+    border: none;
+    border-radius: $radius-sm;
+    cursor: pointer;
+    transition: background-color $transition-base;
+
+    &:hover {
+      background-color: $primary-dark;
+    }
+  }
+}

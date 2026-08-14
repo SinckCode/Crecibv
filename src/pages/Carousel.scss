@@ -1,117 +1,118 @@
 @import '../styles/base/variables';
+@import '../styles/base/mixins';
+
+.carousel {
+  padding: $section-padding;
+  max-width: $container-max;
+  margin: 0 auto;
+
+  .title {
+    @include section-title;
+  }
+}
 
 .carousel-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.arrow {
+  background: none;
+  border: none;
+  font-size: 2.5rem;
+  cursor: pointer;
+  color: $primary-color;
+  padding: 0.5rem;
+  transition: all $transition-base;
+  flex-shrink: 0;
+
+  &:hover:not(:disabled) {
+    color: $primary-dark;
+    transform: scale(1.15);
+  }
+
+  &:disabled {
+    color: $border-color;
+    cursor: default;
+  }
+}
+
+.card {
+  @include card-base;
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
+  padding: 2rem;
+  overflow: hidden;
+
+  h3 {
+    font-size: clamp(1.25rem, 2vw, 1.75rem);
+    color: $text-dark;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  img {
     width: 100%;
-    margin: auto;
-    margin-top: 2rem;
+    height: 260px;
+    border-radius: $radius-md;
+    object-fit: cover;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: $text-secondary;
+    text-align: justify;
+    line-height: 1.7;
+    padding: 0 0.5rem;
+  }
+}
+
+@media screen and (max-width: $breakpoint-tablet) {
+  .carousel {
+    padding: 3rem 1.5rem;
+
+    .title {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+  }
+
+  .carousel-container {
+    flex-direction: column;
   }
 
   .arrow {
-    background: none;
-    border: none;
-    font-size: 10rem;
-    cursor: pointer;
-    color: $primary-color;
-    margin-left: 2rem;
+    font-size: 2rem;
+  }
+
+  .arrow-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
   }
 
   .card {
-    width: 684px;
-    height: 700px;
-    text-align: center;
-    background: white;
-    border-radius: 10px;
-    padding: 15px;
-    margin-left: 2rem;
-    border: 0.5px solid black;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  }
+    max-width: 100%;
+    padding: 1.5rem;
 
-  .card h3 {
-    font-size: 50px;
-    color: $otros-color;
-    margin-bottom: 10px;
-    font-weight: 800;
-  }
-
-  .card img {
-    width: 80%;
-    height: 50%;
-    border-radius: 10px;
-    object-fit: cover;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  }
-
-  .card p {
-    font-size: 18px;
-    font-weight: 400;
-    color: #666;
-    text-align: justify;
-    margin: 50px;
-  }
-
-  .delete {
-    background-color: red;
-    color: white;
-    border: none;
-    padding: 5px;
-    cursor: pointer;
-  }
-
-  @media screen and (max-width: 600px) {
-    .carousel-container {
-      flex-direction: column;
-      align-items: center;
-      position: relative;
+    h3 {
+      font-size: 1.25rem;
     }
 
-    .arrow {
-      display: block;
-      font-size: 3rem;
-      margin: 1rem;
-      color: $primary-color;
+    img {
+      height: 200px;
     }
 
-    .arrow.left,
-    .arrow.right {
-      position: static; // Ya no es flotante
-      margin: 0 1rem;
-    }
-
-    .arrow-wrapper {
-      display: flex;
-      justify-content: center;
-      margin-top: 1rem;
-    }
-
-    .carousel .title {
-      text-align: center;
-      flex-direction: column;
-    }
-
-    .card {
-      width: 90%;
-      height: auto;
-      margin: 1rem 0;
-      padding: 1rem;
-    }
-
-    .card h3 {
-      font-size: 28px;
-    }
-
-    .card img {
-      width: 100%;
-      height: auto;
-    }
-
-    .card p {
-      font-size: 16px;
-      margin: 1rem 0;
-      text-align: left;
+    p {
+      font-size: 0.9rem;
+      padding: 0;
     }
   }
+}

@@ -1,19 +1,64 @@
-// Colores
+// Colores principales
 $primary-color: #ef0381;
-$secondary-color: #333;
-$morado-color: #811988;
-$text-color: #555;
-$title-color: #000000;
-$otros-color: #000000;
+$primary-dark: #c0026d;
+$primary-light: #fef0f5;
+$secondary-color: #7b1fa2;
+$secondary-light: #f3e5f5;
 
-// Tipografía
+// Texto
+$text-dark: #1a1a2e;
+$text-primary: #2d2d2d;
+$text-secondary: #555;
+$text-muted: #888;
+
+// Fondos
+$bg-white: #ffffff;
+$bg-light: #f8f9fa;
+$bg-dark: #1a1a2e;
+$bg-dark-secondary: #16213e;
+
+// Bordes
+$border-color: #e0e0e0;
+$border-light: #f0f0f0;
+
+// Tipografia
 $font-family: 'Poppins', sans-serif;
 
 // Espaciado
 $spacing-unit: 1rem;
+$section-padding: 5rem 2rem;
+$container-max: 1200px;
+
+// Sombras
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+$shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+$shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.12);
+$shadow-hover: 0 12px 48px rgba(0, 0, 0, 0.15);
+
+// Bordes redondeados
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 20px;
+$radius-full: 50px;
+
+// Transiciones
+$transition-fast: 0.2s ease;
+$transition-base: 0.3s ease;
+$transition-slow: 0.5s ease;
 
 // Breakpoints
 $breakpoint-mobile: 480px;
 $breakpoint-tablet: 768px;
 $breakpoint-laptop: 1024px;
 $breakpoint-desktop: 1280px;
+
+// Colores semanticos
+$error-color: #e53935;
+$success-color: #2e7d32;
+$danger-color: #e53935;
+$danger-dark: #c62828;
+
+// Aliases antiguos para compatibilidad con archivos admin
+$morado-color: $secondary-color;
+$title-color: $text-dark;
+$otros-color: $text-primary;

@@ -1,77 +1,87 @@
+@import '../styles/base/variables';
+
 .login {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  background: linear-gradient(135deg, #ef0381, #6a11cb);
+  min-height: 100vh;
+  background: linear-gradient(135deg, $primary-color, $secondary-color);
+  padding: 2rem;
 
   h1 {
     text-align: center;
-    color: white;
+    color: $bg-white;
     margin-bottom: 2rem;
     font-size: 2.5rem;
-    margin-right: 2rem;
+    font-weight: 800;
+    margin-right: 3rem;
   }
 
   form {
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: $bg-white;
+    padding: 2.5rem;
+    border-radius: $radius-md;
+    box-shadow: $shadow-lg;
     width: 100%;
-    max-width: 400px;
-    margin-right: 3rem;
+    max-width: 420px;
 
     label {
       display: block;
-      font-size: 1.1rem;
-      color: #333;
-      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+      color: $text-dark;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
     }
 
     input {
       width: 100%;
-      padding: 0.75rem;
-      margin-bottom: 1.5rem;
-      border: 1px solid #ddd;
-      border-radius: 4px;
+      padding: 0.75rem 1rem;
+      margin-bottom: 1.25rem;
+      border: 2px solid $border-color;
+      border-radius: $radius-sm;
       font-size: 1rem;
-      box-sizing: border-box;
+      font-family: $font-family;
+      transition:
+        border-color $transition-fast,
+        box-shadow $transition-fast;
 
       &:focus {
-        border-color: #ef0381;
+        border-color: $primary-color;
         outline: none;
-        box-shadow: 0 0 4px rgba(239, 3, 129, 0.3);
+        box-shadow: 0 0 0 3px rgba($primary-color, 0.12);
       }
     }
 
     button {
       width: 100%;
       padding: 0.75rem;
-      background-color: #ef0381;
-      color: white;
-      border: none;
-      border-radius: 4px;
+      background: $primary-color;
+      color: $bg-white;
+      border-radius: $radius-sm;
       font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
+      font-weight: 600;
+      transition: all $transition-base;
+      margin-top: 0.5rem;
 
       &:hover {
-        background-color: #d00270;
+        background: $primary-dark;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba($primary-color, 0.3);
       }
-    }
-
-    .error {
-      color: #d0021b;
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      text-align: center;
     }
   }
 
-  @media screen and (max-width: 768px) {
+  .error {
+    color: $error-color;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    text-align: center;
+    font-weight: 500;
+  }
+
+  @media screen and (max-width: $breakpoint-tablet) {
     flex-direction: column;
-    padding: 1rem;
+    padding: 1.5rem;
 
     h1 {
       margin-right: 0;
@@ -79,8 +89,8 @@
     }
 
     form {
-      margin-right: 0;
       max-width: 100%;
+      padding: 2rem;
     }
   }
 }

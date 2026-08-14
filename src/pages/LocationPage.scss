@@ -1,118 +1,85 @@
+@import '../styles/base/variables';
+@import '../styles/base/mixins';
+
 .location-page {
-    max-width: 1200px;
+  padding: $section-padding;
+  max-width: $container-max;
+  margin: 0 auto;
+  text-align: center;
+
+  .title {
+    @include section-title;
+  }
+
+  &__map {
+    margin: 0 auto 2rem;
+    border-radius: $radius-md;
+    overflow: hidden;
+    box-shadow: $shadow-lg;
+    max-width: 900px;
+
+    iframe {
+      width: 100%;
+      height: 400px;
+      border: none;
+      display: block;
+    }
+  }
+
+  &__info {
+    @include card-base;
+    max-width: 700px;
     margin: 0 auto;
-    padding: 50px 20px;
+    padding: 2rem;
     text-align: center;
-    animation: fadeIn 1s ease-in-out;
 
-    .title {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
-      margin-right: 40px !important;
-
-      .about1, .about2 {
-        font-size: 2.5rem;
-        font-weight: bold;
-        text-transform: uppercase;
-      }
-
-      .about1 {
-        color: #000; // Negro
-        margin-right: 40px;
-      }
-
-      .about2 {
-        color: #8E24AA; // Morado institucional
-      }
+    &:hover {
+      transform: none;
     }
 
-    &__map {
-      margin: 20px auto;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-      max-width: 900px;
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: $secondary-color;
+    }
 
-      iframe {
-        width: 100%;
-        height: 400px;
-        border: none;
+    p {
+      font-size: 1rem;
+      color: $text-secondary;
+      margin: 0.4rem 0;
+      line-height: 1.6;
+
+      strong {
+        color: $text-dark;
+        font-weight: 600;
       }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-tablet) {
+  .location-page {
+    padding: 3rem 1.5rem;
+
+    .title {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    &__map iframe {
+      height: 280px;
     }
 
     &__info {
-      margin-top: 30px;
-      background: #f7f7f7;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-      text-align: center;
-      max-width: 800px;
-      margin: 30px auto;
+      padding: 1.5rem;
 
       h2 {
-        font-size: 1.8rem;
-        margin-bottom: 15px;
-        color: #8E24AA;
+        font-size: 1.25rem;
       }
 
       p {
-        font-size: 1.2rem;
-        color: #333;
-        margin: 5px 0;
-
-        strong {
-          color: #000;
-        }
+        font-size: 0.9rem;
       }
     }
   }
-
-  /* Animación de aparición */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* 📌 Diseño responsivo */
-  @media (max-width: 768px) {
-    .location-page {
-      padding: 30px 10px;
-
-      .title {
-        flex-direction: column;
-        text-align: center;
-
-        .about1, .about2 {
-          font-size: 2rem;
-        }
-      }
-
-      &__map {
-        iframe {
-          height: 300px;
-        }
-      }
-
-      &__info {
-        padding: 15px;
-
-        h2 {
-          font-size: 1.5rem;
-        }
-
-        p {
-          font-size: 1rem;
-        }
-      }
-    }
-  }
+}

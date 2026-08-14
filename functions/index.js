@@ -9,9 +9,16 @@ const ALLOWED_ORIGINS = [
   "http://localhost:3000",
 ];
 
+function callerIsAdmin(request) {
+  return (
+    request.auth &&
+    (request.auth.token.admin === true || request.auth.token.role === "admin")
+  );
+}
+
 // Set admin custom claim on a user (admin only)
 exports.setAdminRole = onCall(async (request) => {
-  if (!request.auth || !request.auth.token.admin) {
+  if (!callerIsAdmin(request)) {
     throw new HttpsError("permission-denied", "No autorizado");
   }
 
@@ -24,9 +31,43 @@ exports.setAdminRole = onCall(async (request) => {
   return { success: true, message: `Admin claim asignado a ${uid}` };
 });
 
+// Create a new admin user (admin only) — uses Admin SDK so caller stays signed in
+exports.createUser = onCall(async (request) => {
+  if (!callerIsAdmin(request)) {
+    throw new HttpsError("permission-denied", "No autorizado");
+  }
+
+  const { email, password, displayName, username, photoURL } = request.data;
+
+  if (!email || !password || !displayName) {
+    throw new HttpsError("invalid-argument", "Faltan datos requeridos");
+  }
+  if (password.length < 6) {
+    throw new HttpsError("invalid-argument", "La contrasena debe tener al menos 6 caracteres");
+  }
+
+  const createData = { email, password, displayName };
+  if (photoURL && photoURL.startsWith("http")) {
+    createData.photoURL = photoURL;
+  }
+
+  const userRecord = await admin.auth().createUser(createData);
+  await admin.auth().setCustomUserClaims(userRecord.uid, { admin: true });
+
+  await admin.firestore().collection("users").add({
+    name: displayName,
+    username: username || "",
+    email,
+    photoURL: photoURL && photoURL.startsWith("http") ? photoURL : "",
+    uid: userRecord.uid,
+  });
+
+  return { success: true, uid: userRecord.uid };
+});
+
 // Delete a user from Auth and Firestore (admin only)
 exports.deleteUser = onCall(async (request) => {
-  if (!request.auth || !request.auth.token.admin) {
+  if (!callerIsAdmin(request)) {
     throw new HttpsError("permission-denied", "No autorizado");
   }
 
@@ -62,7 +103,7 @@ exports.getAboutUs = onRequest({ cors: ALLOWED_ORIGINS }, async (req, res) => {
 
 // Update About Us content (admin only)
 exports.updateAboutUs = onCall(async (request) => {
-  if (!request.auth || !request.auth.token.admin) {
+  if (!callerIsAdmin(request)) {
     throw new HttpsError("permission-denied", "No autorizado");
   }
 

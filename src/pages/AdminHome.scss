@@ -1,98 +1,119 @@
-.admin-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  text-align: center;
-  font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #ef0381, #ff7eb3);
-  color: #fff;
-}
+@import '../styles/base/variables';
+@import '../styles/base/mixins';
 
-.admin-card {
-  background: rgba(255, 255, 255, 0.2);
-  padding: 30px;
-  border-radius: 20px;
-  backdrop-filter: blur(10px);
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
-  max-width: 400px;
-  width: 90%;
-  text-align: center;
-  transition: transform 0.3s ease-in-out;
-}
+.admin-home {
+  max-width: 960px;
+  margin: 0 auto;
+  font-family: $font-family;
 
-.admin-card:hover {
-  transform: translateY(-5px);
-}
-
-.profile-image {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid #fff;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-  margin-bottom: 15px;
-}
-
-.admin-welcome {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.admin-email {
-  font-size: 16px;
-  color: #f0f0f0;
-  opacity: 0.9;
-}
-
-.admin-logout {
-  margin-top: 15px;
-  padding: 10px 20px;
-  background: #fff;
-  color: #ef0381;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: all 0.3s ease;
-}
-
-.admin-logout:hover {
-  background: #ff7eb3;
-  color: #fff;
-  transform: scale(1.05);
-}
-
-/* Estilos para mensajes de carga y error */
-.loading-text,
-.error-text {
-  font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-  margin-top: 20px;
-}
-
-@media screen and (max-width: 768px) {
-  .admin-container {
-    padding: 1rem;
-    height: auto;
-    min-height: 60vh;
+  &__loading,
+  &__error {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1rem;
+    color: $text-muted;
   }
 
-  .admin-card {
-    padding: 20px;
-    max-width: 100%;
+  &__error {
+    color: $error-color;
   }
 
-  .admin-welcome {
-    font-size: 20px;
+  &__welcome {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, $primary-color, $secondary-color);
+    border-radius: $radius-md;
+    color: $bg-white;
+    margin-bottom: 1.5rem;
   }
 
-  .profile-image {
-    width: 90px;
-    height: 90px;
+  &__avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.5);
+  }
+
+  &__title {
+    font-size: clamp(1.125rem, 2.5vw, 1.5rem);
+    font-weight: 700;
+    margin: 0;
+  }
+
+  &__role {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    margin: 0.25rem 0 0;
+  }
+
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__actions {
+    background: $bg-white;
+    border-radius: $radius-md;
+    padding: 1.5rem;
+    box-shadow: $shadow-sm;
+
+    h2 {
+      font-size: 1.1rem;
+      color: $text-dark;
+      margin: 0 0 1rem;
+    }
+  }
+
+  &__action-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.75rem;
+
+    button {
+      padding: 0.75rem 1rem;
+      background: $bg-light;
+      border: 1px solid $border-color;
+      border-radius: $radius-sm;
+      font-family: $font-family;
+      font-size: 0.85rem;
+      color: $text-dark;
+      cursor: pointer;
+      transition:
+        background $transition-fast,
+        border-color $transition-fast;
+
+      &:hover {
+        background: rgba($primary-color, 0.08);
+        border-color: $primary-color;
+        color: $primary-color;
+      }
+    }
+  }
+
+  @include tablet {
+    &__welcome {
+      flex-direction: column;
+      text-align: center;
+      padding: 1.25rem;
+    }
+
+    &__stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @include mobile {
+    &__stats {
+      grid-template-columns: 1fr;
+    }
+
+    &__action-grid {
+      grid-template-columns: 1fr;
+    }
   }
 }

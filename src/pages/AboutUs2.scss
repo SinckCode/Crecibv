@@ -1,126 +1,71 @@
 @import '../styles/base/variables';
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap');
-
+@import '../styles/base/mixins';
 
 .about-us2 {
   display: flex;
-  justify-content: space-between; // Separa la imagen y el texto a los extremos
-  align-items: center; // Alinea verticalmente
-  gap: 2rem; // Espacio entre los elementos
-  padding: 2rem;
+  justify-content: center;
+  gap: 3rem;
+  padding: $section-padding;
+  max-width: $container-max;
+  margin: 0 auto;
 
+  .text-Container {
+    flex: 1;
+    @include card-base;
+    padding: 2.5rem;
+    text-align: center;
 
-  .about-text {
-    flex: 1; // Permite que el texto ocupe el espacio disponible
-    text-align: left;
-  }
-
-  .about-image {
-    flex: 1; // Permite que la imagen ocupe el espacio disponible
-    display: flex;
-    justify-content: center; // Centra la imagen en su contenedor
-  }
-
-  img {
-    max-width: 100%; // Evita que la imagen sobrepase su contenedor
-    height: auto;
-    width: 2400px;
-    height: 617px;
-    border-radius: 2rem;
-  }
-
-  h3{
-    font-size: 32px;
-    font-family: Poppins;
-    font-weight: 800;
-    color: $title-color;
-    margin-bottom: 1.5rem;
-    display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-  }
-
-  .eye{
-    display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-  }
-
-  .obje{
-    display: flex;
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-  }
-
-  svg{
-    height: 5rem;
-    width: 5rem;
-    color: black;
-    margin-bottom: 1.5rem;
-  }
-
-  .text-Container{
-    margin: 1rem 8rem;
-    p{
-        font-size: 30px;
-        font-family: Poppins;
-        font-weight: 400;
-        text-align: justify;
-        color: $otros-color;
-        line-height: 1.8;
+    &:hover {
+      transform: translateY(-6px);
     }
   }
 
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: $text-dark;
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  .eye,
+  .obje {
+    @include flex-center;
+    margin-bottom: 1.5rem;
+  }
+
+  svg {
+    height: 3rem;
+    width: 3rem;
+    color: $secondary-color;
+  }
+
+  .text-Container p {
+    font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+    font-weight: 400;
+    text-align: justify;
+    color: $text-secondary;
+    line-height: 1.8;
+  }
 }
 
-    .title2{
-        display: flex;
-        align-items: center; // Alinea verticalmente
-        font-family: Poppins;
-        gap: 3rem; // Espacio entre los elementos
-        font-weight: 800 !important;
-        visibility: hidden;
+.title2 {
+  display: none;
+}
 
-        .about1{
-            h1{
-                font-size: 64px;
-                color: $title-color;
-                position: relative;
-                left: 2rem;
+@media screen and (max-width: $breakpoint-tablet) {
+  .about-us2 {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 3rem 1.5rem;
 
-            }
-        }
-
-
-      .about2{
-        h1{
-            font-size: 64px;
-            color: $morado-color;
-        }
-      }
-
+    .text-Container {
+      padding: 2rem;
     }
 
-
-    @media screen and (max-width: 600px) {
-        .about-us2{
-            flex-direction: column; // Cambia la dirección a columna
-            align-items: center; // Centra los elementos
-            gap: 2rem; // Espacio entre los elementos
-            padding: 2rem;
-        }
-
-        .about-us2 .text-Container p{
-            font-size: 20px; // Cambia el tamaño de la fuente para pantallas pequeñas
-            line-height: normal;
-            margin: 0;
-        }
-
-        .about-us2 .text-Container{
-            margin: 0;
-        }
-
-        .about-us2 .obje{
-            margin-bottom: 1rem;
-        }
+    .text-Container p {
+      font-size: 1rem;
+      line-height: 1.7;
     }
+  }
+}

@@ -6,6 +6,64 @@
   align-items: center;
 }
 
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@mixin container {
+  max-width: $container-max;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+@mixin section-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  font-weight: 800;
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .about1 h1,
+  .title1 h1 {
+    color: $text-dark;
+  }
+
+  .about2 h1,
+  .title2 h1 {
+    color: $secondary-color;
+  }
+}
+
+@mixin card-base {
+  background: $bg-white;
+  border-radius: $radius-md;
+  box-shadow: $shadow-md;
+  transition:
+    transform $transition-base,
+    box-shadow $transition-base;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-hover;
+  }
+}
+
+@mixin gradient-text {
+  background: linear-gradient(135deg, $primary-color, $secondary-color);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 @mixin box-shadow($color) {
   box-shadow: 0px 4px 6px $color;
 }

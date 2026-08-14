@@ -1,90 +1,124 @@
 @import '../styles/base/variables';
+@import '../styles/base/mixins';
 
-// Valores por defecto para prevenir errores
-$primary-color: #800080 !default;
-$text-color: #333 !default;
+.contact-pages {
+  padding: $section-padding;
+  max-width: $container-max;
+  margin: 0 auto;
+}
 
 .contact-container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  background: #fff;
+  align-items: flex-start;
+  gap: 2rem;
 
   .contact-info {
-    width: 30%;
+    width: 28%;
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 1rem;
 
     .info-box {
-      background: #f5f5f5;
-      padding: 15px;
-      border-radius: 5px;
+      @include card-base;
+      padding: 1.25rem;
       text-align: center;
 
       .icon {
-        font-size: 20px;
-        color: $primary-color;
+        font-size: 1.5rem;
+        display: block;
+        margin-bottom: 0.5rem;
       }
 
       h4 {
-        color: $primary-color;
-        margin: 10px 0;
+        color: $secondary-color;
+        font-size: 0.95rem;
+        font-weight: 700;
+        margin-bottom: 0.4rem;
       }
 
       p {
-        color: $text-color;
+        color: $text-secondary;
+        font-size: 0.9rem;
+        line-height: 1.5;
       }
     }
   }
 
   .contact-form {
-    width: 40%;
+    width: 42%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
 
     form {
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      gap: 1.25rem;
 
       input,
       textarea {
         width: 100%;
-        padding: 0.5rem;
-        border: 1px solid #ddd;
-        border-radius: 4px;
+        padding: 0.75rem 1rem;
+        border: 2px solid $border-color;
+        border-radius: $radius-sm;
         font-size: 1rem;
+        font-family: $font-family;
+        transition:
+          border-color $transition-fast,
+          box-shadow $transition-fast;
+        background: $bg-white;
+
+        &:focus {
+          outline: none;
+          border-color: $primary-color;
+          box-shadow: 0 0 0 3px rgba($primary-color, 0.12);
+        }
+
+        &::placeholder {
+          color: $text-muted;
+        }
+      }
+
+      textarea {
+        min-height: 120px;
+        resize: vertical;
       }
     }
 
     .field-error {
-      color: #e53935;
-      font-size: 0.85rem;
-      margin: -1rem 0 0 0;
+      color: $error-color;
+      font-size: 0.8rem;
+      margin-top: -0.75rem;
     }
 
     .send-button {
       background: $primary-color;
-      color: white;
-      padding: 0.75rem 1rem;
-      border: none;
-      border-radius: 4px;
+      color: $bg-white;
+      padding: 0.75rem 1.5rem;
+      border-radius: $radius-sm;
       font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
+      font-weight: 600;
+      transition: all $transition-base;
 
-      &:hover {
-        background-color: darken($primary-color, 10%);
+      &:hover:not(:disabled) {
+        background: $primary-dark;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba($primary-color, 0.3);
+      }
+
+      &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
       }
     }
   }
 
   .contact-map {
-    width: 25%;
-    height: 300px;
+    width: 28%;
+    height: 360px;
+    border-radius: $radius-md;
+    overflow: hidden;
+    box-shadow: $shadow-md;
 
     iframe {
       width: 100%;
@@ -94,21 +128,39 @@ $text-color: #333 !default;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: $breakpoint-tablet) {
+  .contact-pages {
+    padding: 3rem 1.5rem;
+  }
+
   .contact-container {
     flex-direction: column;
-    align-items: center;
-    padding: 1rem;
 
     .contact-info,
     .contact-form,
     .contact-map {
       width: 100%;
-      margin-bottom: 1rem;
+    }
+
+    .contact-info {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+
+      .info-box {
+        flex: 1;
+        min-width: 140px;
+      }
     }
 
     .contact-map {
-      display: none;
+      height: 250px;
     }
+  }
+}
+
+@media screen and (max-width: $breakpoint-mobile) {
+  .contact-container .contact-info {
+    flex-direction: column;
   }
 }

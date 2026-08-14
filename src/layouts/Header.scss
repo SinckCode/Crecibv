@@ -1,4 +1,5 @@
 @import '../styles/base/variables';
+@import '../styles/base/mixins';
 
 .header {
   position: fixed;
@@ -6,218 +7,257 @@
   left: 0;
   width: 100%;
   z-index: 1000;
-  transition: all 0.3s ease;
+  transition: all $transition-base;
 
   &.initial {
-    background-color: rgba(0, 0, 0, 0.4);
-    color: #fff;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    height: 8rem;
+    background: rgba($bg-dark, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   &.banner {
-    background-color: #811988;
-    color: #fff;
+    background: linear-gradient(135deg, $secondary-color, darken($secondary-color, 12%));
+    box-shadow: $shadow-md;
   }
 
   .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 1rem 2rem;
+    @include flex-between;
+    max-width: $container-max;
+    margin: 0 auto;
+    padding: 0.8rem 2rem;
 
     .logo {
       display: flex;
       align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      cursor: pointer;
 
       img {
-        height: 100px;
-        margin-right: 1rem;
-        background-color: #fff;
-        border-radius: 7rem;
+        height: 56px;
+        width: 56px;
+        object-fit: cover;
+        background-color: $bg-white;
+        border-radius: 50%;
+        padding: 2px;
       }
 
       h1 {
-        font-family: 'Poppins', sans-serif;
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: #fff;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: $bg-white;
+        letter-spacing: 0.02em;
+      }
+
+      &:hover h1 {
+        color: $primary-color;
       }
     }
 
     nav {
       display: flex;
-      gap: 3rem;
-      margin-left: 2rem;
-      flex-wrap: nowrap;
+      gap: 2rem;
 
       a {
-        font-family: 'Poppins', sans-serif;
-        font-weight: bold;
-        font-style: italic;
-        font-size: 30px;
-        color: #fff;
-        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: rgba(255, 255, 255, 0.85);
         text-transform: uppercase;
-        transition: color 0.3s ease;
+        letter-spacing: 0.05em;
+        position: relative;
+        padding: 0.25rem 0;
+
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: -2px;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background: $primary-color;
+          transition: width $transition-base;
+          border-radius: 2px;
+        }
 
         &:hover {
-          color: #ef0381;
+          color: $bg-white;
+
+          &::after {
+            width: 100%;
+          }
         }
       }
     }
   }
 
   .donation-banner {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem 2rem;
-    text-align: center;
-    height: 7rem;
+    @include flex-center;
+    padding: 0.75rem 2rem;
+    max-width: $container-max;
+    margin: 0 auto;
 
     .donation-content {
       display: flex;
       align-items: center;
-      gap: 1rem;
-      justify-content: flex-end;
+      gap: 1.5rem;
+      width: 100%;
 
-      img {
-        height: 100px;
-        margin-right: 20rem;
-        background-color: #fff;
-        border-radius: 7rem;
+      .banner-logo {
+        text-decoration: none;
+        flex-shrink: 0;
+        cursor: pointer;
+
+        img {
+          height: 48px;
+          width: 48px;
+          object-fit: cover;
+          background-color: $bg-white;
+          border-radius: 50%;
+          padding: 2px;
+        }
+
+        &:hover img {
+          box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+        }
       }
 
       p {
         flex: 1;
-        font-family: 'Poppins', sans-serif;
-        font-size: 30px;
-        font-weight: 600;
-        color: #fff;
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: $bg-white;
       }
 
       .cta-button {
-        width: 250px;
-        height: 60px;
-        background-color: #ef0381;
-        color: black;
-        font-family: 'Poppins', sans-serif;
-        font-weight: bold;
-        font-size: 30px;
-        border: none;
-        border-radius: 30px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-        margin-left: 2rem;
+        background: $primary-color;
+        color: $bg-white;
+        font-weight: 700;
+        font-size: 0.9rem;
+        padding: 0.6rem 1.8rem;
+        border-radius: $radius-full;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: all $transition-base;
+        white-space: nowrap;
+        flex-shrink: 0;
 
         &:hover {
-          background-color: #c0026d;
+          background: $primary-dark;
+          transform: translateY(-1px);
+          box-shadow: 0 4px 12px rgba($primary-color, 0.4);
         }
       }
     }
   }
 }
 
-/* 📱 Ajustes para tablets y pantallas medianas */
-@media (max-width: 1280px){
-  .header {
-    &.initial {
-      height: 7rem !important;
+// Tablet
+@media (max-width: $breakpoint-laptop) {
+  .header .navbar {
+    padding: 0.6rem 1.5rem;
+
+    .logo img {
+      height: 44px;
+      width: 44px;
     }
-  }
 
-  .navbar {
-    padding: 0.5rem 1rem;
-
-    .logo {
-      img {
-        height: 80px !important;
-      }
-
-      h1 {
-        font-size: 1rem !important;
-      }
+    .logo h1 {
+      font-size: 1.1rem;
     }
 
     nav {
-      gap: 2rem;
+      gap: 1.25rem;
 
       a {
-        font-size: 25px !important;
+        font-size: 0.85rem;
       }
     }
   }
 
-  .donation-banner {
-    padding: 0.5rem;
-    height: 4.5rem;
+  .header .donation-banner .donation-content {
+    p {
+      font-size: 0.85rem;
+    }
 
-    .donation-content {
-      img {
-        height: 80px !important;
-        margin-right: 1rem !important;
-      }
-
-      p {
-        font-size: 23px !important;
-      }
-
-      .cta-button {
-        width: 180px !important;
-        height: 50px !important;
-        font-size: 20px !important;
-      }
+    .cta-button {
+      font-size: 0.8rem;
+      padding: 0.5rem 1.4rem;
     }
   }
 }
 
-/* 📱 Estilo del menú móvil flotante */
+// Menu toggle movil
 .menu-toggle {
   position: fixed;
-  bottom: 55rem;
-  right: 50%;
-  background-color: #ef0381;
-  color: white;
-  padding: 1rem;
-  border-radius: 0.5rem;
+  bottom: 2rem;
+  right: 1.5rem;
+  background: $primary-color;
+  color: $bg-white;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
   z-index: 2100;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   display: none;
-  cursor: pointer;
+  @include flex-center;
+  box-shadow: 0 4px 16px rgba($primary-color, 0.4);
+  transition: all $transition-base;
 
-  @media screen and (max-width: 600px) {
-    display: block;
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba($primary-color, 0.5);
+  }
+
+  @media screen and (max-width: $breakpoint-mobile) {
+    display: flex;
   }
 }
 
-/* 📱 Menú móvil centrado */
+// Menu movil
 .mobile-menu {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.95);
-  padding: 2rem;
-  border-radius: 20px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba($bg-dark, 0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   z-index: 2000;
   display: none;
   flex-direction: column;
   align-items: center;
-  gap: 1.5rem;
-  transition: opacity 0.3s ease;
-  text-align: center;
+  justify-content: center;
+  gap: 2rem;
 
   a {
-    color: #fff;
-    font-size: 24px;
-    font-weight: bold;
-    text-decoration: none;
+    color: $bg-white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color $transition-fast;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 2px;
+      background: $primary-color;
+      transition: width $transition-base;
+    }
 
     &:hover {
-      color: #ef0381;
+      color: $primary-color;
+
+      &::after {
+        width: 100%;
+      }
     }
   }
 
@@ -228,68 +268,12 @@
   &.closed {
     display: none;
   }
-
-  @media screen and (max-width: 600px) {
-    width: 80%;
-  }
 }
 
-/* 📱 Ocultar header en móvil */
-@media screen and (max-width: 600px) {
+// Ocultar header en movil
+@media screen and (max-width: $breakpoint-mobile) {
   .header.initial,
-  .donation-banner {
+  .header.banner {
     display: none;
   }
-  .menu-toggle{
-    bottom: 5rem;
-    right: 10%;
-  }
-
-  .donation-banner {
-
-    @media screen and (max-width: 600px) {
-        .donation-content {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: space-between;
-          flex-wrap: wrap;
-          position: relative;
-          left: -3rem;
-          top: 0rem;
-
-
-          img {
-            display: none;
-          }
-
-          p {
-            font-size: 16px !important;
-            line-height: 1.3;
-            margin: 0;
-            flex: 1 1 auto;
-            word-break: break-word;
-            width: 25rem;
-            text-align: justify;
-          }
-
-          .cta-button {
-            flex-shrink: 0;
-            width: auto !important;
-            padding: 0.5rem 1rem;
-            font-size: 16px !important;
-            position: relative;
-            left: -1.5rem;
-          }
-        }
-      }
-
-    }
-}
-
-
-@media screen and (max-width: 600px) {
-    .donation-banner {
-        height: 5rem;
-    }
 }

@@ -1,56 +1,71 @@
-/* src/components/UserCard.scss */
+@import '../styles/base/variables';
+@import '../styles/base/mixins';
+
 .user-card-game-style {
-    background: linear-gradient(135deg, #2a2a72, #009ffd);
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    color: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease-in-out;
-    max-width: 300px;
-    margin: auto;
+  background: linear-gradient(135deg, $primary-color, $secondary-color);
+  border-radius: $radius-md;
+  padding: 20px;
+  text-align: center;
+  color: $bg-white;
+  box-shadow: $shadow-md;
+  transition:
+    transform $transition-base,
+    box-shadow $transition-base;
+  max-width: 300px;
+  margin: auto;
 
-    &:hover {
-      transform: scale(1.05);
-    }
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: $shadow-hover;
+  }
 
-    .avatar {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      border: 3px solid white;
-      margin-bottom: 10px;
-    }
+  .avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid $bg-white;
+    margin-bottom: 10px;
+  }
 
-    h3 {
-      margin: 5px 0;
-      font-size: 18px;
-    }
+  h3 {
+    margin: 5px 0;
+    font-size: 1.125rem;
+  }
 
-    p {
-      font-size: 14px;
-      opacity: 0.8;
-    }
+  p {
+    font-size: 0.875rem;
+    opacity: 0.8;
+  }
 
-    .actions {
-      margin-top: 10px;
-      display: flex;
-      justify-content: center;
-      gap: 10px;
+  .actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 
-      button {
-        background: #ff416c;
-        border: none;
-        padding: 5px 10px;
-        cursor: pointer;
-        border-radius: 5px;
-        color: white;
-        font-weight: bold;
-        transition: background 0.2s;
+    button {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: $radius-sm;
+      color: $bg-white;
+      font-weight: bold;
+      font-family: $font-family;
+      transition: background $transition-fast;
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.35);
+      }
+
+      &.delete-btn {
+        background: rgba($danger-color, 0.8);
+        border-color: rgba($danger-color, 0.9);
 
         &:hover {
-          background: #ff4b2b;
+          background: $danger-color;
         }
       }
     }
   }
+}

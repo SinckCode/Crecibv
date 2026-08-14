@@ -21,7 +21,7 @@ const UserCard = ({ user, onDelete, onEdit }) => {
       <p>{user.username || 'Sin username'}</p>
       <div className="actions">
         <button onClick={() => onEdit(user)}>Editar</button>
-        <button onClick={handleDeleteClick} style={{ background: 'red' }}>
+        <button onClick={handleDeleteClick} className="delete-btn">
           Eliminar
         </button>
       </div>

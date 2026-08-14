@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
+import { useSiteSettings } from '../hooks/useSiteSettings';
 import './AboutUs.scss';
 
 const AboutUs = () => {
@@ -7,6 +8,7 @@ const AboutUs = () => {
     triggerOnce: true,
     threshold: 0.1,
   });
+  const { settings } = useSiteSettings();
 
   const [aboutData, setAboutData] = useState({
     imageURL: '',
@@ -36,10 +38,10 @@ const AboutUs = () => {
     <section ref={ref} className={`page ${inView ? 'visible' : ''}`}>
       <div className="title">
         <div className="about1">
-          <h1>ACERCA DE</h1>
+          <h1>{settings.sectionTitles.aboutUs.line1}</h1>
         </div>
         <div className="about2">
-          <h1>NOSOTROS</h1>
+          <h1>{settings.sectionTitles.aboutUs.line2}</h1>
         </div>
       </div>
 

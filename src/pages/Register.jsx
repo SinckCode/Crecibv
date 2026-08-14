@@ -1,10 +1,10 @@
-// src/pages/Register.jsx
 import React, { useState } from 'react';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { collection, addDoc } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
-import { auth, db, storage } from '../firebase';
-import defaultProfileImage from '../assets/umagenLogin.png';
+import { getFunctions, httpsCallable } from 'firebase/functions';
+import { storage } from '../firebase';
+import FormSection from '../components/admin/FormSection';
+import FormActions from '../components/admin/FormActions';
+import '../components/admin/AdminComponents.scss';
 import './Register.scss';
 
 const Register = () => {
@@ -17,9 +17,10 @@ const Register = () => {
   });
   const [profileImage, setProfileImage] = useState(null);
   const [uploading, setUploading] = useState(false);
-  const [photoURL, setPhotoURL] = useState(defaultProfileImage);
+  const [photoURL, setPhotoURL] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [saving, setSaving] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,103 +40,151 @@ const Register = () => {
         await uploadBytes(storageRef, file);
         const url = await getDownloadURL(storageRef);
         setPhotoURL(url);
-        setUploading(false);
       } catch (err) {
         setError('Error al subir la imagen. Intenta nuevamente.');
-        setUploading(false);
         console.error('Error al subir la imagen:', err);
+      } finally {
+        setUploading(false);
       }
     }
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    if (e) e.preventDefault();
     setError('');
     setSuccess('');
 
     const { name, username, email, password, confirmPassword } = formData;
 
-    if (password !== confirmPassword) {
-      setError('Las contraseñas no coinciden.');
+    if (!name || !username || !email || !password) {
+      setError('Todos los campos son obligatorios.');
       return;
     }
 
+    if (password !== confirmPassword) {
+      setError('Las contrasenas no coinciden.');
+      return;
+    }
+
+    if (password.length < 6) {
+      setError('La contrasena debe tener al menos 6 caracteres.');
+      return;
+    }
+
+    setSaving(true);
     try {
-      let finalPhotoURL = photoURL; // Usa la imagen subida si existe
-
-      if (!profileImage) {
-        finalPhotoURL = defaultProfileImage;
-      }
-
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-
-      // 🔥 Ahora se asegura que `photoURL` nunca sea vacío
-      await updateProfile(user, {
-        displayName: name,
-        photoURL: finalPhotoURL,
-      });
-
-      await addDoc(collection(db, 'users'), {
-        name,
-        username,
+      const functions = getFunctions();
+      const createUser = httpsCallable(functions, 'createUser');
+      await createUser({
         email,
-        photoURL: finalPhotoURL,
-        uid: user.uid,
+        password,
+        displayName: name,
+        username,
+        photoURL: photoURL || '',
       });
 
-      setSuccess('Usuario registrado exitosamente.');
-      setFormData({ name: '', username: '', email: '', password: '', confirmPassword: '' });
+      setSuccess(`Usuario "${name}" registrado exitosamente.`);
+      setFormData({
+        name: '',
+        username: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+      });
       setProfileImage(null);
-      setPhotoURL(defaultProfileImage);
+      setPhotoURL('');
 
-      // 🔥 Disparar evento para actualizar la lista de usuarios en tiempo real
-      window.dispatchEvent(new Event("userUpdated"));
+      window.dispatchEvent(new Event('userUpdated'));
     } catch (err) {
-      console.error("Error en Firebase:", err);
-      if (err.code === "auth/email-already-in-use") {
-        setError("Este correo ya está en uso.");
-      } else if (err.code === "auth/weak-password") {
-        setError("La contraseña es demasiado débil.");
+      console.error('Error al registrar usuario:', err);
+      if (
+        err.message?.includes('email-already-exists') ||
+        err.message?.includes('already-in-use')
+      ) {
+        setError('Este correo ya esta en uso.');
+      } else if (err.message?.includes('weak-password')) {
+        setError('La contrasena es demasiado debil.');
       } else {
-        setError("Error al registrar el usuario. Intenta nuevamente.");
+        setError('Error al registrar el usuario. Intenta nuevamente.');
       }
+    } finally {
+      setSaving(false);
     }
   };
 
   return (
-    <div className="register">
-      <h1>Registrar Nuevo Usuario</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Nombre:
-          <input type="text" name="name" value={formData.name} onChange={handleChange} required />
-        </label>
-        <label>
-          Nombre de Usuario:
-          <input type="text" name="username" value={formData.username} onChange={handleChange} required />
-        </label>
-        <label>
-          Correo Electrónico:
-          <input type="email" name="email" value={formData.email} onChange={handleChange} required />
-        </label>
-        <label>
-          Contraseña:
-          <input type="password" name="password" value={formData.password} onChange={handleChange} required />
-        </label>
-        <label>
-          Confirmar Contraseña:
-          <input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} required />
-        </label>
-        <label>
-          Foto de Perfil (opcional):
-          <input type="file" accept="image/*" onChange={handleFileChange} />
-        </label>
-        {uploading && <p>Subiendo imagen...</p>}
-        <button type="submit" disabled={uploading}>{uploading ? 'Esperando imagen...' : 'Registrar'}</button>
-        {error && <p className="error">{error}</p>}
-        {success && <p className="success">{success}</p>}
-      </form>
+    <div className="admin-page">
+      <h1 className="admin-page__title">Registrar Nuevo Usuario</h1>
+      <p className="admin-page__subtitle">Crea una cuenta para un miembro del equipo</p>
+
+      <div className="admin-page__card">
+        {error && <div className="admin-page__error">{error}</div>}
+        {success && <div className="admin-page__success">{success}</div>}
+
+        <form onSubmit={handleSubmit}>
+          <FormSection label="Nombre completo" htmlFor="reg-name">
+            <input
+              id="reg-name"
+              type="text"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              autoComplete="name"
+            />
+          </FormSection>
+
+          <FormSection label="Nombre de usuario" htmlFor="reg-username">
+            <input
+              id="reg-username"
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              autoComplete="username"
+            />
+          </FormSection>
+
+          <FormSection label="Correo electronico" htmlFor="reg-email">
+            <input
+              id="reg-email"
+              type="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              autoComplete="email"
+            />
+          </FormSection>
+
+          <FormSection label="Contrasena" htmlFor="reg-password">
+            <input
+              id="reg-password"
+              type="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              autoComplete="new-password"
+            />
+          </FormSection>
+
+          <FormSection label="Confirmar contrasena" htmlFor="reg-confirm">
+            <input
+              id="reg-confirm"
+              type="password"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              autoComplete="new-password"
+            />
+          </FormSection>
+
+          <FormSection label="Foto de perfil (opcional)" htmlFor="reg-photo">
+            <input id="reg-photo" type="file" accept="image/*" onChange={handleFileChange} />
+          </FormSection>
+          {uploading && <p style={{ color: '#888', fontSize: '0.85rem' }}>Subiendo imagen...</p>}
+
+          <FormActions onSave={handleSubmit} saving={saving || uploading} />
+        </form>
+      </div>
     </div>
   );
 };
