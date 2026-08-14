@@ -41,7 +41,7 @@ const SITE_SETTINGS = {
     sectionTitle2: 'DONATIVO',
     beneficiaryName: 'CRECIBV - Centro de Recursos Educativos para Ciegos y Baja Vision A.C.',
     beneficiaryAddress: 'Alferez No. 611, Colonia Real de Providencia, Leon de los Aldama, Guanajuato, Mexico. C.P. 37234.',
-    awarenessMessage: 'En el estado de Guanajuato la discapacidad visual es la segunda con mas poblacion que presenta esta discapacidad con un aproximado de 86,000 personas.',
+    awarenessMessage: 'Datos para realizar tu donativo',
     callToAction: '',
     bankName: 'BanBajio',
     clabe: '030225900028096394',
@@ -133,6 +133,7 @@ async function main() {
   } else {
     console.error('Error:', JSON.stringify(res, null, 2));
   }
+  
 }
 
 main().catch((err) => { console.error('Error:', err); process.exit(1); });

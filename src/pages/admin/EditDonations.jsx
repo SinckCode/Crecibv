@@ -14,6 +14,8 @@ const EditDonations = () => {
     sectionTitle2: '',
     awarenessMessage: '',
     callToAction: '',
+    beneficiaryName: '',
+    beneficiaryAddress: '',
     bankName: '',
     clabe: '',
     bankLogoURL: '',
@@ -29,6 +31,8 @@ const EditDonations = () => {
         sectionTitle2: settings.donations.sectionTitle2,
         awarenessMessage: settings.donations.awarenessMessage,
         callToAction: settings.donations.callToAction,
+        beneficiaryName: settings.donations.beneficiaryName,
+        beneficiaryAddress: settings.donations.beneficiaryAddress,
         bankName: settings.donations.bankName,
         clabe: settings.donations.clabe,
         bankLogoURL: settings.donations.bankLogoURL,
@@ -109,26 +113,52 @@ const EditDonations = () => {
         </FormSection>
 
         <FormSection
-          label="Mensaje de concientizacion"
-          hint="Texto que inspira a las personas a donar"
+          label="Texto introductorio"
+          hint="Encabezado que aparece antes de los datos bancarios"
           htmlFor="don-awareness"
         >
-          <textarea
+          <input
             id="don-awareness"
+            type="text"
             value={form.awarenessMessage}
             onChange={handleChange('awarenessMessage')}
           />
         </FormSection>
 
-        <FormSection
-          label="Llamado a la accion"
-          hint="Segundo parrafo motivacional"
-          htmlFor="don-cta"
-        >
+        <FormSection label="Texto adicional" hint="Segundo parrafo (opcional)" htmlFor="don-cta">
           <textarea
             id="don-cta"
             value={form.callToAction}
             onChange={handleChange('callToAction')}
+          />
+        </FormSection>
+
+        <hr style={{ border: 'none', borderTop: '1px solid #eee', margin: '1.5rem 0' }} />
+
+        <h3 style={{ marginBottom: '1rem', fontSize: '1rem' }}>Datos del Beneficiario</h3>
+
+        <FormSection
+          label="Nombre del beneficiario"
+          hint="Nombre completo de la organizacion que recibe el donativo"
+          htmlFor="don-beneficiary"
+        >
+          <input
+            id="don-beneficiary"
+            type="text"
+            value={form.beneficiaryName}
+            onChange={handleChange('beneficiaryName')}
+          />
+        </FormSection>
+
+        <FormSection
+          label="Direccion del beneficiario"
+          hint="Direccion completa incluyendo codigo postal"
+          htmlFor="don-address"
+        >
+          <textarea
+            id="don-address"
+            value={form.beneficiaryAddress}
+            onChange={handleChange('beneficiaryAddress')}
           />
         </FormSection>
 
