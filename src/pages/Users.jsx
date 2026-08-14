@@ -82,12 +82,11 @@ const Users = () => {
       }
 
       // Update Firestore document (name, username, photoURL)
-      const { oldPassword, password, id, ...firestoreData } = formData;
       await updateDoc(doc(db, 'users', selectedUser.id), {
-        name: firestoreData.name,
-        username: firestoreData.username,
-        photoURL: firestoreData.photoURL || '',
-        email: firestoreData.email,
+        name: formData.name,
+        username: formData.username,
+        photoURL: formData.photoURL || '',
+        email: formData.email,
       });
 
       // Update Firebase Auth profile only if editing self

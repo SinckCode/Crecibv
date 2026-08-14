@@ -15,7 +15,6 @@ const Register = () => {
     password: '',
     confirmPassword: '',
   });
-  const [profileImage, setProfileImage] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [photoURL, setPhotoURL] = useState('');
   const [error, setError] = useState('');
@@ -29,7 +28,6 @@ const Register = () => {
 
   const handleFileChange = async (e) => {
     const file = e.target.files[0];
-    setProfileImage(file);
 
     if (file) {
       setUploading(true);
@@ -91,7 +89,6 @@ const Register = () => {
         password: '',
         confirmPassword: '',
       });
-      setProfileImage(null);
       setPhotoURL('');
 
       window.dispatchEvent(new Event('userUpdated'));
