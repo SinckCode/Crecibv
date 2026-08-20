@@ -3,4 +3,4 @@ User-agent: *
 Disallow: /admin
 Disallow: /login
 
-Sitemap: https://crecibv.web.app/sitemap.xml
+Sitemap: https://crecibv.com/sitemap.xml
