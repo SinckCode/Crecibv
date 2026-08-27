@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useInView } from 'react-intersection-observer';
+import { db } from '../firebase';
+import { doc, getDoc } from 'firebase/firestore';
 import { useSiteSettings } from '../hooks/useSiteSettings';
 import './AboutUs.scss';
 
@@ -18,16 +20,16 @@ const AboutUs = () => {
   useEffect(() => {
     const fetchAboutData = async () => {
       try {
-        const response = await fetch('https://us-central1-crecibv.cloudfunctions.net/getAboutUs');
-        const data = await response.json();
+        const docRef = doc(db, 'content', 'aboutUs');
+        const docSnap = await getDoc(docRef);
 
-        if (data.success) {
-          setAboutData(data.data);
+        if (docSnap.exists()) {
+          setAboutData(docSnap.data());
         } else {
-          console.error('Error al cargar la información.');
+          console.error('No se encontro la informacion.');
         }
       } catch (error) {
-        console.error('Error de conexión:', error);
+        console.error('Error de conexion:', error);
       }
     };
 

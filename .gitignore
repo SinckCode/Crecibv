@@ -25,3 +25,7 @@ yarn-error.log*
 
 # generated sitemap
 /public/sitemap.xml
+
+# local tooling / reports
+/.claude
+/lighthouse-report.json

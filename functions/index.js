@@ -6,6 +6,8 @@ admin.initializeApp();
 const ALLOWED_ORIGINS = [
   "https://crecibv.web.app",
   "https://crecibv.firebaseapp.com",
+  "https://crecibv.com",
+  "https://www.crecibv.com",
   "http://localhost:3000",
 ];
 
