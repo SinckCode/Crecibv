@@ -9,6 +9,7 @@ import BackToTop from './components/BackToTop';
 import Home from './pages/Home';
 import LoadingSpinner from './components/LoadingSpinner';
 import ErrorBoundary from './components/ErrorBoundary';
+import Canonical from './components/Canonical';
 
 const Login = lazy(() => import('./pages/Login'));
 const AdminPanel = lazy(() => import('./pages/AdminPanel'));
@@ -24,6 +25,7 @@ const ProtectedRoute = ({ children }) => {
 const AppContent = () => {
   return (
     <Router>
+      <Canonical />
       <Suspense fallback={<LoadingSpinner />}>
         <Routes>
           <Route
