@@ -44,6 +44,26 @@ export const DEFAULT_SITE_SETTINGS = {
     clabe: '030225900028096394',
     bankLogoURL: '',
     donationImageURL: '',
+
+    // Donativo en linea
+    primaryCtaText: 'Donar ahora',
+    primaryCtaURL: 'https://gofund.me/79d66684c',
+
+    // Cierre por WhatsApp: convierte mejor que cualquier formulario
+    whatsappNumber: '524772017851',
+    whatsappMessage: 'Hola, quiero hacer un donativo a CRECIBV.',
+
+    // Argumento fiscal: somos donataria autorizada ante el SAT
+    deductibleNotice:
+      'Somos donataria autorizada ante el SAT: tu donativo es deducible de impuestos.',
+
+    // Montos anclados a su costo real. Suben el ticket promedio frente
+    // a dejar la cantidad abierta.
+    suggestedAmounts: [
+      { amount: 200, impact: 'Un mes de material en Braille para un alumno' },
+      { amount: 500, impact: 'Un mes de traslados casa-asociacion' },
+      { amount: 1500, impact: 'Un mes de atencion psicologica' },
+    ],
   },
 
   socialMedia: [

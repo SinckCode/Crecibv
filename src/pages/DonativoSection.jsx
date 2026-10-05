@@ -1,16 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 import { useLocation } from 'react-router-dom';
 import { useSiteSettings } from '../hooks/useSiteSettings';
+import { trackEvent } from '../lib/analytics';
 import banbajioLogoLocal from '../assets/banbajio_logo.png';
 import donativoImageLocal from '../assets/donativo_image.jpg';
 
 import './DonativoSection.scss';
 
+const pesos = new Intl.NumberFormat('es-MX', {
+  style: 'currency',
+  currency: 'MXN',
+  minimumFractionDigits: 0,
+});
+
 const DonativoSection = () => {
   const location = useLocation();
   const { settings } = useSiteSettings();
   const { donations } = settings;
+  const [copied, setCopied] = useState(false);
 
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -26,8 +34,40 @@ const DonativoSection = () => {
     }
   }, [location]);
 
+  // El aviso de copiado se limpia solo para no dejarlo pegado en pantalla
+  useEffect(() => {
+    if (!copied) return undefined;
+    const timer = setTimeout(() => setCopied(false), 2500);
+    return () => clearTimeout(timer);
+  }, [copied]);
+
   const logoURL = donations.bankLogoURL || banbajioLogoLocal;
   const imageURL = donations.donationImageURL || donativoImageLocal;
+  const suggestedAmounts = (donations.suggestedAmounts || []).filter((item) => item && item.amount);
+
+  const whatsappLink = donations.whatsappNumber
+    ? `https://wa.me/${donations.whatsappNumber}?text=${encodeURIComponent(
+        donations.whatsappMessage || '',
+      )}`
+    : '';
+
+  const handleDonateClick = () => {
+    trackEvent('click_donar_gofundme', { value: 1 });
+  };
+
+  const handleWhatsappClick = () => {
+    trackEvent('click_whatsapp_donativo', { value: 1 });
+  };
+
+  const handleCopyClabe = async () => {
+    trackEvent('copiar_clabe', { value: 1 });
+    try {
+      await navigator.clipboard.writeText(donations.clabe);
+      setCopied(true);
+    } catch (err) {
+      console.error('No se pudo copiar la CLABE:', err);
+    }
+  };
 
   return (
     <section id="donativos" ref={ref} className={`page ${inView ? 'visible' : ''}`}>
@@ -40,6 +80,10 @@ const DonativoSection = () => {
         </div>
       </div>
 
+      {donations.deductibleNotice && (
+        <p className="deductible-notice">{donations.deductibleNotice}</p>
+      )}
+
       <div className="donations-container">
         <div className="image-Container">
           <img
@@ -51,6 +95,46 @@ const DonativoSection = () => {
         </div>
 
         <div className="text-Container">
+          {donations.primaryCtaURL && (
+            <div className="donate-actions">
+              <a
+                className="donate-actions__primary"
+                href={donations.primaryCtaURL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={handleDonateClick}
+              >
+                {donations.primaryCtaText || 'Donar ahora'}
+              </a>
+
+              {whatsappLink && (
+                <a
+                  className="donate-actions__whatsapp"
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={handleWhatsappClick}
+                >
+                  Donar por WhatsApp
+                </a>
+              )}
+            </div>
+          )}
+
+          {suggestedAmounts.length > 0 && (
+            <div className="suggested-amounts">
+              <span className="suggested-amounts__label">Tu donativo en obra concreta</span>
+              <ul className="suggested-amounts__list">
+                {suggestedAmounts.map((item) => (
+                  <li key={item.amount} className="suggested-amounts__item">
+                    <span className="suggested-amounts__figure">{pesos.format(item.amount)}</span>
+                    <span className="suggested-amounts__impact">{item.impact}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           <div className="firstP">
             <p>{donations.awarenessMessage}</p>
           </div>
@@ -86,6 +170,13 @@ const DonativoSection = () => {
                 loading="lazy"
               />
             </div>
+
+            <button type="button" className="clabe-copy" onClick={handleCopyClabe}>
+              Copiar CLABE
+            </button>
+            <span className="clabe-copy__status" role="status" aria-live="polite">
+              {copied ? 'CLABE copiada al portapapeles' : ''}
+            </span>
           </div>
         </div>
       </div>

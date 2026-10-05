@@ -20,6 +20,12 @@ const EditDonations = () => {
     clabe: '',
     bankLogoURL: '',
     donationImageURL: '',
+    primaryCtaText: '',
+    primaryCtaURL: '',
+    whatsappNumber: '',
+    whatsappMessage: '',
+    deductibleNotice: '',
+    suggestedAmounts: [],
   });
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState({ type: '', text: '' });
@@ -37,6 +43,12 @@ const EditDonations = () => {
         clabe: settings.donations.clabe,
         bankLogoURL: settings.donations.bankLogoURL,
         donationImageURL: settings.donations.donationImageURL,
+        primaryCtaText: settings.donations.primaryCtaText || '',
+        primaryCtaURL: settings.donations.primaryCtaURL || '',
+        whatsappNumber: settings.donations.whatsappNumber || '',
+        whatsappMessage: settings.donations.whatsappMessage || '',
+        deductibleNotice: settings.donations.deductibleNotice || '',
+        suggestedAmounts: settings.donations.suggestedAmounts || [],
       });
     }
   }, [loading, settings]);
@@ -44,6 +56,22 @@ const EditDonations = () => {
   const handleChange = (field) => (e) => {
     setForm({ ...form, [field]: e.target.value });
     setMessage({ type: '', text: '' });
+  };
+
+  const handleAmountChange = (index, field) => (e) => {
+    const next = form.suggestedAmounts.map((item, i) =>
+      i === index ? { ...item, [field]: e.target.value } : item,
+    );
+    setForm({ ...form, suggestedAmounts: next });
+    setMessage({ type: '', text: '' });
+  };
+
+  const addAmount = () => {
+    setForm({ ...form, suggestedAmounts: [...form.suggestedAmounts, { amount: '', impact: '' }] });
+  };
+
+  const removeAmount = (index) => () => {
+    setForm({ ...form, suggestedAmounts: form.suggestedAmounts.filter((_, i) => i !== index) });
   };
 
   const handleImageUpload = (field) => async (e) => {
@@ -69,10 +97,37 @@ const EditDonations = () => {
       return;
     }
 
+    if (form.primaryCtaURL && !/^https:\/\//.test(form.primaryCtaURL)) {
+      setMessage({ type: 'error', text: 'El enlace de donacion debe empezar con https://' });
+      return;
+    }
+
+    if (form.whatsappNumber && !/^\d{10,15}$/.test(form.whatsappNumber)) {
+      setMessage({
+        type: 'error',
+        text: 'El numero de WhatsApp va con lada de pais y sin signos, ej. 524772017851.',
+      });
+      return;
+    }
+
+    // Firestore guarda los montos como numero; las filas vacias se descartan
+    const suggestedAmounts = form.suggestedAmounts
+      .filter((item) => String(item.amount).trim() !== '')
+      .map((item) => ({ amount: Number(item.amount), impact: item.impact }));
+
+    if (suggestedAmounts.some((item) => !Number.isFinite(item.amount) || item.amount <= 0)) {
+      setMessage({ type: 'error', text: 'Los montos sugeridos deben ser numeros mayores a cero.' });
+      return;
+    }
+
     setSaving(true);
     setMessage({ type: '', text: '' });
     try {
-      await setDoc(doc(db, 'content', 'siteSettings'), { donations: { ...form } }, { merge: true });
+      await setDoc(
+        doc(db, 'content', 'siteSettings'),
+        { donations: { ...form, suggestedAmounts } },
+        { merge: true },
+      );
       setMessage({ type: 'success', text: 'Cambios guardados correctamente.' });
     } catch (err) {
       console.error('Error guardando:', err);
@@ -132,6 +187,147 @@ const EditDonations = () => {
             onChange={handleChange('callToAction')}
           />
         </FormSection>
+
+        <hr style={{ border: 'none', borderTop: '1px solid #eee', margin: '1.5rem 0' }} />
+
+        <h3 style={{ marginBottom: '1rem', fontSize: '1rem' }}>Donativo en Linea</h3>
+
+        <FormSection
+          label="Texto del boton principal"
+          hint="Lo que dice el boton rosa, ej. Donar ahora"
+          htmlFor="don-cta-text"
+        >
+          <input
+            id="don-cta-text"
+            type="text"
+            value={form.primaryCtaText}
+            onChange={handleChange('primaryCtaText')}
+          />
+        </FormSection>
+
+        <FormSection
+          label="Enlace de donacion"
+          hint="A donde lleva el boton: GoFundMe u otra plataforma. Dejalo vacio para ocultar el boton."
+          htmlFor="don-cta-url"
+        >
+          <input
+            id="don-cta-url"
+            type="url"
+            placeholder="https://gofund.me/..."
+            value={form.primaryCtaURL}
+            onChange={handleChange('primaryCtaURL')}
+          />
+        </FormSection>
+
+        <FormSection
+          label="Numero de WhatsApp"
+          hint="Con lada de pais y sin signos, ej. 524772017851"
+          htmlFor="don-wa-number"
+        >
+          <input
+            id="don-wa-number"
+            type="text"
+            value={form.whatsappNumber}
+            onChange={handleChange('whatsappNumber')}
+          />
+        </FormSection>
+
+        <FormSection
+          label="Mensaje precargado de WhatsApp"
+          hint="Texto con el que se abre la conversacion"
+          htmlFor="don-wa-msg"
+        >
+          <input
+            id="don-wa-msg"
+            type="text"
+            value={form.whatsappMessage}
+            onChange={handleChange('whatsappMessage')}
+          />
+        </FormSection>
+
+        <FormSection
+          label="Aviso de deducibilidad"
+          hint="Aparece destacado arriba de la seccion. Es el argumento mas fuerte para el donante."
+          htmlFor="don-deductible"
+        >
+          <textarea
+            id="don-deductible"
+            value={form.deductibleNotice}
+            onChange={handleChange('deductibleNotice')}
+          />
+        </FormSection>
+
+        <hr style={{ border: 'none', borderTop: '1px solid #eee', margin: '1.5rem 0' }} />
+
+        <h3 style={{ marginBottom: '0.5rem', fontSize: '1rem' }}>Montos Sugeridos</h3>
+        <p style={{ marginBottom: '1rem', fontSize: '0.85rem', color: '#666' }}>
+          Cada monto con lo que financia en concreto. Decir &quot;$500 = un mes de traslados&quot;
+          funciona mejor que dejar la cantidad abierta.
+        </p>
+
+        {form.suggestedAmounts.map((item, index) => (
+          <div
+            key={index}
+            style={{
+              display: 'flex',
+              gap: '0.75rem',
+              alignItems: 'flex-end',
+              marginBottom: '1rem',
+            }}
+          >
+            <div style={{ flex: '0 0 7rem' }}>
+              <FormSection label="Monto" htmlFor={`don-amount-${index}`}>
+                <input
+                  id={`don-amount-${index}`}
+                  type="number"
+                  min="1"
+                  value={item.amount}
+                  onChange={handleAmountChange(index, 'amount')}
+                />
+              </FormSection>
+            </div>
+            <div style={{ flex: 1 }}>
+              <FormSection label="Que financia" htmlFor={`don-impact-${index}`}>
+                <input
+                  id={`don-impact-${index}`}
+                  type="text"
+                  value={item.impact}
+                  onChange={handleAmountChange(index, 'impact')}
+                />
+              </FormSection>
+            </div>
+            <button
+              type="button"
+              onClick={removeAmount(index)}
+              style={{
+                marginBottom: '1rem',
+                padding: '0.5rem 0.9rem',
+                background: 'transparent',
+                border: '1px solid #e53935',
+                borderRadius: 8,
+                color: '#e53935',
+                cursor: 'pointer',
+              }}
+            >
+              Quitar
+            </button>
+          </div>
+        ))}
+
+        <button
+          type="button"
+          onClick={addAmount}
+          style={{
+            padding: '0.6rem 1.2rem',
+            background: 'transparent',
+            border: '1px solid #7b1fa2',
+            borderRadius: 8,
+            color: '#7b1fa2',
+            cursor: 'pointer',
+          }}
+        >
+          Agregar monto
+        </button>
 
         <hr style={{ border: 'none', borderTop: '1px solid #eee', margin: '1.5rem 0' }} />
 
