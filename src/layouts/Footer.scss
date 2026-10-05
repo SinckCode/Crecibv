@@ -89,6 +89,36 @@
       font-size: 0.85rem;
       color: rgba(255, 255, 255, 0.4);
     }
+
+    .footer-legal {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 0.6rem;
+
+      a {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.55);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+
+        &:hover {
+          color: $bg-white;
+        }
+
+        &:focus-visible {
+          outline: 2px solid $primary-color;
+          outline-offset: 3px;
+          border-radius: 2px;
+        }
+      }
+
+      span {
+        color: rgba(255, 255, 255, 0.3);
+      }
+    }
   }
 
   @media screen and (max-width: $breakpoint-tablet) {

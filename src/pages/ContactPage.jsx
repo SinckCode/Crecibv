@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { useSiteSettings } from '../hooks/useSiteSettings';
@@ -138,6 +139,12 @@ const ContactPage = () => {
             <button className="send-button" type="submit" disabled={isSubmitting}>
               {isSubmitting ? 'Enviando...' : 'Enviar Mensaje'}
             </button>
+            {/* Aviso simplificado en el punto de recoleccion: es lo que hace
+                valido el consentimiento para tratar los datos del formulario */}
+            <p className="privacy-short-notice">
+              Sus datos serán utilizados únicamente para responder su mensaje. Consulte nuestro{' '}
+              <Link to="/aviso-de-privacidad">Aviso de Privacidad</Link>.
+            </p>
           </form>
         </div>
         <div className="contact-map">
