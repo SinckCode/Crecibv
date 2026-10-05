@@ -57,14 +57,14 @@ export const DEFAULT_SITE_SETTINGS = {
     // deducibilidad: el tema fiscal se trata de forma directa con cada
     // donante empresarial, no se anuncia de forma abierta en el sitio.
     highlightNotice:
-      'Cada aportacion cuenta. Tu donativo abre nuevas oportunidades para personas con discapacidad visual.',
+      'Cada aportación cuenta. Tu donativo abre nuevas oportunidades para personas con discapacidad visual.',
 
     // Montos anclados a su costo real. Suben el ticket promedio frente
     // a dejar la cantidad abierta.
     suggestedAmounts: [
       { amount: 200, impact: 'Un mes de material en Braille para un alumno' },
-      { amount: 500, impact: 'Un mes de traslados casa-asociacion' },
-      { amount: 1500, impact: 'Un mes de atencion psicologica' },
+      { amount: 500, impact: 'Un mes de traslados casa-asociación' },
+      { amount: 1500, impact: 'Un mes de atención psicológica' },
     ],
   },
 

@@ -40,7 +40,7 @@ describe('DonativoSection', () => {
   it('shows the highlight notice without any tax-deduction claim', () => {
     render(<DonativoSection />);
 
-    expect(screen.getByText(/Cada aportacion cuenta/i)).toBeInTheDocument();
+    expect(screen.getByText(/Cada aportación cuenta/i)).toBeInTheDocument();
     // La deducibilidad se trata directamente con cada donante empresarial,
     // no se anuncia de forma abierta en el sitio.
     expect(screen.queryByText(/deducible|donataria autorizada/i)).not.toBeInTheDocument();
