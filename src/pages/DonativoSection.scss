@@ -14,7 +14,7 @@ html {
   @include section-title;
 }
 
-.deductible-notice {
+.highlight-notice {
   max-width: 46rem;
   margin: 0 auto;
   padding: 0.85rem 1.5rem;
@@ -315,7 +315,7 @@ html {
 }
 
 @media screen and (max-width: $breakpoint-tablet) {
-  .deductible-notice {
+  .highlight-notice {
     margin: 0 1.5rem;
     border-radius: $radius-md;
   }

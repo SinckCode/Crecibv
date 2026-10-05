@@ -53,9 +53,11 @@ export const DEFAULT_SITE_SETTINGS = {
     whatsappNumber: '524772017851',
     whatsappMessage: 'Hola, quiero hacer un donativo a CRECIBV.',
 
-    // Argumento fiscal: somos donataria autorizada ante el SAT
-    deductibleNotice:
-      'Somos donataria autorizada ante el SAT: tu donativo es deducible de impuestos.',
+    // Mensaje destacado arriba de la seccion. A proposito NO menciona
+    // deducibilidad: el tema fiscal se trata de forma directa con cada
+    // donante empresarial, no se anuncia de forma abierta en el sitio.
+    highlightNotice:
+      'Cada aportacion cuenta. Tu donativo abre nuevas oportunidades para personas con discapacidad visual.',
 
     // Montos anclados a su costo real. Suben el ticket promedio frente
     // a dejar la cantidad abierta.

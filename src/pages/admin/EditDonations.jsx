@@ -24,7 +24,7 @@ const EditDonations = () => {
     primaryCtaURL: '',
     whatsappNumber: '',
     whatsappMessage: '',
-    deductibleNotice: '',
+    highlightNotice: '',
     suggestedAmounts: [],
   });
   const [saving, setSaving] = useState(false);
@@ -47,7 +47,7 @@ const EditDonations = () => {
         primaryCtaURL: settings.donations.primaryCtaURL || '',
         whatsappNumber: settings.donations.whatsappNumber || '',
         whatsappMessage: settings.donations.whatsappMessage || '',
-        deductibleNotice: settings.donations.deductibleNotice || '',
+        highlightNotice: settings.donations.highlightNotice || '',
         suggestedAmounts: settings.donations.suggestedAmounts || [],
       });
     }
@@ -246,14 +246,14 @@ const EditDonations = () => {
         </FormSection>
 
         <FormSection
-          label="Aviso de deducibilidad"
-          hint="Aparece destacado arriba de la seccion. Es el argumento mas fuerte para el donante."
-          htmlFor="don-deductible"
+          label="Mensaje destacado"
+          hint="Aparece en el recuadro rosa arriba de la seccion. No incluyas aqui temas fiscales ni de deducibilidad: eso se trata directo con cada donante."
+          htmlFor="don-highlight"
         >
           <textarea
-            id="don-deductible"
-            value={form.deductibleNotice}
-            onChange={handleChange('deductibleNotice')}
+            id="don-highlight"
+            value={form.highlightNotice}
+            onChange={handleChange('highlightNotice')}
           />
         </FormSection>
 

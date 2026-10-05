@@ -37,10 +37,13 @@ describe('DonativoSection', () => {
     expect(screen.getByText('030225900028096394')).toBeInTheDocument();
   });
 
-  it('shows the deductible notice', () => {
+  it('shows the highlight notice without any tax-deduction claim', () => {
     render(<DonativoSection />);
 
-    expect(screen.getByText(/donataria autorizada ante el SAT/i)).toBeInTheDocument();
+    expect(screen.getByText(/Cada aportacion cuenta/i)).toBeInTheDocument();
+    // La deducibilidad se trata directamente con cada donante empresarial,
+    // no se anuncia de forma abierta en el sitio.
+    expect(screen.queryByText(/deducible|donataria autorizada/i)).not.toBeInTheDocument();
   });
 
   it('links the primary button to the donation platform', () => {

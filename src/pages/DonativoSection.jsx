@@ -80,9 +80,7 @@ const DonativoSection = () => {
         </div>
       </div>
 
-      {donations.deductibleNotice && (
-        <p className="deductible-notice">{donations.deductibleNotice}</p>
-      )}
+      {donations.highlightNotice && <p className="highlight-notice">{donations.highlightNotice}</p>}
 
       <div className="donations-container">
         <div className="image-Container">
