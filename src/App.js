@@ -10,6 +10,7 @@ import Home from './pages/Home';
 import LoadingSpinner from './components/LoadingSpinner';
 import ErrorBoundary from './components/ErrorBoundary';
 import Canonical from './components/Canonical';
+import CookieConsent from './components/CookieConsent';
 
 const Login = lazy(() => import('./pages/Login'));
 const AdminPanel = lazy(() => import('./pages/AdminPanel'));
@@ -59,6 +60,7 @@ const AppContent = () => {
           />
         </Routes>
       </Suspense>
+      <CookieConsent />
     </Router>
   );
 };

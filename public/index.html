@@ -32,30 +32,6 @@
     <title>CRECIBV A.C. - Centro de Rehabilitacion para Ciegos y Debiles Visuales</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
 
-    <!--
-      Google Analytics 4. Toma el ID de REACT_APP_FIREBASE_MEASUREMENT_ID,
-      el mismo que ya usa firebase.js y que el workflow de GitHub Actions
-      inyecta como secret al compilar. No hay nada que configurar a mano.
-      Si la variable no esta definida, el script no carga nada.
-      Google Ad Grants exige seguimiento de conversiones activo.
-    -->
-    <script>
-        (function () {
-            var GA_ID = '%REACT_APP_FIREBASE_MEASUREMENT_ID%';
-            if (GA_ID.indexOf('G-') !== 0) return;
-
-            window.dataLayer = window.dataLayer || [];
-            window.gtag = function () { window.dataLayer.push(arguments); };
-            window.gtag('js', new Date());
-            window.gtag('config', GA_ID);
-
-            var s = document.createElement('script');
-            s.async = true;
-            s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
-            document.head.appendChild(s);
-        })();
-    </script>
-
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
     {
