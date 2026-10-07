@@ -44,6 +44,28 @@ export const DEFAULT_SITE_SETTINGS = {
     clabe: '030225900028096394',
     bankLogoURL: '',
     donationImageURL: '',
+
+    // Donativo en linea
+    primaryCtaText: 'Donar ahora',
+    primaryCtaURL: 'https://gofund.me/79d66684c',
+
+    // Cierre por WhatsApp: convierte mejor que cualquier formulario
+    whatsappNumber: '524772017851',
+    whatsappMessage: 'Hola, quiero hacer un donativo a CRECIBV.',
+
+    // Mensaje destacado arriba de la seccion. A proposito NO menciona
+    // deducibilidad: el tema fiscal se trata de forma directa con cada
+    // donante empresarial, no se anuncia de forma abierta en el sitio.
+    highlightNotice:
+      'Cada aportación cuenta. Tu donativo abre nuevas oportunidades para personas con discapacidad visual.',
+
+    // Montos anclados a su costo real. Suben el ticket promedio frente
+    // a dejar la cantidad abierta.
+    suggestedAmounts: [
+      { amount: 200, impact: 'Un mes de material en Braille para un alumno' },
+      { amount: 500, impact: 'Un mes de traslados casa-asociación' },
+      { amount: 1500, impact: 'Un mes de atención psicológica' },
+    ],
   },
 
   socialMedia: [

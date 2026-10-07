@@ -14,6 +14,20 @@ html {
   @include section-title;
 }
 
+.highlight-notice {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding: 0.85rem 1.5rem;
+  background: $primary-light;
+  border: 1px solid rgba($primary-color, 0.25);
+  border-radius: $radius-full;
+  color: $primary-dark;
+  font-size: clamp(0.9rem, 1.3vw, 1rem);
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.5;
+}
+
 .donations-container {
   @include flex-between;
   gap: 3rem;
@@ -48,6 +62,108 @@ html {
       text-align: justify;
       color: $text-secondary;
       line-height: 1.8;
+    }
+
+    .donate-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+
+      a {
+        flex: 1 1 14rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem 1.75rem;
+        border-radius: $radius-full;
+        font-family: $font-family;
+        font-size: clamp(1rem, 1.5vw, 1.1rem);
+        font-weight: 700;
+        text-align: center;
+        text-decoration: none;
+        transition:
+          transform $transition-fast,
+          box-shadow $transition-fast;
+
+        &:focus-visible {
+          outline: 3px solid $secondary-color;
+          outline-offset: 3px;
+        }
+
+        &:hover {
+          transform: translateY(-2px);
+        }
+      }
+
+      &__primary {
+        background: $primary-color;
+        color: $bg-white;
+        box-shadow: 0 6px 20px rgba($primary-color, 0.35);
+
+        &:hover {
+          background: $primary-dark;
+          box-shadow: 0 10px 28px rgba($primary-color, 0.45);
+        }
+      }
+
+      &__whatsapp {
+        background: $bg-white;
+        color: #0f7b68;
+        border: 2px solid #25d366;
+
+        &:hover {
+          background: rgba(#25d366, 0.1);
+        }
+      }
+    }
+
+    .suggested-amounts {
+      margin-bottom: 2rem;
+
+      &__label {
+        display: block;
+        font-weight: 700;
+        font-size: 0.8rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: $text-muted;
+        margin-bottom: 0.75rem;
+      }
+
+      &__list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      &__item {
+        display: flex;
+        align-items: baseline;
+        gap: 0.9rem;
+        padding: 0.6rem 1rem;
+        background: $bg-light;
+        border-left: 3px solid $primary-color;
+        border-radius: $radius-sm;
+      }
+
+      &__figure {
+        flex: none;
+        min-width: 4.5rem;
+        font-weight: 800;
+        font-size: clamp(1rem, 1.6vw, 1.15rem);
+        color: $primary-dark;
+        font-variant-numeric: tabular-nums;
+      }
+
+      &__impact {
+        font-size: 0.92rem;
+        line-height: 1.5;
+        color: $text-secondary;
+      }
     }
 
     .firstP {
@@ -132,6 +248,42 @@ html {
           flex-shrink: 0;
         }
       }
+
+      .clabe-copy {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.65rem 1.4rem;
+        background: $bg-white;
+        border: 2px solid $secondary-color;
+        border-radius: $radius-full;
+        color: $secondary-color;
+        font-family: $font-family;
+        font-size: 0.9rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition:
+          background $transition-fast,
+          color $transition-fast;
+
+        &:hover {
+          background: $secondary-color;
+          color: $bg-white;
+        }
+
+        &:focus-visible {
+          outline: 3px solid $primary-color;
+          outline-offset: 3px;
+        }
+
+        &__status {
+          display: block;
+          min-height: 1.25rem;
+          margin-top: 0.5rem;
+          font-size: 0.85rem;
+          font-weight: 600;
+          color: $success-color;
+        }
+      }
     }
   }
 }
@@ -148,7 +300,26 @@ html {
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .donations-container .image-Container .donations-image.animated-pulse {
+    animation: none;
+  }
+
+  .donations-container .text-Container .donate-actions a {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}
+
 @media screen and (max-width: $breakpoint-tablet) {
+  .highlight-notice {
+    margin: 0 1.5rem;
+    border-radius: $radius-md;
+  }
+
   .donations-container {
     flex-direction: column;
     padding: 3rem 1.5rem;
@@ -160,7 +331,15 @@ html {
         line-height: 1.7;
       }
 
+      .donate-actions a {
+        flex: 1 1 100%;
+      }
+
       .bank-details {
+        .clabe-copy {
+          width: 100%;
+        }
+
         .clabe-wrapper {
           flex-direction: column;
           align-items: flex-start;
