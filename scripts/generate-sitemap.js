@@ -7,6 +7,8 @@ const today = new Date().toISOString().split('T')[0];
 const pages = [
   { path: '/', changefreq: 'weekly', priority: '1.0' },
   { path: '/donaciones', changefreq: 'monthly', priority: '0.8' },
+  { path: '/aviso-de-privacidad', changefreq: 'yearly', priority: '0.3' },
+  { path: '/terminos', changefreq: 'yearly', priority: '0.3' },
 ];
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useSiteSettings } from '../hooks/useSiteSettings';
 import {
   FaFacebookF,
@@ -75,6 +76,11 @@ const Footer = () => {
         <p>
           &copy; {new Date().getFullYear()} {orgInfo.shortName} Todos los derechos reservados.
         </p>
+        <nav className="footer-legal" aria-label="Enlaces legales">
+          <Link to="/aviso-de-privacidad">Aviso de Privacidad</Link>
+          <span aria-hidden="true">·</span>
+          <Link to="/terminos">Términos y Condiciones de Donativos</Link>
+        </nav>
       </div>
     </footer>
   );
