@@ -14,6 +14,8 @@ import Canonical from './components/Canonical';
 const Login = lazy(() => import('./pages/Login'));
 const AdminPanel = lazy(() => import('./pages/AdminPanel'));
 const DonacionesPage = lazy(() => import('./pages/DonacionesPage'));
+const AvisoPrivacidad = lazy(() => import('./pages/legal/AvisoPrivacidad'));
+const TerminosDonativos = lazy(() => import('./pages/legal/TerminosDonativos'));
 
 const ProtectedRoute = ({ children }) => {
   const { currentUser, isAdmin, loading } = useAuth();
@@ -44,6 +46,8 @@ const AppContent = () => {
           />
           <Route path="/login" element={<Login />} />
           <Route path="/donaciones" element={<DonacionesPage />} />
+          <Route path="/aviso-de-privacidad" element={<AvisoPrivacidad />} />
+          <Route path="/terminos" element={<TerminosDonativos />} />
 
           <Route
             path="/admin/*"

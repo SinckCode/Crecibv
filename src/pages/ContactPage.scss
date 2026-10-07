@@ -164,3 +164,27 @@
     flex-direction: column;
   }
 }
+
+.privacy-short-notice {
+  margin-top: 0.85rem;
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: $text-muted;
+  text-align: left;
+
+  a {
+    color: $primary-dark;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+
+    &:hover {
+      color: $primary-color;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $primary-color;
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+  }
+}

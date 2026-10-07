@@ -1,0 +1,115 @@
+@import '../../styles/base/variables';
+
+// El header del sitio es position: fixed, asi que el contenido necesita
+// despejarlo o el titulo queda debajo de la barra.
+.legal-page {
+  padding: 9rem 2rem 5rem;
+  background: $bg-white;
+
+  &__content {
+    max-width: 48rem;
+    margin: 0 auto;
+    color: $text-primary;
+    font-size: 1rem;
+    line-height: 1.75;
+  }
+
+  &__title {
+    font-family: $font-family;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: $text-dark;
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+
+  &__updated {
+    font-size: 0.875rem;
+    color: $text-muted;
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid $primary-light;
+  }
+
+  h2 {
+    font-family: $font-family;
+    font-size: clamp(1.15rem, 2vw, 1.35rem);
+    font-weight: 700;
+    color: $text-dark;
+    margin: 2.5rem 0 0.75rem;
+    scroll-margin-top: 6rem;
+  }
+
+  h3 {
+    font-family: $font-family;
+    font-size: 1rem;
+    font-weight: 600;
+    color: $text-dark;
+    margin: 1.5rem 0 0.5rem;
+  }
+
+  p {
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    margin: 0 0 1rem;
+    padding-left: 1.5rem;
+
+    li {
+      margin-bottom: 0.5rem;
+
+      &::marker {
+        color: $primary-color;
+      }
+    }
+  }
+
+  a {
+    color: $primary-dark;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+
+    &:hover {
+      color: $primary-color;
+    }
+
+    &:focus-visible {
+      outline: 3px solid $primary-color;
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+  }
+
+  strong {
+    font-weight: 600;
+    color: $text-dark;
+  }
+
+  // Datos de identificacion y bloques de contacto
+  &__card {
+    background: $bg-light;
+    border-left: 4px solid $primary-color;
+    border-radius: $radius-sm;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.5rem;
+
+    p {
+      margin-bottom: 0.35rem;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media screen and (max-width: $breakpoint-tablet) {
+  .legal-page {
+    padding: 7rem 1.25rem 3.5rem;
+
+    &__content {
+      font-size: 0.95rem;
+    }
+  }
+}
