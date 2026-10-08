@@ -3,4 +3,4 @@
  * Actualizarla cada vez que cambie el texto del aviso de privacidad
  * o de los términos de donativos.
  */
-export const LEGAL_LAST_UPDATED = '5 de octubre de 2026';
+export const LEGAL_LAST_UPDATED = '8 de octubre de 2026';

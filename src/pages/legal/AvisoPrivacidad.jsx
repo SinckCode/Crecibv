@@ -53,6 +53,12 @@ const AvisoPrivacidad = () => {
         donativo, la operación ocurre fuera de este sitio: por transferencia desde su propia
         institución bancaria o en la plataforma de recaudación que corresponda.
       </p>
+      <p>
+        Si además nos solicita su comprobante fiscal, necesitaremos algunos datos fiscales que
+        tampoco se piden por este sitio. Lo que se recaba en ese caso, para qué y por cuánto tiempo
+        se conserva está detallado en la sección 8,{' '}
+        <em>Datos de las personas y empresas que donan</em>.
+      </p>
 
       <h2>3. Para qué usamos sus datos</h2>
       <h3>Finalidades necesarias</h3>
@@ -86,8 +92,17 @@ const AvisoPrivacidad = () => {
         únicamente para entender qué contenido resulta útil y mejorar el sitio.
       </p>
       <p>
-        Usted puede deshabilitar las cookies desde la configuración de su navegador o instalar el
-        complemento de inhabilitación de Google Analytics. Hacerlo no afecta el funcionamiento del
+        <strong>
+          Esta medición no se activa sola: Google Analytics no se carga hasta que usted lo acepta en
+          el aviso que aparece al pie de la página.
+        </strong>{' '}
+        Si lo rechaza, o mientras no haya decidido, no se instala ninguna cookie de análisis y no se
+        mide nada. Su decisión se guarda en su propio navegador para no volver a preguntársela en
+        cada visita.
+      </p>
+      <p>
+        Además puede deshabilitar las cookies desde la configuración de su navegador o instalar el
+        complemento de inhabilitación de Google Analytics. Nada de esto afecta el funcionamiento del
         sitio ni su posibilidad de contactarnos o donar.
       </p>
 
@@ -139,12 +154,54 @@ const AvisoPrivacidad = () => {
         {orgInfo.address.full}, en horario de {orgInfo.hours}.
       </p>
 
-      <h2>8. Datos de nuestros beneficiarios</h2>
+      <h2>8. Datos de las personas y empresas que donan</h2>
       <p>
-        Este aviso se refiere a los datos que recabamos a través del sitio web. El tratamiento de la
-        información de las personas que reciben nuestros servicios educativos y de rehabilitación se
-        rige por un aviso de privacidad específico, que se entrega directamente en nuestras
-        instalaciones al momento de la inscripción.
+        Cuando usted realiza un donativo y solicita su comprobante fiscal, necesitamos tratar datos
+        que no se recaban por este sitio, sino por correo, teléfono, WhatsApp o en nuestras
+        instalaciones:
+      </p>
+      <ul>
+        <li>Nombre completo o razón social</li>
+        <li>RFC y régimen fiscal</li>
+        <li>Domicilio fiscal y código postal</li>
+        <li>Constancia de Situación Fiscal, cuando usted nos la proporciona</li>
+        <li>Correo electrónico y teléfono</li>
+        <li>Monto, fecha y medio de pago del donativo</li>
+      </ul>
+      <p>Estos datos se utilizan únicamente para:</p>
+      <ul>
+        <li>
+          Emitir el comprobante fiscal digital por internet (CFDI) con el complemento de donatarias
+          que exige la autoridad fiscal
+        </li>
+        <li>
+          Cumplir las obligaciones de registro, contabilidad e información que la legislación fiscal
+          impone a las organizaciones autorizadas para recibir donativos deducibles
+        </li>
+        <li>Agradecer su aportación e informarle sobre el destino de los recursos</li>
+      </ul>
+      <p>
+        <strong>Sobre la conservación y un límite que conviene conocer.</strong> La información que
+        respalda un donativo y su comprobante fiscal debe conservarse durante el plazo que fija la
+        legislación fiscal, que es más largo del que aplicaríamos por nuestra propia cuenta. Por esa
+        razón, mientras subsista esa obligación legal, no podemos cancelar ni suprimir los registros
+        contables y fiscales de un donativo ya realizado, aun cuando usted lo solicite. Sus derechos
+        de acceso, rectificación y oposición siguen vigentes, y la limitación alcanza solo a lo que
+        la ley nos obliga a conservar.
+      </p>
+      <p>
+        <strong>No difundimos el nombre de ningún donante sin su autorización.</strong> Si en algún
+        momento CRECIBV agradece públicamente una aportación, lo hace únicamente con el
+        consentimiento previo de la persona o empresa donante, y ese agradecimiento no constituye
+        una contraprestación por el donativo.
+      </p>
+
+      <h2>9. Datos de nuestros beneficiarios</h2>
+      <p>
+        El tratamiento de la información de las personas que reciben nuestros servicios educativos y
+        de rehabilitación no se rige por este aviso, sino por uno específico que se entrega
+        directamente en nuestras instalaciones al momento de la inscripción, junto con la carta de
+        consentimiento para el uso de imagen cuando corresponde.
       </p>
       <p>
         CRECIBV no publica imágenes, nombres ni información de sus beneficiarios sin el
@@ -152,13 +209,13 @@ const AvisoPrivacidad = () => {
         edad, de quien ejerza la patria potestad o la tutela.
       </p>
 
-      <h2>9. Cambios a este aviso de privacidad</h2>
+      <h2>10. Cambios a este aviso de privacidad</h2>
       <p>
         Cualquier modificación a este aviso se publicará en esta misma página, indicando la fecha de
         última actualización. Le sugerimos consultarla periódicamente.
       </p>
 
-      <h2>10. Consentimiento</h2>
+      <h2>11. Consentimiento</h2>
       <p>
         Al enviar el formulario de contacto de este sitio, usted manifiesta que ha leído este aviso
         de privacidad y consiente el tratamiento de sus datos personales en los términos aquí
