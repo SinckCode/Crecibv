@@ -44,6 +44,26 @@ const TerminosDonativos = () => {
         contraprestación, producto, servicio, membresía ni derecho sobre la asociación o sobre sus
         decisiones.
       </p>
+      <p>
+        Esto no es una formalidad: para que un donativo sea deducible, la legislación fiscal exige
+        que sea <strong>no oneroso y no remunerativo</strong>, es decir, que el donante no reciba
+        nada a cambio.
+      </p>
+      <p>
+        <strong>Sobre el agradecimiento público.</strong> CRECIBV puede mencionar a una persona o
+        empresa donante en sus informes, en su sitio o en sus redes sociales, siempre con el
+        consentimiento previo de quien donó. Cuando lo hace, esa mención es un{' '}
+        <strong>agradecimiento que la asociación decide libremente</strong> y no forma parte de
+        ningún acuerdo: no es publicidad contratada, no constituye contraprestación por el donativo,
+        no obliga a CRECIBV a difundir nada ni durante ningún plazo, y no otorga al donante derecho
+        alguno sobre la imagen, el nombre o las marcas de la asociación.
+      </p>
+      <p>
+        CRECIBV <strong>no vende espacios publicitarios ni presta servicios de promoción</strong>.
+        Si lo que usted busca es exposición de marca a cambio de un pago, eso es un patrocinio: es
+        una figura distinta, con otro tratamiento fiscal y otro comprobante, y debe tratarse por
+        separado y no como donativo.
+      </p>
 
       <h2>3. Medios para donar</h2>
       <ul>
@@ -84,6 +104,11 @@ const TerminosDonativos = () => {
         <li>Los gastos de operación necesarios para sostener los servicios anteriores</li>
       </ul>
       <p>
+        Conforme a los términos de su autorización, los donativos deducibles que CRECIBV recibe se
+        destinan <strong>exclusivamente y en su totalidad</strong> a las actividades asistenciales
+        comprendidas en el objeto social por el cual fue autorizada.
+      </p>
+      <p>
         Salvo acuerdo previo y por escrito que destine un donativo a un fin específico, CRECIBV
         asignará los recursos al área de mayor necesidad según el criterio de su órgano de gobierno.
       </p>
@@ -115,12 +140,52 @@ const TerminosDonativos = () => {
         <strong>antes</strong> de donar, al {orgInfo.phone} o a {orgInfo.email}, para indicarle el
         medio adecuado.
       </p>
+      <h3>Lo que conviene saber antes de transferir</h3>
+      <p>
+        Estos requisitos los fija la legislación fiscal, no CRECIBV, y conocerlos de antemano evita
+        la situación más incómoda posible: un donativo ya hecho que no se puede deducir.
+      </p>
+      <ul>
+        <li>
+          <strong>Todo donativo superior a $2,000 debe pagarse por medio bancario</strong>
+          —transferencia, cheque nominativo, tarjeta de crédito o débito— para ser deducible.{' '}
+          <strong>Los donativos en efectivo no son deducibles.</strong>
+        </li>
+        <li>
+          <strong>La operación y el comprobante deben quedar dentro del ejercicio fiscal</strong>{' '}
+          que usted pretende deducir. Un donativo de diciembre cuyo comprobante se emite en enero no
+          se deduce en el ejercicio que cerró.
+        </li>
+        <li>
+          <strong>Hay un límite a lo deducible.</strong> Tratándose de personas morales, el 7% de la
+          utilidad fiscal del ejercicio inmediato anterior. Tratándose de personas físicas, el 7% de
+          los ingresos acumulables del ejercicio anterior, cantidad que además queda comprendida
+          dentro del límite global de las deducciones personales, junto con gastos médicos,
+          colegiaturas e intereses hipotecarios, entre otros.
+        </li>
+      </ul>
+      <p>
+        Lo anterior es orientación general y no asesoría fiscal. Su situación particular —régimen,
+        topes aplicables y efecto real de la deducción— debe confirmarla con su contador. Puede
+        además verificar nuestra autorización vigente consultando el RFC{' '}
+        <strong>CCR1902216I1</strong> en el directorio de donatarias autorizadas del Servicio de
+        Administración Tributaria.
+      </p>
 
       <h2>7. Transparencia</h2>
       <p>
-        CRECIBV presenta ante las autoridades correspondientes los informes sobre el uso y destino
-        de los donativos recibidos que le son exigibles conforme a su carácter de asociación civil y
-        de organización inscrita en el registro federal de organizaciones de la sociedad civil.
+        Como organización autorizada para recibir donativos deducibles, CRECIBV está obligada a
+        presentar cada año, en el mes de mayo y respecto del ejercicio anterior, la{' '}
+        <strong>
+          declaración informativa de transparencia del patrimonio y del uso y destino de los
+          donativos recibidos
+        </strong>
+        , además de la declaración anual informativa de ingresos y egresos propia del régimen de
+        personas morales con fines no lucrativos.
+      </p>
+      <p>
+        No son trámites menores: el cumplimiento de esas obligaciones es lo que mantiene vigente la
+        autorización para expedir comprobantes deducibles, y su incumplimiento la hace perder.
       </p>
       <p>
         Cualquier donante puede solicitar información sobre la aplicación de los recursos

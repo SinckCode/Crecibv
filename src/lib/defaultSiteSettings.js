@@ -5,7 +5,11 @@
  */
 export const DEFAULT_SITE_SETTINGS = {
   orgInfo: {
-    fullName: 'Centro de Recursos Educativos para Ciegos y Baja Vision A.C.',
+    // Denominacion registrada ante el SAT. El "CRECIBV," inicial forma parte
+    // del nombre legal, no es un prefijo comercial: aparece asi en la
+    // Constancia de Situacion Fiscal (RFC CCR1902216I1), en el oficio de
+    // autorizacion de donataria y en el Anexo 14 de la RMF. No abreviar.
+    fullName: 'CRECIBV, Centro de Recursos Educativos para Ciegos y Baja Visión, A.C.',
     shortName: 'CRECIBV, A.C.',
     description: 'Centro de Rehabilitacion y Educacion para Ciegos y Debiles Visuales',
     address: {
@@ -35,7 +39,10 @@ export const DEFAULT_SITE_SETTINGS = {
   donations: {
     sectionTitle1: 'HAZ TU',
     sectionTitle2: 'DONATIVO',
-    beneficiaryName: 'CRECIBV - Centro de Recursos Educativos para Ciegos y Baja Vision A.C.',
+    // Nombre del beneficiario que la persona copia a su app bancaria y que
+    // debe coincidir con la denominacion registrada: un CFDI emitido con la
+    // razon social incorrecta no es deducible. Coma, no guion.
+    beneficiaryName: 'CRECIBV, Centro de Recursos Educativos para Ciegos y Baja Visión, A.C.',
     beneficiaryAddress:
       'Alferez No. 611, Colonia Real de Providencia, Leon de los Aldama, Guanajuato, Mexico. C.P. 37234.',
     awarenessMessage: 'Datos para realizar tu donativo',
