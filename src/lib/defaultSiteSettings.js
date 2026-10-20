@@ -21,7 +21,14 @@ export const DEFAULT_SITE_SETTINGS = {
       full: 'Calle Alferez 611, Col. Real Providencia, Leon, Guanajuato, Mexico',
     },
     phone: '+52 477 201 7851',
-    email: 'contacto@crecibv.com',
+    // Correo operativo de la asociacion. NO usar contacto@crecibv.com: el unico
+    // registro MX del dominio apunta a mail.crecibv.com, que no resuelve, asi que
+    // todo correo a @crecibv.com rebota. Este campo se publica en el pie de pagina,
+    // en la pagina de contacto y, sobre todo, en el aviso de privacidad como la via
+    // para ejercer derechos ARCO y en los terminos para solicitar el CFDI: tiene que
+    // ser una direccion que de verdad reciba. Volver a una del dominio propio cuando
+    // Google Workspace for Nonprofits este activo y el MX apunte ahi.
+    email: 'crecibv@outlook.com',
     hours: 'Lunes a Viernes, 9:00 AM - 2:00 PM',
   },
 
