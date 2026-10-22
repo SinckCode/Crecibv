@@ -99,8 +99,7 @@ const TerminosDonativos = () => {
         <li>Educación básica adaptada en los niveles preescolar, primaria y secundaria</li>
         <li>Orientación y movilidad, incluido el uso del bastón blanco</li>
         <li>Computación y tiflotecnología</li>
-        <li>Atención psicológica y habilidades de la vida diaria</li>
-        <li>Traslado de beneficiarios entre su domicilio y la asociación</li>
+        <li>Habilidades de la vida diaria</li>
         <li>Los gastos de operación necesarios para sostener los servicios anteriores</li>
       </ul>
       <p>
