@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { act } from 'react';
 import AdminCards from './AdminCards';
@@ -134,6 +134,49 @@ describe('AdminCards', () => {
     await userEvent.click(screen.getByRole('button', { name: /Si, eliminar/i }));
 
     await waitFor(() => expect(mockDeleteDoc).toHaveBeenCalled());
+  });
+
+  describe('the edit dialog', () => {
+    const openDialog = async () => {
+      mockGetDocs.mockResolvedValue(
+        cardsSnapshot([{ id: '1', title: 'Braille', description: 'Clases', image: '' }]),
+      );
+
+      render(<AdminCards />);
+      await screen.findByRole('heading', { name: 'Braille' });
+      await userEvent.click(screen.getByRole('button', { name: 'Editar' }));
+
+      return screen.getByRole('dialog');
+    };
+
+    it('closes when clicking outside of it', async () => {
+      const dialog = await openDialog();
+      // El fondo del modal no es accesible por rol —ni debe serlo—, y
+      // comprobar que cerrar pulsando fuera funciona es justo el punto de
+      // este test, asi que aqui hace falta llegar al nodo directamente.
+      // eslint-disable-next-line testing-library/no-node-access
+      const overlay = dialog.parentElement;
+
+      await userEvent.click(overlay);
+
+      await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
+    });
+
+    it('stays open when clicking inside of it', async () => {
+      const dialog = await openDialog();
+
+      await userEvent.click(within(dialog).getByLabelText('Titulo'));
+
+      expect(dialog).toBeInTheDocument();
+    });
+
+    it('closes with the Escape key', async () => {
+      await openDialog();
+
+      await userEvent.keyboard('{Escape}');
+
+      await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
+    });
   });
 
   it('rejects a file that is not an image', async () => {
