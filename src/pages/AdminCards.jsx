@@ -72,6 +72,8 @@ const AdminCards = () => {
 
   // El modal se cierra con Escape. Sin esto, quien navega con teclado queda
   // atrapado dentro y tiene que buscar el boton Cancelar con el raton.
+  // Mientras esta abierto se bloquea el desplazamiento del fondo, que si no
+  // se mueve detras del modal al usar la rueda.
   useEffect(() => {
     if (!editCard) return undefined;
 
@@ -79,9 +81,25 @@ const AdminCards = () => {
       if (event.key === 'Escape' && !saving) closeModal();
     };
 
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
     document.addEventListener('keydown', onKeyDown);
-    return () => document.removeEventListener('keydown', onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener('keydown', onKeyDown);
+    };
   }, [editCard, saving, closeModal]);
+
+  /**
+   * Cierra el modal al pulsar fuera de el. Se compara el objetivo con el
+   * propio fondo para no cerrarlo cuando el clic nace dentro del contenido.
+   * No cierra mientras se guarda: interrumpir una subida a medias dejaria a
+   * la persona sin saber si el cambio se aplico.
+   */
+  const handleOverlayClick = (event) => {
+    if (event.target === event.currentTarget && !saving) closeModal();
+  };
 
   /** Valida el archivo elegido y prepara su vista previa. */
   const pickFile = (file, setFile, setPreview) => {
@@ -375,7 +393,7 @@ const AdminCards = () => {
       </ul>
 
       {editCard && (
-        <div className="modal">
+        <div className="modal" onClick={handleOverlayClick}>
           <div
             className="modal-content"
             role="dialog"
