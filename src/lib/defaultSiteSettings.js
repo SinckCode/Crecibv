@@ -75,10 +75,18 @@ export const DEFAULT_SITE_SETTINGS = {
 
     // Montos anclados a su costo real. Suben el ticket promedio frente
     // a dejar la cantidad abierta.
+    //
+    // Lo que se enuncia aqui debe caber en las actividades que el oficio de
+    // autorizacion precisa (Articulo Quinto, inciso a) de los estatutos):
+    // Braille, orientacion, movilidad, habilidades de la vida diaria,
+    // curriculares, actividad fisica y tiflotecnologia. El oficio obliga a
+    // destinar los donativos "exclusivamente y en su totalidad" a ellas, asi
+    // que anunciar con precio un destino fuera de esa lista contradice el
+    // propio documento. Ver REVISION-DOCUMENTOS-LEGALES.md, seccion 4.6.
     suggestedAmounts: [
       { amount: 200, impact: 'Un mes de material en Braille para un alumno' },
-      { amount: 500, impact: 'Un mes de traslados casa-asociación' },
-      { amount: 1500, impact: 'Un mes de atención psicológica' },
+      { amount: 500, impact: 'Un mes de clases de orientación y movilidad' },
+      { amount: 1500, impact: 'Un mes de clases de computación y tiflotecnología' },
     ],
   },
 

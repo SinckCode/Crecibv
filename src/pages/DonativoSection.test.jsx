@@ -68,7 +68,7 @@ describe('DonativoSection', () => {
     render(<DonativoSection />);
 
     expect(screen.getByText('$500')).toBeInTheDocument();
-    expect(screen.getByText(/Un mes de traslados/)).toBeInTheDocument();
+    expect(screen.getByText(/orientación y movilidad/)).toBeInTheDocument();
   });
 
   it('copies the CLABE and reports it to the user', async () => {
