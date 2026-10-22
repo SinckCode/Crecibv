@@ -81,29 +81,40 @@ const AvisoPrivacidad = () => {
       </p>
 
       <h2>4. Cookies y tecnologías de rastreo</h2>
+      <p>Este sitio utiliza dos herramientas de medición:</p>
+      <ul>
+        <li>
+          <strong>Google Analytics</strong>, un servicio de análisis web que coloca cookies en su
+          navegador para medir cómo se usa el sitio: páginas visitadas, tiempo de permanencia, tipo
+          de dispositivo y ubicación aproximada de la visita a nivel de ciudad o región.
+        </li>
+        <li>
+          <strong>El píxel de Meta</strong>, de Meta Platforms —la empresa de Facebook e
+          Instagram—, que registra su visita y acciones como pulsar el botón de donar o copiar la
+          CLABE. Nos permite medir si nuestros anuncios en esas redes están sirviendo de algo y
+          mostrarlos a personas con intereses similares. Si usted tiene cuenta en Facebook o
+          Instagram, Meta puede relacionar esa visita con su cuenta.
+        </li>
+      </ul>
       <p>
-        Este sitio utiliza <strong>Google Analytics</strong>, un servicio de análisis web que coloca
-        cookies en su navegador para medir cómo se usa el sitio: páginas visitadas, tiempo de
-        permanencia, tipo de dispositivo y ubicación aproximada de la visita a nivel de ciudad o
-        región.
-      </p>
-      <p>
-        Esta información es estadística y no lo identifica a usted por nombre. La utilizamos
-        únicamente para entender qué contenido resulta útil y mejorar el sitio.
+        La información que recibimos de ambas herramientas es estadística y no lo identifica a usted
+        por nombre. La utilizamos únicamente para entender qué contenido resulta útil, mejorar el
+        sitio y orientar nuestras campañas de difusión.
       </p>
       <p>
         <strong>
-          Esta medición no se activa sola: Google Analytics no se carga hasta que usted lo acepta en
-          el aviso que aparece al pie de la página.
+          Esta medición no se activa sola: ni Google Analytics ni el píxel de Meta se cargan hasta
+          que usted lo acepta en el aviso que aparece al pie de la página.
         </strong>{' '}
-        Si lo rechaza, o mientras no haya decidido, no se instala ninguna cookie de análisis y no se
+        Si lo rechaza, o mientras no haya decidido, no se instala ninguna cookie de medición y no se
         mide nada. Su decisión se guarda en su propio navegador para no volver a preguntársela en
         cada visita.
       </p>
       <p>
-        Además puede deshabilitar las cookies desde la configuración de su navegador o instalar el
-        complemento de inhabilitación de Google Analytics. Nada de esto afecta el funcionamiento del
-        sitio ni su posibilidad de contactarnos o donar.
+        Además puede deshabilitar las cookies desde la configuración de su navegador, instalar el
+        complemento de inhabilitación de Google Analytics, o ajustar sus preferencias de publicidad
+        desde su cuenta de Facebook o Instagram. Nada de esto afecta el funcionamiento del sitio ni
+        su posibilidad de contactarnos o donar.
       </p>
 
       <h2>5. Con quién compartimos sus datos</h2>
@@ -113,9 +124,11 @@ const AvisoPrivacidad = () => {
         </strong>
       </p>
       <p>
-        Para operar este sitio utilizamos servicios de Google (Firebase y Google Analytics). Esto
-        implica que la información se almacena y procesa en servidores que pueden ubicarse fuera de
-        territorio mexicano. Estos proveedores actúan como encargados del tratamiento por cuenta de
+        Para operar este sitio utilizamos servicios de <strong>Google</strong> (Firebase y Google
+        Analytics) y, para medir nuestras campañas de difusión, de <strong>Meta Platforms</strong>
+        (Facebook e Instagram). Esto implica una transferencia de datos a terceros y que la
+        información se almacena y procesa en servidores ubicados fuera de territorio mexicano,
+        principalmente en Estados Unidos. Estos proveedores actúan como encargados del tratamiento por cuenta de
         CRECIBV y están obligados a proteger la información conforme a sus propios compromisos de
         privacidad.
       </p>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import {
   CONSENT_DENIED,
   CONSENT_GRANTED,
-  loadAnalytics,
+  loadTrackers,
   readConsent,
   saveConsent,
 } from '../lib/analytics';
@@ -19,7 +19,9 @@ import './CookieConsent.scss';
  * - No roba el foco. Se anuncia con aria-live para que quien usa lector de
  *   pantalla sepa que esta ahi y pueda llegar con el teclado, sin que se le
  *   interrumpa la lectura de la pagina.
- * - Rechazar tiene efecto real: si no se acepta, gtag.js nunca se inyecta.
+ * - Rechazar tiene efecto real: si no se acepta, no se inyecta ni gtag.js ni
+ *   el pixel de Meta. Cualquier medidor que se agregue en el futuro debe
+ *   colgarse de loadTrackers(), nunca de public/index.html.
  */
 const CookieConsent = () => {
   const [visible, setVisible] = useState(false);
@@ -28,7 +30,7 @@ const CookieConsent = () => {
     const stored = readConsent();
 
     if (stored === CONSENT_GRANTED) {
-      loadAnalytics();
+      loadTrackers();
       return;
     }
 
@@ -41,7 +43,7 @@ const CookieConsent = () => {
 
   const handleAccept = () => {
     saveConsent(CONSENT_GRANTED);
-    loadAnalytics();
+    loadTrackers();
     setVisible(false);
   };
 
