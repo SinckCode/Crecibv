@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FormActions = ({ onSave, onCancel, saving, disabled }) => (
+const FormActions = ({ onSave, onCancel, saving, disabled, savingLabel, saveLabel }) => (
   <div className="form-actions">
     {onCancel && (
       <button type="button" className="form-actions__cancel" onClick={onCancel} disabled={saving}>
@@ -13,7 +13,7 @@ const FormActions = ({ onSave, onCancel, saving, disabled }) => (
       onClick={onSave}
       disabled={saving || disabled}
     >
-      {saving ? 'Guardando...' : 'Guardar Cambios'}
+      {saving ? savingLabel || 'Guardando...' : saveLabel || 'Guardar Cambios'}
     </button>
   </div>
 );

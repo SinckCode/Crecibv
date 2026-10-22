@@ -1,149 +1,184 @@
 @import '../styles/base/variables';
 @import '../styles/base/mixins';
 
-.admin-cards {
-  max-width: 600px;
-  margin: auto;
-  text-align: center;
+// El formulario, las etiquetas y los botones de guardar vienen de
+// AdminComponents.scss, igual que en el resto del panel. Aqui solo vive lo
+// propio de esta pantalla: la lista de tarjetas, la vista previa de la
+// imagen, la barra de avance y el modal de edicion.
 
-  h2 {
-    font-size: 2rem;
-    margin-bottom: $spacing-unit;
+.admin-cards {
+  max-width: 760px;
+  margin: 0 auto;
+
+  &__heading {
+    font-size: 1.15rem;
     color: $text-dark;
+    margin: 0 0 1.25rem;
+
+    &--list {
+      margin-top: 2.5rem;
+    }
   }
 
-  .add-card {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    margin-bottom: 2.5rem;
-    background: $bg-light;
+  &__empty {
     padding: 1.5rem;
+    background: $bg-light;
+    border: 1px dashed $border-color;
     border-radius: $radius-md;
+    color: $text-secondary;
+    text-align: center;
+    font-size: 0.95rem;
+  }
+
+  // Vista previa de la imagen elegida. Antes no existia: quien subia una
+  // foto no veia cual habia elegido hasta despues de guardar.
+  &__preview {
+    display: block;
+    margin-top: 0.75rem;
+    width: 160px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: $radius-sm;
     border: 1px solid $border-light;
+  }
 
-    input[type='text'] {
-      padding: 0.75rem 1rem;
+  // Barra de avance de la subida. Es la pieza que faltaba: sin ella, pulsar
+  // guardar con una foto pesada parecia no hacer nada.
+  &__progress {
+    height: 6px;
+    margin: 1rem 0;
+    background: $bg-light;
+    border: 1px solid $border-light;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  &__progress-bar {
+    height: 100%;
+    background: $primary-color;
+    border-radius: 999px;
+    transition: width 0.2s ease;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 1rem;
+  }
+
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    background: $bg-white;
+    border: 1px solid $border-light;
+    border-radius: $radius-md;
+    box-shadow: $shadow-sm;
+    transition: box-shadow $transition-base;
+
+    &:hover {
+      box-shadow: $shadow-md;
+    }
+
+    > img {
+      flex-shrink: 0;
+      width: 96px;
+      height: 96px;
+      object-fit: cover;
+      border-radius: $radius-sm;
+      border: 1px solid $border-light;
+    }
+  }
+
+  &__no-image {
+    flex-shrink: 0;
+    width: 96px;
+    height: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: $bg-light;
+    border: 1px dashed $border-color;
+    border-radius: $radius-sm;
+    color: $text-secondary;
+    font-size: 0.75rem;
+    text-align: center;
+  }
+
+  &__item-body {
+    flex: 1;
+    min-width: 0;
+
+    h4 {
+      margin: 0 0 0.35rem;
       font-size: 1rem;
-      border: 1px solid $border-color;
-      border-radius: $radius-sm;
-      font-family: $font-family;
-      transition: border-color $transition-base;
-      box-sizing: border-box;
-
-      &:focus {
-        border-color: $primary-color;
-        outline: none;
-        box-shadow: 0 0 0 3px rgba($primary-color, 0.12);
-      }
+      color: $text-dark;
     }
 
-    input[type='file'] {
-      padding: 0.6rem;
+    p {
+      margin: 0;
       font-size: 0.9rem;
-      border: 2px dashed $border-color;
-      border-radius: $radius-sm;
-      background: $bg-white;
-      cursor: pointer;
-
-      &:hover {
-        border-color: $primary-color;
-      }
+      line-height: 1.5;
+      color: $text-secondary;
+      overflow-wrap: break-word;
     }
+  }
+
+  // Confirmacion de borrado en la propia tarjeta. Antes, un solo clic
+  // eliminaba la tarjeta y su imagen sin preguntar nada.
+  &__confirm {
+    flex-basis: 100%;
+    padding: 0.85rem 1rem;
+    background: rgba($error-color, 0.06);
+    border: 1px solid rgba($error-color, 0.35);
+    border-radius: $radius-sm;
+
+    p {
+      margin: 0 0 0.75rem;
+      font-size: 0.85rem;
+      color: $text-dark;
+      line-height: 1.45;
+    }
+  }
+
+  .card-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-shrink: 0;
 
     button {
-      padding: 0.75rem;
-      background: $primary-color;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: $secondary-color;
       color: $bg-white;
       border: none;
       border-radius: $radius-sm;
       cursor: pointer;
       font-family: $font-family;
-      font-weight: 600;
-      font-size: 1rem;
       transition: all $transition-base;
 
-      &:hover {
-        background: $primary-dark;
+      &:hover:not(:disabled) {
+        background: darken($secondary-color, 10%);
         transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba($primary-color, 0.3);
-      }
-    }
-  }
-
-  ul {
-    list-style: none;
-    padding: 0;
-
-    li {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 1.5rem;
-      padding: 1.25rem;
-      background: $bg-white;
-      border: 1px solid $border-light;
-      border-radius: $radius-md;
-      box-shadow: $shadow-sm;
-      transition: box-shadow $transition-base;
-
-      &:hover {
-        box-shadow: $shadow-md;
       }
 
-      h3 {
-        font-size: 1.1rem;
-        color: $text-dark;
+      &:disabled {
+        opacity: 0.55;
+        cursor: not-allowed;
       }
 
-      img {
-        width: 120px;
-        height: 120px;
-        object-fit: cover;
-        border-radius: $radius-sm;
-        border: 1px solid $border-light;
-      }
+      &.btn-delete {
+        background: transparent;
+        color: $error-color;
+        border: 1px solid $error-color;
 
-      p {
-        font-size: 0.9rem;
-        color: $text-secondary;
-        text-align: center;
-        line-height: 1.5;
-      }
-
-      .card-actions {
-        display: flex;
-        gap: 0.5rem;
-        margin-top: 0.5rem;
-      }
-
-      button {
-        padding: 0.5rem 1.25rem;
-        font-size: 0.85rem;
-        font-weight: 600;
-        background: $secondary-color;
-        color: $bg-white;
-        border: none;
-        border-radius: $radius-sm;
-        cursor: pointer;
-        font-family: $font-family;
-        transition: all $transition-base;
-
-        &:hover {
-          background: darken($secondary-color, 10%);
-          transform: translateY(-1px);
-        }
-
-        &.btn-delete {
-          background: transparent;
-          color: $error-color;
-          border: 1px solid $error-color;
-
-          &:hover {
-            background: $error-color;
-            color: $bg-white;
-          }
+        &:hover:not(:disabled) {
+          background: $error-color;
+          color: $bg-white;
         }
       }
     }
@@ -151,10 +186,7 @@
 
   .modal {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: rgba($bg-dark, 0.6);
     backdrop-filter: blur(4px);
     display: flex;
@@ -175,145 +207,29 @@
       box-shadow: $shadow-lg;
 
       h3 {
-        text-align: center;
-        font-size: 1.4rem;
+        margin: 0 0 1.5rem;
+        font-size: 1.25rem;
         color: $text-dark;
-        margin-bottom: 1.5rem;
-        padding-bottom: 0.75rem;
-        border-bottom: 2px solid $border-light;
-      }
-
-      .titulo,
-      .descrip,
-      .img {
-        margin-bottom: 1.25rem;
-
-        h4 {
-          font-size: 0.85rem;
-          font-weight: 600;
-          color: $text-secondary;
-          text-transform: uppercase;
-          letter-spacing: 0.04em;
-          margin-bottom: 0.5rem;
-        }
-      }
-
-      .titulo input {
-        padding: 0.75rem 1rem;
-        font-size: 1rem;
-        border: 1px solid $border-color;
-        border-radius: $radius-sm;
-        width: 100%;
-        font-family: $font-family;
-        box-sizing: border-box;
-
-        &:focus {
-          border-color: $primary-color;
-          outline: none;
-          box-shadow: 0 0 0 3px rgba($primary-color, 0.12);
-        }
-      }
-
-      .descrip textarea {
-        padding: 0.75rem 1rem;
-        font-size: 1rem;
-        border: 1px solid $border-color;
-        border-radius: $radius-sm;
-        width: 100%;
-        min-height: 100px;
-        font-family: $font-family;
-        resize: vertical;
-        box-sizing: border-box;
-
-        &:focus {
-          border-color: $primary-color;
-          outline: none;
-          box-shadow: 0 0 0 3px rgba($primary-color, 0.12);
-        }
-      }
-
-      .img {
-        input[type='file'] {
-          width: 100%;
-          padding: 0.6rem;
-          font-size: 0.9rem;
-          border: 2px dashed $border-color;
-          border-radius: $radius-sm;
-          cursor: pointer;
-          box-sizing: border-box;
-          background: $bg-light;
-
-          &:hover {
-            border-color: $primary-color;
-          }
-        }
-
-        img {
-          display: block;
-          width: 100%;
-          max-width: 300px;
-          height: auto;
-          object-fit: cover;
-          border-radius: $radius-sm;
-          margin-top: 0.75rem;
-          border: 1px solid $border-light;
-        }
-      }
-
-      .buttons {
-        display: flex;
-        gap: 0.75rem;
-        margin-top: 1.5rem;
-        padding-top: 1rem;
-        border-top: 1px solid $border-light;
-
-        button {
-          flex: 1;
-          padding: 0.75rem 1.5rem;
-          font-size: 0.95rem;
-          font-weight: 600;
-          cursor: pointer;
-          border: none;
-          border-radius: $radius-sm;
-          font-family: $font-family;
-          transition: all $transition-base;
-
-          &:first-child {
-            background: $primary-color;
-            color: $bg-white;
-
-            &:hover {
-              background: $primary-dark;
-              transform: translateY(-1px);
-              box-shadow: 0 4px 12px rgba($primary-color, 0.3);
-            }
-          }
-
-          &:last-child {
-            background: $bg-light;
-            color: $text-secondary;
-            border: 1px solid $border-color;
-
-            &:hover {
-              background: $border-light;
-              color: $text-dark;
-            }
-          }
-        }
       }
     }
   }
 
-  @include tablet {
-    max-width: 100%;
-    padding: 0 $spacing-unit;
+  @include mobile {
+    &__item {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    &__no-image {
+      width: 100%;
+    }
+
+    .card-actions button {
+      flex: 1;
+    }
 
     .modal .modal-content {
-      width: 95%;
-
-      .img img {
-        max-width: 100%;
-      }
+      padding: 1.25rem;
     }
   }
 }
